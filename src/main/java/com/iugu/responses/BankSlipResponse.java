@@ -8,10 +8,8 @@ public class BankSlipResponse {
 
 	@JsonProperty("digitable_line")
 	private String digitableLine;
-	
 	@JsonProperty("barcode_data")
 	private String barcodeData;
-	
 	private String barcode;
 
 	public String getDigitableLine() {

@@ -7,11 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LogResponse {
 
 	private String id;
-
 	private String description;
-
 	private String notes;
-
 	@JsonProperty("created_at")
 	private String createdAt;
 

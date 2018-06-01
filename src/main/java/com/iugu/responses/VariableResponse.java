@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class VariableResponse {
 
 	private String id;
-	
 	private String variable;
-	
 	private String value;
 
 	public String getId() {

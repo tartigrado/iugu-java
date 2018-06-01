@@ -10,20 +10,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ItemResponse {
 
 	private String id;
-	
 	private String description;
-	
 	private Integer quantity;
-	
 	@JsonProperty("price_cents")
 	private Integer priceCents;
-	
 	@JsonProperty("created_at")
 	private String createdAt;
-	
 	@JsonProperty("updated_at")
 	private Date updatedAt;
-	
 	private String price;
 
 	public String getId() {

@@ -13,81 +13,84 @@ public class InvoiceResponse implements Serializable {
     private static final long serialVersionUID = -4229186497940178039L;
 
     private String id;
-
     @JsonProperty("due_date")
     private String dueDate;
-
     private String currency;
-
     @JsonProperty("discount_cents")
     private Integer discountCents;
-
     private String email;
-
     @JsonProperty("items_total_cents")
     private Integer itemsTotalCents;
-
     @JsonProperty("notification_url")
     private String notificationUrl;
-
     @JsonProperty("return_url")
     private String returnUrl;
-
     private String status;
-
     @JsonProperty("tax_cents")
     private Integer taxCents;
-
+    @JsonProperty("created_at")
+    private String createdAt;
     @JsonProperty("updated_at")
     private Date updatedAt;
-
     @JsonProperty("total_cents")
     private Integer totalCents;
-
+    @JsonProperty("total_paid_cents")
+    private Integer totalPaidCents;
     @JsonProperty("paid_at")
     private Date paidAt;
-
+    @JsonProperty("taxes_paid_cents")
+    private Integer taxesPaidCents;
+    @JsonProperty("paid_cents")
+    private Integer paidCents;
+    @JsonProperty("cc_emails")
+    private String ccEmails;
+    @JsonProperty("financial_return_date")
+    private Date financialReturnDate;
+    @JsonProperty("payable_with")
+    private String payableWith;
+    @JsonProperty("overpaid_cents")
+    private Integer overpaidCents;
+    @JsonProperty("early_payment_discount")
+    private Boolean earlyPaymentDiscount;
     @JsonProperty("secure_id")
     private String secureId;
-
     @JsonProperty("secure_url")
     private String secureUrl;
-
     @JsonProperty("customer_id")
     private String customerId;
-
+    @JsonProperty("customer_ref")
+    private String customerRef;
+    @JsonProperty("customer_name")
+    private String customerName;
     @JsonProperty("user_id")
     private Long userId;
-
     @JsonProperty("total")
     private String total;
-
     @JsonProperty("total_paid")
     private String totalPaid;
-
     @JsonProperty("total_on_occurrence_day")
     private String totalOnOccurrenceDay;
-
     @JsonProperty("taxes_paid")
     private String taxesPaid;
-
+    @JsonProperty("total_overpaid")
+    private String totalOverpaid;
+    private String commission;
+    private String paid;
     private String interest;
-
     private String discount;
-
     private Boolean refundable;
-
     private String installments;
-
+    @JsonProperty("transaction_number")
+    private Integer transactionNumber;
+    @JsonProperty("created_at_iso")
+    private Date createdAtIso;
+    @JsonProperty("updated_at_iso")
+    private Date updatedAtIso;
     @JsonProperty("bank_slip")
     private BankSlipResponse bankSlip;
-
     private List<ItemResponse> items;
-
     private List<VariableResponse> variables;
-
     private List<LogResponse> logs;
-
     @JsonProperty("payment_method")
     private String paymentMethod;
 
@@ -329,6 +332,142 @@ public class InvoiceResponse implements Serializable {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getTotalPaidCents() {
+        return totalPaidCents;
+    }
+
+    public void setTotalPaidCents(Integer totalPaidCents) {
+        this.totalPaidCents = totalPaidCents;
+    }
+
+    public Integer getTaxesPaidCents() {
+        return taxesPaidCents;
+    }
+
+    public void setTaxesPaidCents(Integer taxesPaidCents) {
+        this.taxesPaidCents = taxesPaidCents;
+    }
+
+    public Integer getPaidCents() {
+        return paidCents;
+    }
+
+    public void setPaidCents(Integer paidCents) {
+        this.paidCents = paidCents;
+    }
+
+    public String getCcEmails() {
+        return ccEmails;
+    }
+
+    public void setCcEmails(String ccEmails) {
+        this.ccEmails = ccEmails;
+    }
+
+    public Date getFinancialReturnDate() {
+        return financialReturnDate;
+    }
+
+    public void setFinancialReturnDate(Date financialReturnDate) {
+        this.financialReturnDate = financialReturnDate;
+    }
+
+    public String getPayableWith() {
+        return payableWith;
+    }
+
+    public void setPayableWith(String payableWith) {
+        this.payableWith = payableWith;
+    }
+
+    public Integer getOverpaidCents() {
+        return overpaidCents;
+    }
+
+    public void setOverpaidCents(Integer overpaidCents) {
+        this.overpaidCents = overpaidCents;
+    }
+
+    public Boolean getEarlyPaymentDiscount() {
+        return earlyPaymentDiscount;
+    }
+
+    public void setEarlyPaymentDiscount(Boolean earlyPaymentDiscount) {
+        this.earlyPaymentDiscount = earlyPaymentDiscount;
+    }
+
+    public String getCustomerRef() {
+        return customerRef;
+    }
+
+    public void setCustomerRef(String customerRef) {
+        this.customerRef = customerRef;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getTotalOverpaid() {
+        return totalOverpaid;
+    }
+
+    public void setTotalOverpaid(String totalOverpaid) {
+        this.totalOverpaid = totalOverpaid;
+    }
+
+    public String getCommission() {
+        return commission;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
+    }
+
+    public String getPaid() {
+        return paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
+    public Integer getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(Integer transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public Date getCreatedAtIso() {
+        return createdAtIso;
+    }
+
+    public void setCreatedAtIso(Date createdAtIso) {
+        this.createdAtIso = createdAtIso;
+    }
+
+    public Date getUpdatedAtIso() {
+        return updatedAtIso;
+    }
+
+    public void setUpdatedAtIso(Date updatedAtIso) {
+        this.updatedAtIso = updatedAtIso;
     }
 
 }
