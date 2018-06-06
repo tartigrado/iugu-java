@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Item {
 
+    private String id;
     private String description;
-
     private Integer quantity;
-
     @JsonProperty("price_cents")
     private Integer priceCents;
+    @JsonProperty("_destroy")
+    private boolean _destroy;
 
     public Item() {
     }
@@ -18,6 +19,14 @@ public class Item {
         this.description = description;
         this.quantity = quantity;
         this.priceCents = priceCents;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -44,4 +53,12 @@ public class Item {
         this.priceCents = priceCents;
     }
 
+    public boolean isDestroy() {
+        return _destroy;
+    }
+
+    public void setDestroy(boolean _destroy) {
+        this._destroy = _destroy;
+    }
+    
 }
