@@ -71,13 +71,8 @@ public class InvoiceService {
         throw new IuguException("Error finding invoice with id: " + id, ResponseStatus, ResponseText);
     }
 
-    public InvoiceResponse duplicate(String id, Date date) throws IuguException {
-        SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
-        Form form = new Form();
-
-        form.param("due_date", sm.format(date));
-
-        Response response = this.iugu.getNewClient().target(String.format(DUPLICATE_URL, id)).request().post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+    public InvoiceResponse duplicate(Invoice invoice) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(DUPLICATE_URL, invoice.getId())).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
 
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
@@ -93,7 +88,7 @@ public class InvoiceService {
 
         response.close();
 
-        throw new IuguException("Error duplicating invoice with id: " + id, ResponseStatus, ResponseText);
+        throw new IuguException("Error duplicating invoice with id: " + invoice.getId(), ResponseStatus, ResponseText);
     }
 
     public InvoiceResponse duplicate(String id, Date date, boolean ignoreCanceledEmail, boolean currentFinesOption) throws IuguException {

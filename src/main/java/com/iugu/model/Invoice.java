@@ -25,6 +25,7 @@ public class Invoice implements Serializable {
         this.items.addAll(Arrays.asList(items)); // FIXME Tratar null pointer
     }
 
+    private String id;
     private String email;
 
     @JsonProperty("cc_emails")
@@ -89,6 +90,14 @@ public class Invoice implements Serializable {
 
     @JsonProperty("payment_method")
     private Integer paymentMethod;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
