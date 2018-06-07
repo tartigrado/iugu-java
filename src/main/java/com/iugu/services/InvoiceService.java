@@ -21,12 +21,12 @@ public class InvoiceService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/invoices");
     private final String CREATE_URL = IuguConfiguration.url("/invoices");
     private final String FIND_URL = IuguConfiguration.url("/invoices/%s");
+    private final String FIND_PARAMS_URL = IuguConfiguration.url("/invoices?%s");
     private final String DUPLICATE_URL = IuguConfiguration.url("/invoices/%s/duplicate");
     private final String REMOVE_URL = IuguConfiguration.url("/invoices/%s");
     private final String CANCEL_URL = IuguConfiguration.url("/invoices/%s/cancel");
     private final String REFUND_URL = IuguConfiguration.url("/invoices/%s/refund");
     private final String FIND_CUSTOMER_URL = IuguConfiguration.url("/invoices?customer_id=%s");
-    private final String FIND_STATUS_URL = IuguConfiguration.url("/invoices?status_filter=%s");
 
     public InvoiceService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -217,10 +217,10 @@ public class InvoiceService {
         response.close();
 
         throw new IuguException("Error finding invoice requests!", ResponseStatus, ResponseText);
-    }
+    }   
     
-    public InvoicesResponse findByStatus(String status) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_STATUS_URL, status)).request().get();
+    public InvoicesResponse findByParams(String params) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
