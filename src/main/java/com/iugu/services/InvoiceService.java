@@ -199,25 +199,6 @@ public class InvoiceService {
 
         throw new IuguException("Error finding invoice with customerId: " + id, ResponseStatus, ResponseText);
     }
-
-    public InvoicesResponse findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
-
-        if (ResponseStatus == 200) {
-            return response.readEntity(InvoicesResponse.class);
-        }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error finding invoice requests!", ResponseStatus, ResponseText);
-    }   
     
     public InvoicesResponse findByParams(String params) throws IuguException {
         Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();

@@ -17,6 +17,7 @@ public class CustomerService {
 	private final String FIND_ALL_URL = IuguConfiguration.url("/customers");
         private final String CREATE_URL = IuguConfiguration.url("/customers");
 	private final String FIND_URL = IuguConfiguration.url("/customers/%s");
+	private final String FIND_PARAMS_URL = IuguConfiguration.url("/customers?%s");
 	private final String CHANGE_URL = IuguConfiguration.url("/customers/%s");
 	private final String REMOVE_URL = IuguConfiguration.url("/customers/%s");
 
@@ -96,8 +97,8 @@ public class CustomerService {
 		throw new IuguException("Error removing customer!", ResponseStatus, ResponseText);
 	}
 
-	public CustomersResponse findAll() throws IuguException {
-		Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
+	public CustomersResponse findByParams(String params) throws IuguException {
+		Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
 		int ResponseStatus = response.getStatus();
 		String ResponseText = null;
 
@@ -112,4 +113,5 @@ public class CustomerService {
 
 		throw new IuguException("Error finding customers!", ResponseStatus, ResponseText);
 	}
+
 }
