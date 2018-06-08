@@ -8,9 +8,12 @@ import com.iugu.model.RequestWithdraw;
 import com.iugu.responses.*;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +26,7 @@ public class AccountService {
     private final String REQUEST_VERIFICATION_URL = IuguConfiguration.url("/accounts/%s/request_verification");
     private final String ACCOUNT_CONFIGURATION_URL = IuguConfiguration.url("/accounts/configuration");
     private final String REQUEST_WITHDRAW_URL = IuguConfiguration.url("/accounts/%s/request_withdraw");
+    private final String CHANGE_URL = IuguConfiguration.url("/accounts/%s");
 
     public AccountService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -175,6 +179,24 @@ public class AccountService {
         response.close();
 
         throw new IuguException("Error on request withdraw!", ResponseStatus, ResponseText);
+    }
+
+    public AccountResponse change(Account account) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(CHANGE_URL, account.getId())).request().put(Entity.entity(account, MediaType.APPLICATION_JSON));
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200)
+            return response.readEntity(AccountResponse.class);
+
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
+
+        response.close();
+
+        throw new IuguException("Error changing account with id: " + account.getId(), ResponseStatus, ResponseText);
     }
 
 }

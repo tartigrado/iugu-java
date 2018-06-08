@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Account {
 
+    private String id;
+    private String name;
+    @JsonProperty("reply_to")
+    private String replyTo;
     @JsonProperty("commission_percent")
     private String commissionPercent;
     @JsonProperty("auto_withdraw")
@@ -33,6 +37,30 @@ public class Account {
     private Boolean earlyPaymentDiscount;
     @JsonProperty("early_payment_discounts")
     private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReplyTo() {
+        return replyTo;
+    }
+
+    public void setReplyTo(String replyTo) {
+        this.replyTo = replyTo;
+    }
 
     public String getCommissionPercent() {
         return commissionPercent;
