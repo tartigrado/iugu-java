@@ -4,17 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CustomVariable {
 
+	private String name;
+	private String value;
+	@JsonProperty("_destroy")
+	private Boolean _destroy;
+
+	public CustomVariable() {
+	}
+
 	public CustomVariable(String name, String value) {
 		this.name = name;
 		this.value = value;
 	}
-
-	private String name;
-
-	private String value;
-
-	@JsonProperty("_destroy")
-	private Boolean destroy;
 
 	public String getName() {
 		return name;
@@ -25,11 +26,11 @@ public class CustomVariable {
 	}
 
 	public Boolean getDestroy() {
-		return destroy;
+		return _destroy;
 	}
 
-	public void setDestroy(Boolean destroy) {
-		this.destroy = destroy;
+	public void setDestroy(Boolean _destroy) {
+		this._destroy = _destroy;
 	}
 
 }
