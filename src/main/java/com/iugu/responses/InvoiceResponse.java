@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.model.CustomVariable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InvoiceResponse implements Serializable {
@@ -90,6 +91,8 @@ public class InvoiceResponse implements Serializable {
     private BankSlipResponse bankSlip;
     private List<ItemResponse> items;
     private List<VariableResponse> variables;
+    @JsonProperty("custom_variables")
+    private List<CustomVariableResponse> customVariables;
     private List<LogResponse> logs;
     @JsonProperty("payment_method")
     private String paymentMethod;
@@ -292,6 +295,14 @@ public class InvoiceResponse implements Serializable {
 
     public void setVariables(List<VariableResponse> variables) {
         this.variables = variables;
+    }
+
+    public List<CustomVariableResponse> getCustomVariables() {
+        return customVariables;
+    }
+
+    public void setCustomVariables(List<CustomVariableResponse> customVariables) {
+        this.customVariables = customVariables;
     }
 
     public List<LogResponse> getLogs() {
