@@ -29,7 +29,7 @@ public class Subscription {
     public String planIdentifier;
 
     @JsonProperty("expires_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date expiresAt;
 
     @JsonProperty("only_on_charge_sucess")
