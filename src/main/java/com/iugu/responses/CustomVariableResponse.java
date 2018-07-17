@@ -23,5 +23,13 @@ public class CustomVariableResponse {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "CustomVariableResponse{" +
+				"name='" + name + '\'' +
+				", value='" + value + '\'' +
+				'}';
+	}
+
 }
