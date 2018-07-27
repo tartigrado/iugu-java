@@ -15,8 +15,6 @@ public class AccountVerificationResponse {
     @JsonProperty("created_at")
     private Date createdAt;
     
-    private String hasErrors;
-
     public String getId() {
         return id;
     }
@@ -47,14 +45,6 @@ public class AccountVerificationResponse {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getHasErrors() {
-        return hasErrors;
-    }
-
-    public void setHasErrors(String hasErrors) {
-        this.hasErrors = hasErrors;
     }
 
     @Override
