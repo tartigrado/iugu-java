@@ -2,6 +2,7 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
@@ -67,6 +68,12 @@ public class AccountResponse {
     @JsonProperty("custom_logo_small_url")
     private String customLogoSmallUrl;
     private List<InfoResponse> informations;
+    private Boolean fines;
+    @JsonProperty("per_day_interest")
+    private Boolean perDayInterest;
+    @JsonProperty("late_payment_fine")
+    private Integer latePaymentFine;
+    private ConfigurationResponse configuration;
 
     public String getId() {
         return id;
@@ -324,9 +331,78 @@ public class AccountResponse {
         this.informations = informations;
     }
 
+    public Boolean getFines() {
+        return fines;
+    }
+
+    public void setFines(Boolean fines) {
+        this.fines = fines;
+    }
+
+    public Boolean getPerDayInterest() {
+        return perDayInterest;
+    }
+
+    public void setPerDayInterest(Boolean perDayInterest) {
+        this.perDayInterest = perDayInterest;
+    }
+
+    public Integer getLatePaymentFine() {
+        return latePaymentFine;
+    }
+
+    public void setLatePaymentFine(Integer latePaymentFine) {
+        this.latePaymentFine = latePaymentFine;
+    }
+
+    public ConfigurationResponse getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(ConfigurationResponse configuration) {
+        this.configuration = configuration;
+    }
+
     @Override
     public String toString() {
-        return "AccountResponse{" + "id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", canReceive=" + canReceive + ", isVerified=" + isVerified + ", lastVerificationRequestStatus=" + lastVerificationRequestStatus + ", accountLastVerification=" + accountLastVerification + ", lastVerificationRequestFeedback=" + lastVerificationRequestFeedback + ", changePlanType=" + changePlanType + ", subscriptionsTrialPeriod=" + subscriptionsTrialPeriod + ", disableEmails=" + disableEmails + ", lastWithdraw=" + lastWithdraw + ", totalSubscriptions=" + totalSubscriptions + ", replyTo=" + replyTo + ", webappOnTestMode=" + webappOnTestMode + ", marketplace=" + marketplace + ", autoWithdraw=" + autoWithdraw + ", balance=" + balance + ", balanceAvailableForWithdraw=" + balanceAvailableForWithdraw + ", balanceInProtest=" + balanceInProtest + ", protectedBalance=" + protectedBalance + ", payableBalance=" + payableBalance + ", receivableBalance=" + receivableBalance + ", commissionBalance=" + commissionBalance + ", volumeLastMonth=" + volumeLastMonth + ", volumeThisMonth=" + volumeThisMonth + ", taxesPaidLastMonth=" + taxesPaidLastMonth + ", taxesPaidThisMonth=" + taxesPaidThisMonth + ", customLogoUrl=" + customLogoUrl + ", customLogoSmallUrl=" + customLogoSmallUrl + ", informations=" + informations + '}';
+        return "AccountResponse{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", canReceive=" + canReceive +
+                ", isVerified=" + isVerified +
+                ", lastVerificationRequestStatus='" + lastVerificationRequestStatus + '\'' +
+                ", accountLastVerification=" + accountLastVerification +
+                ", lastVerificationRequestFeedback='" + lastVerificationRequestFeedback + '\'' +
+                ", changePlanType=" + changePlanType +
+                ", subscriptionsTrialPeriod=" + subscriptionsTrialPeriod +
+                ", disableEmails=" + disableEmails +
+                ", lastWithdraw=" + lastWithdraw +
+                ", totalSubscriptions=" + totalSubscriptions +
+                ", replyTo='" + replyTo + '\'' +
+                ", webappOnTestMode=" + webappOnTestMode +
+                ", marketplace=" + marketplace +
+                ", autoWithdraw=" + autoWithdraw +
+                ", balance='" + balance + '\'' +
+                ", balanceAvailableForWithdraw='" + balanceAvailableForWithdraw + '\'' +
+                ", balanceInProtest='" + balanceInProtest + '\'' +
+                ", protectedBalance='" + protectedBalance + '\'' +
+                ", payableBalance='" + payableBalance + '\'' +
+                ", receivableBalance='" + receivableBalance + '\'' +
+                ", commissionBalance='" + commissionBalance + '\'' +
+                ", volumeLastMonth='" + volumeLastMonth + '\'' +
+                ", volumeThisMonth='" + volumeThisMonth + '\'' +
+                ", taxesPaidLastMonth='" + taxesPaidLastMonth + '\'' +
+                ", taxesPaidThisMonth='" + taxesPaidThisMonth + '\'' +
+                ", customLogoUrl='" + customLogoUrl + '\'' +
+                ", customLogoSmallUrl='" + customLogoSmallUrl + '\'' +
+                ", informations=" + informations +
+                ", fines=" + fines +
+                ", perDayInterest=" + perDayInterest +
+                ", latePaymentFine=" + latePaymentFine +
+                ", configuration=" + configuration +
+                '}';
     }
 
 }
