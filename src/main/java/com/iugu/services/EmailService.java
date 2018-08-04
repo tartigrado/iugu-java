@@ -2,9 +2,12 @@ package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
+import com.iugu.model.Email;
 import com.iugu.responses.EmailResponse;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -13,6 +16,8 @@ public class EmailService {
     private IuguConfiguration iugu;
     private final String FIND_SUPPORTED_URL = IuguConfiguration.url("/emails/supported_emails");
     private final String FIND_EMAILS_URL = IuguConfiguration.url("/emails");
+    private final String FIND_URL = IuguConfiguration.url("/emails/%s");
+    private final String UPDATE_URL = IuguConfiguration.url("/emails/%s");
 
     public EmailService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -54,6 +59,42 @@ public class EmailService {
         response.close();
 
         throw new IuguException("Error finding emails!", ResponseStatus, ResponseText);
+    }
+
+    public EmailResponse findEmail(String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200)
+            return response.readEntity(EmailResponse.class);
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error finding email!", ResponseStatus, ResponseText);
+    }
+
+    public EmailResponse update(Email email) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200)
+            return response.readEntity(EmailResponse.class);
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error updating email!", ResponseStatus, ResponseText);
     }
 
 }
