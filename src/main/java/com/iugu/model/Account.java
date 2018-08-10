@@ -37,6 +37,7 @@ public class Account {
     private Boolean earlyPaymentDiscount;
     @JsonProperty("early_payment_discounts")
     private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+    private Commissions commissions;
 
     public String getId() {
         return id;
@@ -173,7 +174,15 @@ public class Account {
     public void setEarlyPaymentDiscounts(List<EarlyPaymentDiscount> earlyPaymentDiscounts) {
         this.earlyPaymentDiscounts = earlyPaymentDiscounts;
     }
-    
+
+    public Commissions getCommissions() {
+        return commissions;
+    }
+
+    public void setCommissions(Commissions commissions) {
+        this.commissions = commissions;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -191,6 +200,7 @@ public class Account {
                 ", paymentEmailNotificationReceiver='" + paymentEmailNotificationReceiver + '\'' +
                 ", earlyPaymentDiscount=" + earlyPaymentDiscount +
                 ", earlyPaymentDiscounts=" + earlyPaymentDiscounts +
+                ", commissions=" + commissions +
                 '}';
     }
 }
