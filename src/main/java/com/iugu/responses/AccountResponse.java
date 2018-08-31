@@ -74,6 +74,7 @@ public class AccountResponse {
     @JsonProperty("late_payment_fine")
     private Integer latePaymentFine;
     private ConfigurationResponse configuration;
+    private CommissionsResponse commissions;
 
     public String getId() {
         return id;
@@ -363,6 +364,14 @@ public class AccountResponse {
         this.configuration = configuration;
     }
 
+    public CommissionsResponse getCommissions() {
+        return commissions;
+    }
+
+    public void setCommissions(CommissionsResponse commissions) {
+        this.commissions = commissions;
+    }
+
     @Override
     public String toString() {
         return "AccountResponse{" +
@@ -402,6 +411,7 @@ public class AccountResponse {
                 ", perDayInterest=" + perDayInterest +
                 ", latePaymentFine=" + latePaymentFine +
                 ", configuration=" + configuration +
+                ", commissions=" + commissions +
                 '}';
     }
 
