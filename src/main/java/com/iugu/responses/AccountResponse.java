@@ -75,6 +75,10 @@ public class AccountResponse {
     private Integer latePaymentFine;
     private ConfigurationResponse configuration;
     private CommissionsResponse commissions;
+    @JsonProperty("payment_email_notification")
+    private Boolean paymentEmailNotification;
+    @JsonProperty("payment_email_notification_receiver")
+    private String paymentEmailNotificationReceiver;
 
     public String getId() {
         return id;
@@ -370,6 +374,22 @@ public class AccountResponse {
 
     public void setCommissions(CommissionsResponse commissions) {
         this.commissions = commissions;
+    }
+
+    public Boolean getPaymentEmailNotification() {
+        return paymentEmailNotification;
+    }
+
+    public void setPaymentEmailNotification(Boolean paymentEmailNotification) {
+        this.paymentEmailNotification = paymentEmailNotification;
+    }
+
+    public String getPaymentEmailNotificationReceiver() {
+        return paymentEmailNotificationReceiver;
+    }
+
+    public void setPaymentEmailNotificationReceiver(String paymentEmailNotificationReceiver) {
+        this.paymentEmailNotificationReceiver = paymentEmailNotificationReceiver;
     }
 
     @Override
