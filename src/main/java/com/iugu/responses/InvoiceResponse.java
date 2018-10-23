@@ -98,6 +98,8 @@ public class InvoiceResponse implements Serializable {
     private List<LogResponse> logs;
     @JsonProperty("payment_method")
     private String paymentMethod;
+    @JsonProperty("financial_return_dates")
+    private List<FinancialReturnDatesResponse> financialReturnDates;
 
     public String getId() {
         return id;
@@ -481,6 +483,14 @@ public class InvoiceResponse implements Serializable {
 
     public void setUpdatedAtIso(Date updatedAtIso) {
         this.updatedAtIso = updatedAtIso;
+    }
+
+    public List<FinancialReturnDatesResponse> getFinancialReturnDates() {
+        return financialReturnDates;
+    }
+
+    public void setFinancialReturnDates(List<FinancialReturnDatesResponse> financialReturnDates) {
+        this.financialReturnDates = financialReturnDates;
     }
 
 }
