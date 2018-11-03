@@ -1,9 +1,13 @@
 package com.iugu.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FinancialReturnDatesResponse {
 
+    @JsonIgnore
     private Long id;
     private String installment;
     @JsonProperty("return_date")
