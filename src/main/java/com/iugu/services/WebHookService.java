@@ -12,6 +12,7 @@ public class WebHookService {
 
     private IuguConfiguration iugu;
     private final String FIND_ALL_URL = IuguConfiguration.url("/web_hooks");
+    private final String REMOVE_URL = IuguConfiguration.url("/web_hooks/%s");
 
     public WebHookService(IuguConfiguration iugu) {
         this.iugu = iugu;
@@ -33,6 +34,26 @@ public class WebHookService {
         response.close();
 
         throw new IuguException("Error finding web hooks! ", ResponseStatus, ResponseText);
+    }
+
+    public WebHookResponse remove(String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(REMOVE_URL, id)).request().delete();
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200) {
+            return response.readEntity(WebHookResponse.class);
+        }
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error removing web hook!", ResponseStatus, ResponseText);
     }
 
 }
