@@ -54,7 +54,7 @@ public class WithdrawRequestsService {
     }
 
     public WithdrawConciliationsResponse findAllWithdrawConciliations() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
+        Response response = this.iugu.getNewClient().target(WITHDRAW_CONCILIATIONS_URL).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
