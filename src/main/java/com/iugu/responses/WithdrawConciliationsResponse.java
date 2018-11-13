@@ -1,11 +1,17 @@
 package com.iugu.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WithdrawConciliationsResponse {
 
+    @JsonProperty("total_items")
     private String totalItems;
-    private List<WithdrawRequestsItemResponse> withdraw_requests;
+    @JsonProperty("withdraw_requests")
+    private List<WithdrawRequestsItemResponse> withdrawRequests;
 
     public String getTotalItems() {
         return totalItems;
@@ -15,19 +21,19 @@ public class WithdrawConciliationsResponse {
         this.totalItems = totalItems;
     }
 
-    public List<WithdrawRequestsItemResponse> getWithdraw_requests() {
-        return withdraw_requests;
+    public List<WithdrawRequestsItemResponse> getWithdrawRequests() {
+        return withdrawRequests;
     }
 
-    public void setWithdraw_requests(List<WithdrawRequestsItemResponse> withdraw_requests) {
-        this.withdraw_requests = withdraw_requests;
+    public void setWithdrawRequests(List<WithdrawRequestsItemResponse> withdrawRequests) {
+        this.withdrawRequests = withdrawRequests;
     }
 
     @Override
     public String toString() {
         return "WithdrawConciliationsResponse{" +
                 "totalItems='" + totalItems + '\'' +
-                ", withdraw_requests=" + withdraw_requests +
+                ", withdrawRequests=" + withdrawRequests +
                 '}';
     }
 
