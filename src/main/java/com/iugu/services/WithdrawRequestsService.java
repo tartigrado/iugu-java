@@ -13,7 +13,7 @@ public class WithdrawRequestsService {
     private IuguConfiguration iugu;
     private final String FIND_URL = IuguConfiguration.url("/withdraw_requests/%s");
     private final String FIND_ALL_URL = IuguConfiguration.url("/withdraw_requests");
-    private final String WITHDRAW_CONCILIATIONS_URL = IuguConfiguration.url("/withdraw_conciliations");
+    private final String WITHDRAW_CONCILIATIONS_URL = IuguConfiguration.url("/withdraw_conciliations?%s");
 
     public WithdrawRequestsService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -53,8 +53,8 @@ public class WithdrawRequestsService {
         throw new IuguException("Error finding withdraw requests!", ResponseStatus, ResponseText);
     }
 
-    public WithdrawConciliationsResponse findAllWithdrawConciliations() throws IuguException {
-        Response response = this.iugu.getNewClient().target(WITHDRAW_CONCILIATIONS_URL).request().get();
+    public WithdrawConciliationsResponse findAllWithdrawConciliations(String params) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(WITHDRAW_CONCILIATIONS_URL, params)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
