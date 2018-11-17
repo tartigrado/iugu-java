@@ -100,6 +100,7 @@ public class InvoiceResponse implements Serializable {
     private String paymentMethod;
     @JsonProperty("financial_return_dates")
     private List<FinancialReturnDatesResponse> financialReturnDates;
+    private Boolean draft;
 
     public String getId() {
         return id;
@@ -491,6 +492,14 @@ public class InvoiceResponse implements Serializable {
 
     public void setFinancialReturnDates(List<FinancialReturnDatesResponse> financialReturnDates) {
         this.financialReturnDates = financialReturnDates;
+    }
+
+    public Boolean getDraft() {
+        return draft;
+    }
+
+    public void setDraft(Boolean draft) {
+        this.draft = draft;
     }
 
 }
