@@ -91,7 +91,7 @@ public class Invoice implements Serializable {
     @JsonProperty("payment_method")
     private Integer paymentMethod;
 
-    private Boolean draft;
+    private String status;
 
     public String getId() {
         return id;
@@ -289,12 +289,12 @@ public class Invoice implements Serializable {
         this.paymentMethod = paymentMethod;
     }
 
-    public Boolean getDraft() {
-        return draft;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDraft(Boolean draft) {
-        this.draft = draft;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
