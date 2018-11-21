@@ -100,7 +100,8 @@ public class InvoiceResponse implements Serializable {
     private String paymentMethod;
     @JsonProperty("financial_return_dates")
     private List<FinancialReturnDatesResponse> financialReturnDates;
-    private Boolean draft;
+    @JsonProperty("ignore_due_email")
+    private Boolean ignoreDueEmail;
 
     public String getId() {
         return id;
@@ -494,12 +495,12 @@ public class InvoiceResponse implements Serializable {
         this.financialReturnDates = financialReturnDates;
     }
 
-    public Boolean getDraft() {
-        return draft;
+    public Boolean getIgnoreDueEmail() {
+        return ignoreDueEmail;
     }
 
-    public void setDraft(Boolean draft) {
-        this.draft = draft;
+    public void setIgnoreDueEmail(Boolean ignoreDueEmail) {
+        this.ignoreDueEmail = ignoreDueEmail;
     }
 
 }
