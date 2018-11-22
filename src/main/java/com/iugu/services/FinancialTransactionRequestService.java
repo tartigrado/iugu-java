@@ -4,6 +4,7 @@ import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.TransactionAdvance;
 import com.iugu.responses.FinancialTransactionRequestIResponse;
+import com.iugu.responses.TransactionAdvanceResponse;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -34,13 +35,13 @@ public class FinancialTransactionRequestService {
         throw new IuguException("Error finding financial transactions", ResponseStatus, ResponseText);
     }
 
-    /*public AccountVerificationResponse advance(TransactionAdvance transactionAdvance) throws IuguException {
+    public TransactionAdvanceResponse advance(TransactionAdvance transactionAdvance) throws IuguException {
         Response response = this.iugu.getNewClient().target(ADVANCE_URL).request().post(Entity.entity(transactionAdvance, MediaType.APPLICATION_JSON));
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(AccountVerificationResponse.class);
+            return response.readEntity(TransactionAdvanceResponse.class);
 
         // Error Happened
         if (response.hasEntity())
@@ -49,6 +50,6 @@ public class FinancialTransactionRequestService {
         response.close();
 
         throw new IuguException("Error on transaction advance!", ResponseStatus, ResponseText);
-    }*/
+    }
 
 }
