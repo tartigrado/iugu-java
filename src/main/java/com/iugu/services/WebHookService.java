@@ -2,9 +2,12 @@ package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
+import com.iugu.model.WebHookModel;
 import com.iugu.responses.WebHookResponse;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -14,6 +17,7 @@ public class WebHookService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/web_hooks");
     private final String REMOVE_URL = IuguConfiguration.url("/web_hooks/%s");
     private final String SUPPORTED_EVENTS_URL = IuguConfiguration.url("/web_hooks/supported_events");
+    private final String CREATE_URL = IuguConfiguration.url("/web_hooks");
 
     public WebHookService(IuguConfiguration iugu) {
         this.iugu = iugu;
@@ -73,6 +77,26 @@ public class WebHookService {
         response.close();
 
         throw new IuguException("Error finding supported events! ", ResponseStatus, ResponseText);
+    }
+
+    public WebHookResponse create(WebHookModel webHook) throws IuguException {
+        Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(webHook, MediaType.APPLICATION_JSON));
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200) {
+            return response.readEntity(WebHookResponse.class);
+        }
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error creating web hook!", ResponseStatus, ResponseText);
     }
 
 }
