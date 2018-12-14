@@ -18,7 +18,7 @@ public class Customer implements Serializable {
     private String ccEmails;
     @JsonProperty("zip_code")
     private String zipCode;
-    private Integer number;
+    private String number;
     private String street;
     private String city;
     private String state;
@@ -86,11 +86,11 @@ public class Customer implements Serializable {
         this.zipCode = zipCode;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
