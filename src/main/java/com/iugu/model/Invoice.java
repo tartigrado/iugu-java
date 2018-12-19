@@ -14,6 +14,9 @@ import com.iugu.enums.PayableWith;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoice implements Serializable {
 
+    public static final String STATUS_PENDING = "pending";
+    public static final String STATUS_DRAFT = "draft";
+    
     private static final long serialVersionUID = 1719931730355279382L;
 
     public Invoice() {
