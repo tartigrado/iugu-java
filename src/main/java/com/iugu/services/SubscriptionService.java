@@ -24,6 +24,7 @@ public class SubscriptionService {
     private final String ADD_CREDITS_URL = IuguConfiguration.url("/subscriptions/%s/add_credits");
     private final String REMOVE_CREDITS_URL = IuguConfiguration.url("/subscriptions/%s/remove_credits");
     private final String FIND_ALL_URL = IuguConfiguration.url("/subscriptions");
+    private final String FIND_PARAMS_URL = IuguConfiguration.url("/subscriptions?%s");
 
     public SubscriptionService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -209,8 +210,8 @@ public class SubscriptionService {
         throw new IuguException("Error removing credits from subscription!", ResponseStatus, ResponseText);
     }
 
-    public SubscriptionsResponse findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
+    public SubscriptionsResponse findByParams(String params) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
