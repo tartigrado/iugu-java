@@ -49,7 +49,7 @@ public class Item {
         return priceCents;
     }
 
-    public void setPrice_cents(Integer priceCents) {
+    public void setPriceCents(Integer priceCents) {
         this.priceCents = priceCents;
     }
 
