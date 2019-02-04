@@ -1,5 +1,6 @@
 package com.iugu.responses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +13,7 @@ public class TransactionResponse {
     private String type;
     private String description;
     @JsonProperty("entry_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date entryDate;
     private String reference;
     @JsonProperty("reference_type")
