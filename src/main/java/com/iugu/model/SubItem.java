@@ -42,6 +42,10 @@ public class SubItem {
         return priceCents;
     }
 
+    public void setPriceCents(Integer priceCents) {
+        this.priceCents = priceCents;
+    }
+
     public boolean isRecurrent() {
         return recurrent;
     }
