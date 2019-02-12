@@ -15,6 +15,7 @@ public class WebHookService {
 
     private IuguConfiguration iugu;
     private final String FIND_ALL_URL = IuguConfiguration.url("/web_hooks");
+    private final String FIND_URL = IuguConfiguration.url("/web_hooks/%s");
     private final String REMOVE_URL = IuguConfiguration.url("/web_hooks/%s");
     private final String SUPPORTED_EVENTS_URL = IuguConfiguration.url("/web_hooks/supported_events");
     private final String CREATE_URL = IuguConfiguration.url("/web_hooks");
@@ -39,6 +40,26 @@ public class WebHookService {
         response.close();
 
         throw new IuguException("Error finding web hooks! ", ResponseStatus, ResponseText);
+    }
+
+    public WebHookResponse find(String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200) {
+            return response.readEntity(WebHookResponse.class);
+        }
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error finding web hook!", ResponseStatus, ResponseText);
     }
 
     public WebHookResponse remove(String id) throws IuguException {
