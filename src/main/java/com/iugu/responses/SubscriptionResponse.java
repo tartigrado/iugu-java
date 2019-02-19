@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.model.Invoice;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscriptionResponse {
@@ -44,7 +45,8 @@ public class SubscriptionResponse {
     private Integer credits;
     @JsonProperty("credits_based")
     private Boolean creditsBased;
-    //TODO Recent Invoices
+    @JsonProperty("recent_invoices")
+    private List<InvoiceResponse> recentInvoices;
     private List<SubItemResponse> subitems;
     private List<LogResponse> logs;
     @JsonProperty("custom_variables")
@@ -56,6 +58,14 @@ public class SubscriptionResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<InvoiceResponse> getRecentInvoices() {
+        return recentInvoices;
+    }
+
+    public void setRecentInvoices(List<InvoiceResponse> recentInvoices) {
+        this.recentInvoices = recentInvoices;
     }
 
     public Boolean getSuspended() {
@@ -242,6 +252,7 @@ public class SubscriptionResponse {
                 + ", subitems=" + subitems
                 + ", logs=" + logs
                 + ", customVariables=" + customVariables
+                + ", recentInvoices=" + recentInvoices
                 + '}';
     }
 }
