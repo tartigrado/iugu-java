@@ -51,6 +51,8 @@ public class SubscriptionResponse {
     private List<LogResponse> logs;
     @JsonProperty("custom_variables")
     private List<CustomVariableResponse> customVariables;
+    @JsonProperty("credits_cycle")
+    public Integer creditsCycle;
 
     public String getId() {
         return id;
@@ -226,6 +228,14 @@ public class SubscriptionResponse {
 
     public void setCustomVariables(List<CustomVariableResponse> customVariables) {
         this.customVariables = customVariables;
+    }
+
+    public Integer getCreditsCycle() {
+        return creditsCycle;
+    }
+
+    public void setCreditsCycle(Integer creditsCycle) {
+        this.creditsCycle = creditsCycle;
     }
 
     @Override
