@@ -2,6 +2,9 @@ package com.iugu.model;
 
 public class Credit {
 
+	public Credit() {
+	}
+
 	public Credit(Integer quantity) {
 		this.quantity = quantity;
 	}

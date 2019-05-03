@@ -171,7 +171,7 @@ public class SubscriptionService {
     }
 
     public SubscriptionResponse addCredits(String id, Credit credit) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(ADD_CREDITS_URL, id)).request().post(Entity.entity(credit, MediaType.APPLICATION_JSON));
+        Response response = this.iugu.getNewClient().target(String.format(ADD_CREDITS_URL, id)).request().put(Entity.entity(credit, MediaType.APPLICATION_JSON));
 
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
@@ -191,7 +191,7 @@ public class SubscriptionService {
     }
 
     public SubscriptionResponse removeCredits(String id, Credit credit) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(REMOVE_CREDITS_URL, id)).request().post(Entity.entity(credit, MediaType.APPLICATION_JSON));
+        Response response = this.iugu.getNewClient().target(String.format(REMOVE_CREDITS_URL, id)).request().put(Entity.entity(credit, MediaType.APPLICATION_JSON));
 
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
