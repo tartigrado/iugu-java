@@ -12,6 +12,8 @@ public class ConfigurationResponse {
     private ConfigurationBankSlipResponse bankSlip;
     @JsonProperty("credit_card")
     private ConfigurationCreditCard creditCard;
+    @JsonProperty("early_payment_discount")
+    private Boolean earlyPaymentDiscount;
 
     public Integer getCommissionPercent() {
         return commissionPercent;
@@ -35,6 +37,14 @@ public class ConfigurationResponse {
 
     public void setCreditCard(ConfigurationCreditCard creditCard) {
         this.creditCard = creditCard;
+    }
+
+    public Boolean getEarlyPaymentDiscount() {
+        return earlyPaymentDiscount;
+    }
+
+    public void setEarlyPaymentDiscount(Boolean earlyPaymentDiscount) {
+        this.earlyPaymentDiscount = earlyPaymentDiscount;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.model.EarlyPaymentDiscount;
 
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,10 @@ public class AccountResponse {
     private Boolean paymentEmailNotification;
     @JsonProperty("payment_email_notification_receiver")
     private String paymentEmailNotificationReceiver;
+    @JsonProperty("early_payment_discount")
+    private Boolean earlyPaymentDiscount;
+    @JsonProperty("early_payment_discounts")
+    private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
 
     public String getId() {
         return id;
@@ -390,6 +395,22 @@ public class AccountResponse {
 
     public void setPaymentEmailNotificationReceiver(String paymentEmailNotificationReceiver) {
         this.paymentEmailNotificationReceiver = paymentEmailNotificationReceiver;
+    }
+
+    public Boolean getEarlyPaymentDiscount() {
+        return earlyPaymentDiscount;
+    }
+
+    public void setEarlyPaymentDiscount(Boolean earlyPaymentDiscount) {
+        this.earlyPaymentDiscount = earlyPaymentDiscount;
+    }
+
+    public List<EarlyPaymentDiscount> getEarlyPaymentDiscounts() {
+        return earlyPaymentDiscounts;
+    }
+
+    public void setEarlyPaymentDiscounts(List<EarlyPaymentDiscount> earlyPaymentDiscounts) {
+        this.earlyPaymentDiscounts = earlyPaymentDiscounts;
     }
 
     @Override
