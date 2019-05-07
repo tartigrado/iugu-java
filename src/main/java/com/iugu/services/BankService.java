@@ -4,6 +4,7 @@ import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.BankAddress;
 import com.iugu.responses.BankAddressVerificationResponse;
+import com.iugu.responses.BankVerificationResponse;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -21,13 +22,13 @@ public class BankService {
         this.iugu = iuguConfiguration;
     }
 
-    public Boolean add(BankAddress bankAddress) throws IuguException {
+    public BankVerificationResponse add(BankAddress bankAddress) throws IuguException {
         Response response = this.iugu.getNewClient().target(ADD_URL).request().post(Entity.entity(bankAddress, MediaType.APPLICATION_JSON));
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(Boolean.class);
+            return response.readEntity(BankVerificationResponse.class);
 
         // Error Happened
         if (response.hasEntity())
