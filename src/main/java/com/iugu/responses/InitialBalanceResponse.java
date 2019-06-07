@@ -10,7 +10,7 @@ public class InitialBalanceResponse {
 
     private String amount;
     @JsonProperty("entry_date")
-    private Date entryDate;
+    private String entryDate;
 
     public String getAmount() {
         return amount;
@@ -20,11 +20,11 @@ public class InitialBalanceResponse {
         this.amount = amount;
     }
 
-    public Date getEntryDate() {
+    public String getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(String entryDate) {
         this.entryDate = entryDate;
     }
 
