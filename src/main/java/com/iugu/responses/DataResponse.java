@@ -16,8 +16,8 @@ public class DataResponse {
     private String person_type;
     @JsonProperty("automatic_transfer")
     private String automatic_transfer;
-    @JsonProperty("cpf")
     private String cpf;
+    private String cnpj;
     private String name;
     private String address;
     private String cep;
@@ -84,6 +84,14 @@ public class DataResponse {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getName() {
