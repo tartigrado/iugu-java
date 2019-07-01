@@ -4,7 +4,7 @@
 
 	<groupId>com.tartigrado</groupId>
 	<artifactId>iugu-java</artifactId>
-	<version>1.0.79</version>
+	<version>1.0.80</version>
 	<packaging>jar</packaging>
 
 	<name>iugu-java</name>
@@ -20,12 +20,12 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
-			<version>3.1.4.Final</version>
+			<version>4.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson2-provider</artifactId>
-			<version>3.1.4.Final</version>
+			<version>4.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
