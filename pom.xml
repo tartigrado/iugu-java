@@ -4,7 +4,7 @@
 
 	<groupId>com.tartigrado</groupId>
 	<artifactId>iugu-java</artifactId>
-	<version>1.0.80</version>
+	<version>1.0.81</version>
 	<packaging>jar</packaging>
 
 	<name>iugu-java</name>
