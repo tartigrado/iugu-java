@@ -30,6 +30,8 @@ public class AccountResponse {
     private Integer changePlanType;
     @JsonProperty("subscriptions_trial_period")
     private Integer subscriptionsTrialPeriod;
+    @JsonProperty("subscriptions_billing_days")
+    private Integer subscriptionsBillingDays;
     @JsonProperty("disable_emails")
     private Boolean disableEmails;
     @JsonProperty("last_withdraw")
@@ -171,6 +173,14 @@ public class AccountResponse {
 
     public void setSubscriptionsTrialPeriod(Integer subscriptionsTrialPeriod) {
         this.subscriptionsTrialPeriod = subscriptionsTrialPeriod;
+    }
+
+    public Integer getSubscriptionsBillingDays() {
+        return subscriptionsBillingDays;
+    }
+
+    public void setSubscriptionsBillingDays(Integer subscriptionsBillingDays) {
+        this.subscriptionsBillingDays = subscriptionsBillingDays;
     }
 
     public Boolean getDisableEmails() {

@@ -3,6 +3,7 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Account;
+import com.iugu.model.AccountUpdate;
 import com.iugu.model.RequestVerification;
 import com.iugu.model.RequestWithdraw;
 import com.iugu.responses.*;
@@ -181,7 +182,7 @@ public class AccountService {
         throw new IuguException("Error on request withdraw!", ResponseStatus, ResponseText);
     }
 
-    public AccountResponse change(Account account) throws IuguException {
+    public AccountResponse change(AccountUpdate account) throws IuguException {
         Response response = this.iugu.getNewClient().target(String.format(CHANGE_URL, account.getId())).request().put(Entity.entity(account, MediaType.APPLICATION_JSON));
 
         int ResponseStatus = response.getStatus();
