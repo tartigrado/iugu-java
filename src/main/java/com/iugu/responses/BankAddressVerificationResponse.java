@@ -1,9 +1,11 @@
 package com.iugu.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BankAddressVerificationResponse {
 
     private String id;

@@ -1,8 +1,10 @@
 package com.iugu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.enums.PayableWith;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentToken {
 
 	@JsonProperty("account_id")

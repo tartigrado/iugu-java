@@ -1,9 +1,11 @@
 package com.iugu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Payer implements Serializable {
 
 	private static final long serialVersionUID = 3266886175287194L;

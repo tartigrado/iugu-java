@@ -1,9 +1,11 @@
 package com.iugu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.File;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BankAddress {
 
     private String agency;

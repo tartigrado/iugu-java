@@ -1,5 +1,8 @@
 package com.iugu.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmailResponse {
 
     private String id;
