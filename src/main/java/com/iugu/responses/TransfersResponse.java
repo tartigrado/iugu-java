@@ -12,6 +12,7 @@ public class TransfersResponse {
     private List<TransferResponse> sent;
     @JsonProperty("received")
     private List<TransferResponse> received;
+    private TotalTransfersResponse totals;
 
     public List<TransferResponse> getSent() {
         return sent;
@@ -29,11 +30,21 @@ public class TransfersResponse {
         this.received = received;
     }
 
+    public TotalTransfersResponse getTotals() {
+        return totals;
+    }
+
+    public void setTotals(TotalTransfersResponse totals) {
+        this.totals = totals;
+    }
+
     @Override
     public String toString() {
         return "TransfersResponse{" +
                 "sent=" + sent +
                 ", received=" + received +
+                ", totals=" + totals +
                 '}';
     }
+
 }

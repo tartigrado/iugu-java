@@ -16,6 +16,7 @@ public class TransferService {
     private final String TRANSFER_URL = IuguConfiguration.url("/transfers");
     private final String FIND_URL = IuguConfiguration.url("/transfers/%s");
     private final String FIND_ALL_URL = IuguConfiguration.url("/transfers");
+    private final String FIND_PARAMS_URL = IuguConfiguration.url("/transfers?%s");
 
     public TransferService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -56,8 +57,8 @@ public class TransferService {
         throw new IuguException("Error finding transfer with id: " + id, ResponseStatus, ResponseText);
     }
 
-    public TransfersResponse findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
+    public TransfersResponse findAll(String params) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
