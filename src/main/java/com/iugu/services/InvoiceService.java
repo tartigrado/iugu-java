@@ -27,6 +27,7 @@ public class InvoiceService {
     private final String CANCEL_URL = IuguConfiguration.url("/invoices/%s/cancel");
     private final String REFUND_URL = IuguConfiguration.url("/invoices/%s/refund");
     private final String FIND_CUSTOMER_URL = IuguConfiguration.url("/invoices?customer_id=%s");
+    private final String SEND_EMAIL_URL = IuguConfiguration.url("/invoices/%s/send_email");
 
     public InvoiceService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -219,6 +220,23 @@ public class InvoiceService {
         response.close();
 
         throw new IuguException("Error finding invoices requests!", ResponseStatus, ResponseText);
+    }
+
+    public InvoiceResponse sendEmail(String id) throws IuguException{
+        Response response = this.iugu.getNewClient().target(String.format(SEND_EMAIL_URL, id)).request().post(Entity.entity(null, MediaType.APPLICATION_JSON));
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if(ResponseStatus == 200){
+            return  response.readEntity(InvoiceResponse.class);
+        }
+
+        if(response.hasEntity()){
+            ResponseText = response.readEntity(String.class);
+        }
+        response.close();
+
+        throw new IuguException("Error send Email invoices request!", ResponseStatus, ResponseText);
     }
     
 }
