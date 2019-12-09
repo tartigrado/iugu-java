@@ -19,6 +19,7 @@ public class WebHookService {
     private final String REMOVE_URL = IuguConfiguration.url("/web_hooks/%s");
     private final String SUPPORTED_EVENTS_URL = IuguConfiguration.url("/web_hooks/supported_events");
     private final String CREATE_URL = IuguConfiguration.url("/web_hooks");
+    private final String UPDATE_URL = IuguConfiguration.url("/web_hooks/%s");
 
     public WebHookService(IuguConfiguration iugu) {
         this.iugu = iugu;
@@ -118,6 +119,26 @@ public class WebHookService {
         response.close();
 
         throw new IuguException("Error creating web hook!", ResponseStatus, ResponseText);
+    }
+
+    public WebHookResponse update(WebHookModel webHook, String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(UPDATE_URL, id)).request().put(Entity.entity(webHook, MediaType.APPLICATION_JSON));
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200) {
+            return response.readEntity(WebHookResponse.class);
+        }
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error updating web hook!", ResponseStatus, ResponseText);
     }
 
 }
