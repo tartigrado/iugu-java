@@ -3,8 +3,10 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Email;
+import com.iugu.model.SendEmailTest;
 import com.iugu.responses.EmailDefaultLayoutResponse;
 import com.iugu.responses.EmailResponse;
+import com.iugu.responses.SendEmailTestResponse;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -21,6 +23,7 @@ public class EmailService {
     private final String FIND_URL = IuguConfiguration.url("/emails/%s");
     private final String UPDATE_URL = IuguConfiguration.url("/emails/%s");
     private final String CREATE_URL = IuguConfiguration.url("/emails");
+    private final String SEND_TEST_URL = IuguConfiguration.url("/emails/test/%s");
 
     public EmailService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -125,6 +128,24 @@ public class EmailService {
 
         if (ResponseStatus == 200)
             return response.readEntity(EmailResponse.class);
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error creating email!", ResponseStatus, ResponseText);
+    }
+
+    public SendEmailTestResponse sendTest(String identifier, SendEmailTest email) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200)
+            return response.readEntity(SendEmailTestResponse.class);
 
         // Error Happened
         if (response.hasEntity()) {
