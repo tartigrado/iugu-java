@@ -38,6 +38,8 @@ public class AccountResponse {
     private LastWithdrawResponse lastWithdraw;
     @JsonProperty("total_subscriptions")
     private Integer totalSubscriptions;
+    @JsonProperty("total_active_subscriptions")
+    private Integer totalActiveSubscriptions;
     @JsonProperty("reply_to")
     private String replyTo;
     @JsonProperty("webapp_on_test_mode")
@@ -205,6 +207,14 @@ public class AccountResponse {
 
     public void setTotalSubscriptions(Integer totalSubscriptions) {
         this.totalSubscriptions = totalSubscriptions;
+    }
+
+    public Integer getTotalActiveSubscriptions() {
+        return totalActiveSubscriptions;
+    }
+
+    public void setTotalActiveSubscriptions(Integer totalActiveSubscriptions) {
+        this.totalActiveSubscriptions = totalActiveSubscriptions;
     }
 
     public String getReplyTo() {
@@ -440,6 +450,7 @@ public class AccountResponse {
                 ", disableEmails=" + disableEmails +
                 ", lastWithdraw=" + lastWithdraw +
                 ", totalSubscriptions=" + totalSubscriptions +
+                ", totalActiveSubscriptions=" + totalActiveSubscriptions +
                 ", replyTo='" + replyTo + '\'' +
                 ", webappOnTestMode=" + webappOnTestMode +
                 ", marketplace=" + marketplace +
