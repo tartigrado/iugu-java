@@ -101,6 +101,10 @@ public class InvoiceResponse implements Serializable {
     private List<FinancialReturnDatesResponse> financialReturnDates;
     @JsonProperty("ignore_due_email")
     private Boolean ignoreDueEmail;
+    @JsonProperty("per_day_interest_value")
+    private Boolean perDayInterestValue;
+    @JsonProperty("fines_on_occurrence_day_cents")
+    private Boolean finrdOnOcurrenceDayCentes;
 
     public String getId() {
         return id;
@@ -502,4 +506,23 @@ public class InvoiceResponse implements Serializable {
         this.ignoreDueEmail = ignoreDueEmail;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Boolean getPerDayInterestValue() {
+        return perDayInterestValue;
+    }
+
+    public void setPerDayInterestValue(Boolean perDayInterestValue) {
+        this.perDayInterestValue = perDayInterestValue;
+    }
+
+    public Boolean getFinrdOnOcurrenceDayCentes() {
+        return finrdOnOcurrenceDayCentes;
+    }
+
+    public void setFinrdOnOcurrenceDayCentes(Boolean finrdOnOcurrenceDayCentes) {
+        this.finrdOnOcurrenceDayCentes = finrdOnOcurrenceDayCentes;
+    }
 }
