@@ -94,8 +94,11 @@ public class Invoice implements Serializable {
     @JsonProperty("payment_method")
     private Integer paymentMethod;
 
+    @JsonProperty("fines_on_occurrence_day")
+    private String finesOnOccurrenceDay;
+
     @JsonProperty("fines_on_occurrence_day_cents")
-    private Integer finesOnOcurrenceDayCentes;
+    private Integer finesOnOcurrenceDayCents;
 
     @JsonProperty("per_day_interest_value")
     private Integer perDayInterestValue;
@@ -306,12 +309,20 @@ public class Invoice implements Serializable {
         this.status = status;
     }
 
-    public Integer getFinesOnOcurrenceDayCentes() {
-        return finesOnOcurrenceDayCentes;
+    public String getFinesOnOccurrenceDay() {
+        return finesOnOccurrenceDay;
     }
 
-    public void setFinesOnOcurrenceDayCentes(Integer finesOnOcurrenceDayCentes) {
-        this.finesOnOcurrenceDayCentes = finesOnOcurrenceDayCentes;
+    public void setFinesOnOccurrenceDay(String finesOnOccurrenceDay) {
+        this.finesOnOccurrenceDay = finesOnOccurrenceDay;
+    }
+
+    public Integer getFinesOnOcurrenceDayCents() {
+        return finesOnOcurrenceDayCents;
+    }
+
+    public void setFinesOnOcurrenceDayCents(Integer finesOnOcurrenceDayCents) {
+        this.finesOnOcurrenceDayCents = finesOnOcurrenceDayCents;
     }
 
     public Integer getPerDayInterestValue() {
