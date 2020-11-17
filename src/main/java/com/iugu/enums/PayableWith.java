@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum PayableWith {
 
-    CREDIT_CARD("credit_card"), ALL("all"), BANK_SLIP("bank_slip");
+    CREDIT_CARD("credit_card"), ALL("all"), BANK_SLIP("bank_slip"), PIX("pix");
 
     private String value;
 
@@ -32,6 +32,9 @@ public enum PayableWith {
                 break;
             case "bank_slip":
                 payableWith = PayableWith.BANK_SLIP;
+                break;
+            case "pix":
+                payableWith = PayableWith.PIX;
                 break;
             default:
                 payableWith = null;
