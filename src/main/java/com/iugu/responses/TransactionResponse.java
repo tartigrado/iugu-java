@@ -19,8 +19,8 @@ public class TransactionResponse {
     @JsonProperty("transaction_type")
     private String transactionType;
     private String balance;
-    @JsonProperty("customer_ref")
-    private String customerRef;
+    @JsonProperty("payer_name")
+    private String payerName;
 
     public String getAmount() {
         return amount;
@@ -94,12 +94,12 @@ public class TransactionResponse {
         this.balance = balance;
     }
 
-    public String getCustomerRef() {
-        return customerRef;
+    public String getPayerName() {
+        return payerName;
     }
 
-    public void setCustomerRef(String customerRef) {
-        this.customerRef = customerRef;
+    public void setPayerName(String payerName) {
+        this.payerName = payerName;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class TransactionResponse {
                 ", accountId='" + accountId + '\'' +
                 ", transactionType='" + transactionType + '\'' +
                 ", balance='" + balance + '\'' +
-                ", customerRef='" + customerRef + '\'' +
+                ", payer_name='" + payerName + '\'' +
                 '}';
     }
 }
