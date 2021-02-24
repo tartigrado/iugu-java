@@ -26,6 +26,9 @@ public class Charge {
     @JsonProperty("payer")
     private Payer payer;
 
+    @JsonProperty("months")
+    private String months;
+
     public Charge() {
     }
 
@@ -45,6 +48,14 @@ public class Charge {
         this.email = email;
         this.items = items;
         this.payer = payer;
+    }
+
+    public Charge(String token, String email, List<Item> items, Payer payer, String months) {
+        this.token = token;
+        this.email = email;
+        this.items = items;
+        this.payer = payer;
+        this.months = months;
     }
 
     public String getToken() {
@@ -95,6 +106,15 @@ public class Charge {
         this.payer = payer;
     }
 
+    public String getMonths() {
+        return months;
+    }
+
+    public Charge setMonths(String months) {
+        this.months = months;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Charge{" +
@@ -104,6 +124,7 @@ public class Charge {
                 ", email='" + email + '\'' +
                 ", items=" + items +
                 ", payer=" + payer +
+                ", months=" + months +
                 '}';
     }
 }
