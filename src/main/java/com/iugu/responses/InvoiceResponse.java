@@ -3,6 +3,7 @@ package com.iugu.responses;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.model.EarlyPaymentDiscount;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -107,6 +108,8 @@ public class InvoiceResponse implements Serializable {
     private Integer finesOnOcurrenceDayCents;
     @JsonProperty("per_day_interest_value")
     private Integer perDayInterestValue;
+    @JsonProperty("early_payment_discounts")
+    private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
 
     public String getId() {
         return id;
@@ -534,5 +537,13 @@ public class InvoiceResponse implements Serializable {
 
     public void setPerDayInterestValue(Integer perDayInterestValue) {
         this.perDayInterestValue = perDayInterestValue;
+    }
+
+    public void setEarlyPaymentDiscounts(List<EarlyPaymentDiscount> earlyPaymentDiscounts) {
+        this.earlyPaymentDiscounts = earlyPaymentDiscounts;
+    }
+
+    public List<EarlyPaymentDiscount> getEarlyPaymentDiscounts() {
+        return earlyPaymentDiscounts;
     }
 }
