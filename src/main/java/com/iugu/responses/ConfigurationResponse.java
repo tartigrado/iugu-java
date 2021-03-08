@@ -12,6 +12,8 @@ public class ConfigurationResponse {
     private ConfigurationBankSlipResponse bankSlip;
     @JsonProperty("credit_card")
     private ConfigurationCreditCard creditCard;
+    @JsonProperty("pix")
+    private ConfigurationPix pix;
     @JsonProperty("early_payment_discount")
     private Boolean earlyPaymentDiscount;
 
@@ -47,12 +49,22 @@ public class ConfigurationResponse {
         this.earlyPaymentDiscount = earlyPaymentDiscount;
     }
 
+    public ConfigurationPix getPix() {
+        return pix;
+    }
+
+    public ConfigurationResponse setPix(ConfigurationPix pix) {
+        this.pix = pix;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ConfigurationResponse{" +
                 "commissionPercent=" + commissionPercent +
                 ", bankSlip=" + bankSlip +
                 ", creditCard=" + creditCard +
+                ", pix=" + pix +
                 '}';
     }
 }
