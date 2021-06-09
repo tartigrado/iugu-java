@@ -4,7 +4,7 @@
 
 	<groupId>com.tartigrado</groupId>
 	<artifactId>iugu-java</artifactId>
-	<version>1.0.100</version>
+	<version>1.0.101</version>
 	<packaging>jar</packaging>
 
 	<name>iugu-java</name>
@@ -32,6 +32,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
 		</dependency>
 	</dependencies>
 
