@@ -9,22 +9,23 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentRequestResponse implements Serializable {
+    private final String MY_TIME_ZONE = "America/Fortaleza";
 
     private String id;
     @JsonProperty("account_id")
     private String accountId;
     private String barcode;
     private String status;
-    @JsonProperty("document_account_cents")
-    private Integer documentAccountCents;
+    @JsonProperty("document_amount_cents")
+    private Integer documentAmountCents;
     @JsonProperty("amount_cents")
     private Integer amountCents;
     private String description;
     @JsonProperty("created_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss XXX")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX", timezone = MY_TIME_ZONE)
     private Date createdAt;
     @JsonProperty("updated_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss XXX")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX", timezone = MY_TIME_ZONE)
     private Date updatedAt;
     @JsonProperty("payment_info")
     private PaymentInfo paymentInfo;
@@ -61,12 +62,12 @@ public class PaymentRequestResponse implements Serializable {
         this.status = status;
     }
 
-    public Integer getDocumentAccountCents() {
-        return documentAccountCents;
+    public Integer getdocumentAmountCents() {
+        return documentAmountCents;
     }
 
-    public void setDocumentAccountCents(Integer documentAccountCents) {
-        this.documentAccountCents = documentAccountCents;
+    public void setdocumentAmountCents(Integer documentAmountCents) {
+        this.documentAmountCents = documentAmountCents;
     }
 
     public Integer getAmountCents() {

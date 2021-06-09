@@ -3,7 +3,9 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentRequest;
+import com.iugu.model.ValidatePaymentRequest;
 import com.iugu.responses.PaymentRequestResponse;
+import com.iugu.responses.ValidatePaymentRequestResponse;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -14,7 +16,6 @@ import java.util.List;
 public class PaymentRequestService {
 
     private IuguConfiguration iugu;
-    private final String FIND_ALL_URL = IuguConfiguration.url("/payment_requests");
     private final String CREATE_URL = IuguConfiguration.url("/payment_requests");
     private final String FIND_URL = IuguConfiguration.url("/payment_requests/%s");
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/payment_requests?%s");
@@ -82,14 +83,14 @@ public class PaymentRequestService {
         throw new IuguException("Error finding payment requests!", ResponseStatus, ResponseText);
     }
 
-    public List<PaymentRequestResponse> findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
+    public ValidatePaymentRequestResponse validate(ValidatePaymentRequest validatePaymentRequest) throws IuguException {
+        Response response = this.iugu.getNewClient().target(VALIDATE_URL).request().post(Entity.entity(validatePaymentRequest, MediaType.APPLICATION_JSON));
+
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
         if (ResponseStatus == 200) {
-            return response.readEntity(new GenericType<List<PaymentRequestResponse>>() {
-            });
+            return response.readEntity(ValidatePaymentRequestResponse.class);
         }
 
         // Error Happened
@@ -99,8 +100,6 @@ public class PaymentRequestService {
 
         response.close();
 
-        throw new IuguException("Error finding payment requests!", ResponseStatus, ResponseText);
+        throw new IuguException("Error validating payment request!", ResponseStatus, ResponseText);
     }
-
-    // TODO: Validate payment request
 }
