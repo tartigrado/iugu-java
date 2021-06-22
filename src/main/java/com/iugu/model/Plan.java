@@ -27,7 +27,7 @@ public class Plan {
     private int valueCents;
 
     @JsonProperty("payable_with")
-    private PayableWith payableWith;
+    private List<PayableWith> payableWith;
 
     private List<Price> prices;
 
@@ -70,11 +70,11 @@ public class Plan {
         return valueCents;
     }
 
-    public PayableWith getPayableWith() {
+    public List<PayableWith> getPayableWith() {
         return payableWith;
     }
 
-    public void setPayableWith(PayableWith payableWith) {
+    public void setPayableWith(List<PayableWith> payableWith) {
         this.payableWith = payableWith;
     }
 

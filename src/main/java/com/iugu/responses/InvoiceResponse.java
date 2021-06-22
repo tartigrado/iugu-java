@@ -50,7 +50,7 @@ public class InvoiceResponse implements Serializable {
     @JsonProperty("financial_return_date")
     private Date financialReturnDate;
     @JsonProperty("payable_with")
-    private String payableWith;
+    private List<String> payableWith;
     @JsonProperty("overpaid_cents")
     private Integer overpaidCents;
     @JsonProperty("early_payment_discount")
@@ -407,11 +407,11 @@ public class InvoiceResponse implements Serializable {
         this.financialReturnDate = financialReturnDate;
     }
 
-    public String getPayableWith() {
+    public List<String> getPayableWith() {
         return payableWith;
     }
 
-    public void setPayableWith(String payableWith) {
+    public void setPayableWith(List<String> payableWith) {
         this.payableWith = payableWith;
     }
 

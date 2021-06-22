@@ -17,7 +17,7 @@ public class PlanResponse {
     private List<PriceResponse> prices;
     private List<FeatureResponse> features;
     @JsonProperty("payable_with")
-    private String payableWith;
+    private List<String> payableWith;
 
     public String getId() {
         return id;
@@ -75,11 +75,11 @@ public class PlanResponse {
         this.features = features;
     }
 
-    public String getPayableWith() {
+    public List<String> getPayableWith() {
         return payableWith;
     }
 
-    public void setPayableWith(String payableWith) {
+    public void setPayableWith(List<String> payableWith) {
         this.payableWith = payableWith;
     }
 

@@ -38,7 +38,7 @@ public class Subscription {
     public String onlyOnChargeSucess;
 
     @JsonProperty("payable_with")
-    public PayableWith payableWith;
+    public List<PayableWith> payableWith;
 
     @JsonProperty("credits_based")
     public boolean creditsBased;
@@ -82,11 +82,11 @@ public class Subscription {
         this.onlyOnChargeSucess = onlyOnChargeSucess;
     }
 
-    public PayableWith getPayableWith() {
+    public List<PayableWith> getPayableWith() {
         return payableWith;
     }
 
-    public void setPayableWith(PayableWith payableWith) {
+    public void setPayableWith(List<PayableWith> payableWith) {
         this.payableWith = payableWith;
     }
 

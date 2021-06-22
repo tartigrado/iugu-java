@@ -70,7 +70,7 @@ public class Invoice implements Serializable {
     private String subscriptionId;
 
     @JsonProperty("payable_with")
-    private PayableWith payableWith;
+    private List<PayableWith> payableWith;
 
     @JsonProperty("credits")
     private Integer credits;
@@ -225,11 +225,11 @@ public class Invoice implements Serializable {
         this.subscriptionId = subscriptionId;
     }
 
-    public PayableWith getPayableWith() {
+    public List<PayableWith> getPayableWith() {
         return payableWith;
     }
 
-    public void setPayableWith(PayableWith payableWith) {
+    public void setPayableWith(List<PayableWith> payableWith) {
         this.payableWith = payableWith;
     }
 
