@@ -1,13 +1,15 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.Date;
-import java.util.List;
+import java.beans.Transient;
+import java.util.*;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, allowSetters = true, value = {"featuresIugu"})
 public class SubscriptionResponse {
 
     private String id;
@@ -46,6 +48,13 @@ public class SubscriptionResponse {
     private Boolean creditsBased;
     @JsonProperty("recent_invoices")
     private List<InvoiceResponse> recentInvoices;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private JsonNode features;
+
+    @JsonProperty("features_revgas")
+    private List<FeatureSubscriptionResponse> featuresRevgas;
+
     private List<SubItemResponse> subitems;
     private List<LogResponse> logs;
     @JsonProperty("custom_variables")
@@ -67,6 +76,31 @@ public class SubscriptionResponse {
 
     public void setRecentInvoices(List<InvoiceResponse> recentInvoices) {
         this.recentInvoices = recentInvoices;
+    }
+
+    public JsonNode getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(JsonNode featuresIugu) {
+        this.features = featuresIugu;
+
+        Iterator<String> fields = featuresIugu.fieldNames();
+
+        while (fields.hasNext()) {
+            String field = fields.next();
+            String nameFeat = featuresIugu.path(field).path("name").asText();
+            getFeaturesRevgas().add(new FeatureSubscriptionResponse(field, nameFeat));
+        }
+    }
+
+    public List<FeatureSubscriptionResponse> getFeaturesRevgas() {
+        if (featuresRevgas == null) setFeaturesRevgas(new ArrayList<>());
+        return featuresRevgas;
+    }
+
+    public void setFeaturesRevgas(List<FeatureSubscriptionResponse> featuresRevgas) {
+        this.featuresRevgas = featuresRevgas;
     }
 
     public Boolean getSuspended() {

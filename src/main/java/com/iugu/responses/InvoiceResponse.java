@@ -91,6 +91,8 @@ public class InvoiceResponse implements Serializable {
     private Date updatedAtIso;
     @JsonProperty("bank_slip")
     private BankSlipResponse bankSlip;
+    @JsonProperty("pix")
+    private PixResponse pix;
     private List<ItemResponse> items;
     private List<VariableResponse> variables;
     @JsonProperty("custom_variables")
@@ -110,6 +112,33 @@ public class InvoiceResponse implements Serializable {
     private Integer perDayInterestValue;
     @JsonProperty("early_payment_discounts")
     private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+
+    @JsonProperty("payer_name")
+    private String payerName;
+    @JsonProperty("payer_email")
+    private String payerEmail;
+    @JsonProperty("payer_cpf_cnpj")
+    private String payerCpfCnpj;
+    @JsonProperty("payer_phone")
+    private String payerPhone;
+    @JsonProperty("payer_phone_prefix")
+    private String payerPhonePrefix;
+    @JsonProperty("payer_address_zip_code")
+    private String payerAddressZipCode;
+    @JsonProperty("payer_address_street")
+    private String payerAddressStreet;
+    @JsonProperty("payer_address_district")
+    private String payerAddressDistrict;
+    @JsonProperty("payer_address_city")
+    private String payerAddressCity;
+    @JsonProperty("payer_address_state")
+    private String payerAddressState;
+    @JsonProperty("payer_address_number")
+    private String payerAddressNumber;
+    @JsonProperty("payer_address_complement")
+    private String payerAddressComplement;
+    @JsonProperty("payer_address_country")
+    private String payerAddressCountry;
 
     public String getId() {
         return id;
@@ -543,5 +572,117 @@ public class InvoiceResponse implements Serializable {
 
     public List<EarlyPaymentDiscount> getEarlyPaymentDiscounts() {
         return earlyPaymentDiscounts;
+    }
+
+    public PixResponse getPix() {
+        return pix;
+    }
+
+    public void setPix(PixResponse pix) {
+        this.pix = pix;
+    }
+
+    public String getPayerName() {
+        return payerName;
+    }
+
+    public void setPayerName(String payerName) {
+        this.payerName = payerName;
+    }
+
+    public String getPayerEmail() {
+        return payerEmail;
+    }
+
+    public void setPayerEmail(String payerEmail) {
+        this.payerEmail = payerEmail;
+    }
+
+    public String getPayerCpfCnpj() {
+        return payerCpfCnpj;
+    }
+
+    public void setPayerCpfCnpj(String payerCpfCnpj) {
+        this.payerCpfCnpj = payerCpfCnpj;
+    }
+
+    public String getPayerPhone() {
+        return payerPhone;
+    }
+
+    public void setPayerPhone(String payerPhone) {
+        this.payerPhone = payerPhone;
+    }
+
+    public String getPayerPhonePrefix() {
+        return payerPhonePrefix;
+    }
+
+    public void setPayerPhonePrefix(String payerPhonePrefix) {
+        this.payerPhonePrefix = payerPhonePrefix;
+    }
+
+    public String getPayerAddressZipCode() {
+        return payerAddressZipCode;
+    }
+
+    public void setPayerAddressZipCode(String payerAddressZipCode) {
+        this.payerAddressZipCode = payerAddressZipCode;
+    }
+
+    public String getPayerAddressStreet() {
+        return payerAddressStreet;
+    }
+
+    public void setPayerAddressStreet(String payerAddressStreet) {
+        this.payerAddressStreet = payerAddressStreet;
+    }
+
+    public String getPayerAddressDistrict() {
+        return payerAddressDistrict;
+    }
+
+    public void setPayerAddressDistrict(String payerAddressDistrict) {
+        this.payerAddressDistrict = payerAddressDistrict;
+    }
+
+    public String getPayerAddressCity() {
+        return payerAddressCity;
+    }
+
+    public void setPayerAddressCity(String payerAddressCity) {
+        this.payerAddressCity = payerAddressCity;
+    }
+
+    public String getPayerAddressState() {
+        return payerAddressState;
+    }
+
+    public void setPayerAddressState(String payerAddressState) {
+        this.payerAddressState = payerAddressState;
+    }
+
+    public String getPayerAddressNumber() {
+        return payerAddressNumber;
+    }
+
+    public void setPayerAddressNumber(String payerAddressNumber) {
+        this.payerAddressNumber = payerAddressNumber;
+    }
+
+    public String getPayerAddressComplement() {
+        return payerAddressComplement;
+    }
+
+    public void setPayerAddressComplement(String payerAddressComplement) {
+        this.payerAddressComplement = payerAddressComplement;
+    }
+
+    public String getPayerAddressCountry() {
+        return payerAddressCountry;
+    }
+
+    public void setPayerAddressCountry(String payerAddressCountry) {
+        this.payerAddressCountry = payerAddressCountry;
     }
 }
