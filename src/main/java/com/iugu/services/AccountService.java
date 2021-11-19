@@ -2,10 +2,7 @@ package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
-import com.iugu.model.Account;
-import com.iugu.model.AccountUpdate;
-import com.iugu.model.RequestVerification;
-import com.iugu.model.RequestWithdraw;
+import com.iugu.model.*;
 import com.iugu.responses.*;
 
 import javax.ws.rs.client.Entity;
@@ -28,6 +25,7 @@ public class AccountService {
     private final String ACCOUNT_CONFIGURATION_URL = IuguConfiguration.url("/accounts/configuration");
     private final String REQUEST_WITHDRAW_URL = IuguConfiguration.url("/accounts/%s/request_withdraw");
     private final String CHANGE_URL = IuguConfiguration.url("/accounts/%s");
+    private final String PAYMENT_CONFIGURATION_URL = IuguConfiguration.url("/payments/pix");
 
     public AccountService(IuguConfiguration iuguConfiguration) {
         this.iugu = iuguConfiguration;
@@ -198,6 +196,23 @@ public class AccountService {
         response.close();
 
         throw new IuguException("Error changing account with id: " + account.getId(), ResponseStatus, ResponseText);
+    }
+
+    public Object paymentConfiguration(PaymentConfiguration paymentConfiguration) throws IuguException {
+        Response response = this.iugu.getNewClient().target(PAYMENT_CONFIGURATION_URL).request().put(Entity.entity(paymentConfiguration, MediaType.APPLICATION_JSON));
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200)
+            return response.readEntity(Object.class);
+
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
+
+        response.close();
+        throw new IuguException("Error configuring payment!", ResponseStatus, ResponseText);
     }
 
 }
