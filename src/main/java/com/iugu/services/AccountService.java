@@ -205,7 +205,7 @@ public class AccountService {
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(Object.class);
+            return null;
 
         // Error Happened
         if (response.hasEntity())
