@@ -8,6 +8,7 @@ import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Credit;
 import com.iugu.model.Subscription;
+import com.iugu.responses.SimulateChangePlanResponse;
 import com.iugu.responses.SubscriptionResponse;
 import com.iugu.responses.SubscriptionsResponse;
 
@@ -21,6 +22,7 @@ public class SubscriptionService {
     private final String SUSPEND_URL = IuguConfiguration.url("/subscriptions/%s/suspend");
     private final String ACTIVATE_URL = IuguConfiguration.url("/subscriptions/%s/activate");
     private final String CHANGE_SUBSCRIPTION_PLAN_URL = IuguConfiguration.url("/subscriptions/%s/change_plan/%s");
+    private final String SIMULATE_CHANGE_SUBSCRIPTION_PLAN_URL = IuguConfiguration.url("/subscriptions/%s/change_plan_simulation/%s");
     private final String ADD_CREDITS_URL = IuguConfiguration.url("/subscriptions/%s/add_credits");
     private final String REMOVE_CREDITS_URL = IuguConfiguration.url("/subscriptions/%s/remove_credits");
     private final String FIND_ALL_URL = IuguConfiguration.url("/subscriptions");
@@ -158,6 +160,26 @@ public class SubscriptionService {
 
         if (ResponseStatus == 200) {
             return response.readEntity(SubscriptionResponse.class);
+        }
+
+        // Error Happened
+        if (response.hasEntity()) {
+            ResponseText = response.readEntity(String.class);
+        }
+
+        response.close();
+
+        throw new IuguException("Error changing subscription plan!", ResponseStatus, ResponseText);
+    }
+
+    public SimulateChangePlanResponse simulateChangePlan(String id, String planIdentifier) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(SIMULATE_CHANGE_SUBSCRIPTION_PLAN_URL, id, planIdentifier)).request().get();
+
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
+
+        if (ResponseStatus == 200) {
+            return response.readEntity(SimulateChangePlanResponse.class);
         }
 
         // Error Happened
