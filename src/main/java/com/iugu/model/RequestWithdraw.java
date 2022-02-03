@@ -8,15 +8,15 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestWithdraw {
 
-    private Float amount;
+    private Integer amount;
     @JsonProperty("custom_variables")
     private List<CustomVariable> customVariables;
 
-    public Float getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
