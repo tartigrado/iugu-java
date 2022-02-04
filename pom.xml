@@ -4,7 +4,11 @@
 
 	<groupId>com.tartigrado</groupId>
 	<artifactId>iugu-java</artifactId>
+<<<<<<< Updated upstream
 	<version>1.0.107</version>
+=======
+	<version>1.0.109</version>
+>>>>>>> Stashed changes
 	<packaging>jar</packaging>
 
 	<name>iugu-java</name>
