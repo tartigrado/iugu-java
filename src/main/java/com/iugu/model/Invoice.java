@@ -103,6 +103,9 @@ public class Invoice implements Serializable {
     @JsonProperty("per_day_interest_value")
     private Integer perDayInterestValue;
 
+    @JsonProperty("max_installments_value")
+    private Integer maxInstallmentsValue;
+
     private String status;
 
     public String getId() {
@@ -331,5 +334,13 @@ public class Invoice implements Serializable {
 
     public void setPerDayInterestValue(Integer perDayInterestValue) {
         this.perDayInterestValue = perDayInterestValue;
+    }
+
+    public Integer getMaxInstallmentsValue() {
+        return maxInstallmentsValue;
+    }
+
+    public void setMaxInstallmentsValue(Integer maxInstallmentsValue) {
+        this.maxInstallmentsValue = maxInstallmentsValue;
     }
 }
