@@ -1,6 +1,7 @@
 package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +58,9 @@ public class Subscription {
 
     @JsonProperty("subitems")
     public List<SubItem> subItems;
+
+    @JsonProperty("skip_charge")
+    public boolean skipCharge;
 
     public String getPlanIdentifier() {
         return planIdentifier;
@@ -136,5 +140,13 @@ public class Subscription {
 
     public void setSubItems(List<SubItem> subItems) {
         this.subItems = subItems;
+    }
+
+    public boolean isSkipCharge() {
+        return skipCharge;
+    }
+
+    public void setSkipCharge(boolean skipCharge) {
+        this.skipCharge = skipCharge;
     }
 }
