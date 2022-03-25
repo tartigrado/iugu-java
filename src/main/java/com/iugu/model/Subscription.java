@@ -1,6 +1,7 @@
 package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -141,7 +142,11 @@ public class Subscription {
         this.subItems = subItems;
     }
 
-    public boolean isSkipCharge() {return skipCharge;}
+    public boolean isSkipCharge() {
+        return skipCharge;
+    }
 
-    public void setSkipCharge(boolean skipCharge) {this.skipCharge = skipCharge; }
+    public void setSkipCharge(boolean skipCharge) {
+        this.skipCharge = skipCharge;
+    }
 }
