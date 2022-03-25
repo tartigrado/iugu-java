@@ -40,6 +40,7 @@ public class Account {
     @JsonProperty("early_payment_discounts")
     private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
     private Commissions commissions;
+    private List<Splits> splits;
 
     public String getId() {
         return id;
@@ -185,6 +186,14 @@ public class Account {
         this.commissions = commissions;
     }
 
+    public List<Splits> getSplits() {
+        return splits;
+    }
+
+    public void setSplits(List<Splits> splits) {
+        this.splits = splits;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -203,6 +212,7 @@ public class Account {
                 ", earlyPaymentDiscount=" + earlyPaymentDiscount +
                 ", earlyPaymentDiscounts=" + earlyPaymentDiscounts +
                 ", commissions=" + commissions +
+                ", splits=" + splits +
                 '}';
     }
 }

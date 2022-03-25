@@ -88,6 +88,7 @@ public class AccountResponse {
     private Boolean earlyPaymentDiscount;
     @JsonProperty("early_payment_discounts")
     private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+    private List<SplitsResponse> splits;
 
     public String getId() {
         return id;
@@ -433,6 +434,14 @@ public class AccountResponse {
         this.earlyPaymentDiscounts = earlyPaymentDiscounts;
     }
 
+    public List<SplitsResponse> getSplits() {
+        return splits;
+    }
+
+    public void setSplits(List<SplitsResponse> splits) {
+        this.splits = splits;
+    }
+
     @Override
     public String toString() {
         return "AccountResponse{" +
@@ -474,6 +483,7 @@ public class AccountResponse {
                 ", latePaymentFine=" + latePaymentFine +
                 ", configuration=" + configuration +
                 ", commissions=" + commissions +
+                ", splits=" + splits +
                 '}';
     }
 
