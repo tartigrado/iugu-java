@@ -2,14 +2,25 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.iugu.enums.ItemType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@lombok.Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentMethod {
 
-    public PaymentMethod() {
-    }
+    protected String description;
+    protected Data data;
+    @JsonProperty("item_type")
+    protected ItemType itemType;
+    protected String token;
+    @JsonProperty("set_as_default")
+    protected Boolean isDefault;
 
     public PaymentMethod(String description, String token, Boolean isDefault) {
         this.description = description;
@@ -23,66 +34,7 @@ public class PaymentMethod {
         this.isDefault = isDefault;
     }
 
-    private String description;
-
-    private Data data;
-
-    @JsonProperty("item_type")
-    private ItemType itemType;
-
-    private String token;
-
-    @JsonProperty("set_as_default")
-    private Boolean isDefault;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public ItemType getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(ItemType itemType) {
-        this.itemType = itemType;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public Boolean getDefault() {
-        return isDefault;
-    }
-
-    public void setDefault(Boolean aDefault) {
-        isDefault = aDefault;
-    }
-
-    @Override
-    public String toString() {
-        return "PaymentMethod{"
-                + "description='" + description + '\''
-                + ", data=" + data
-                + ", itemType=" + itemType
-                + ", token='" + token + '\''
-                + ", isDefault=" + isDefault
-                + '}';
+        return getIsDefault();
     }
 }

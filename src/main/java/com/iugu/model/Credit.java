@@ -1,25 +1,19 @@
 package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Credit {
 
-	public Credit() {
-	}
+    protected Integer quantity;
 
-	public Credit(Integer quantity) {
-		this.quantity = quantity;
-	}
 
-	private Integer quantity;
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-	
 }

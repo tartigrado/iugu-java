@@ -10,14 +10,12 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class FinancialTransactionRequestService {
-
-    private IuguConfiguration iugu;
+public class FinancialTransactionRequestService extends GenericService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/financial_transaction_requests");
     private final String ADVANCE_URL = IuguConfiguration.url("/financial_transaction_requests/advance");
 
     public FinancialTransactionRequestService(IuguConfiguration iugu) {
-        this.iugu = iugu;
+        super(iugu);
     }
 
     public FinancialTransactionRequestIResponse findAll() throws IuguException {

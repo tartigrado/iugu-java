@@ -8,15 +8,14 @@ import com.iugu.responses.WithdrawRequestsResponse;
 
 import javax.ws.rs.core.Response;
 
-public class WithdrawRequestsService {
+public class WithdrawRequestsService extends GenericService {
 
-    private IuguConfiguration iugu;
     private final String FIND_URL = IuguConfiguration.url("/withdraw_requests/%s");
     private final String FIND_ALL_URL = IuguConfiguration.url("/withdraw_requests");
     private final String WITHDRAW_CONCILIATIONS_URL = IuguConfiguration.url("/withdraw_conciliations?%s");
 
     public WithdrawRequestsService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public WithdrawRequestResponse find(String id) throws IuguException {

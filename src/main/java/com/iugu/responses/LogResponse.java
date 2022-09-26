@@ -2,55 +2,19 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LogResponse {
 
-	private String id;
-	private String description;
-	private String notes;
-	@JsonProperty("created_at")
-	private String createdAt;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
-	public String getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	@Override
-	public String toString() {
-		return "LogResponse{" +
-				"id='" + id + '\'' +
-				", description='" + description + '\'' +
-				", notes='" + notes + '\'' +
-				", createdAt='" + createdAt + '\'' +
-				'}';
-	}
+    protected String id;
+    protected String description;
+    protected String notes;
+    @JsonProperty("created_at")
+    protected String createdAt;
 }

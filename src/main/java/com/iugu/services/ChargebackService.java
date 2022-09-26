@@ -10,16 +10,15 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class ChargebackService {
+public class ChargebackService extends GenericService {
 
-    private IuguConfiguration iugu;
     private final String FIND_ALL_URL = IuguConfiguration.url("/chargebacks");
     private final String FIND_URL = IuguConfiguration.url("/chargebacks/%s");
     private final String ACCEPT_URL = IuguConfiguration.url("/chargebacks/%s/accept");
     private final String CONTEST_URL = IuguConfiguration.url("/chargebacks/%s/contest");
 
     public ChargebackService(IuguConfiguration iugu) {
-        this.iugu = iugu;
+        super(iugu);
     }
 
     public ChargebacksResponse findAll() throws IuguException {

@@ -1,18 +1,16 @@
 package com.iugu.services;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Plan;
 import com.iugu.responses.PlanResponse;
 import com.iugu.responses.PlansResponse;
 
-public class PlanService {
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-    private IuguConfiguration iugu;
+public class PlanService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/plans");
     private final String FIND_URL = IuguConfiguration.url("/plans/%s");
     private final String FIND_BY_IDENTIFIER_URL = IuguConfiguration.url("/plans/identifier/%s");
@@ -21,7 +19,7 @@ public class PlanService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/plans");
 
     public PlanService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public PlanResponse create(Plan plan) throws IuguException {

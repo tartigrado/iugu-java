@@ -11,9 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class WebHookService {
-
-    private IuguConfiguration iugu;
+public class WebHookService extends GenericService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/web_hooks");
     private final String FIND_URL = IuguConfiguration.url("/web_hooks/%s");
     private final String REMOVE_URL = IuguConfiguration.url("/web_hooks/%s");
@@ -22,7 +20,7 @@ public class WebHookService {
     private final String UPDATE_URL = IuguConfiguration.url("/web_hooks/%s");
 
     public WebHookService(IuguConfiguration iugu) {
-        this.iugu = iugu;
+        super(iugu);
     }
 
     public List<WebHookResponse> findAll() throws IuguException {
@@ -32,7 +30,8 @@ public class WebHookService {
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<WebHookResponse>>(){});
+            return response.readEntity(new GenericType<List<WebHookResponse>>() {
+            });
 
         // Error Happened
         if (response.hasEntity())
@@ -90,7 +89,8 @@ public class WebHookService {
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<String>>(){});
+            return response.readEntity(new GenericType<List<String>>() {
+            });
 
         // Error Happened
         if (response.hasEntity())

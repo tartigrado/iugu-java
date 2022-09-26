@@ -1,9 +1,5 @@
 package com.iugu.services;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Credit;
@@ -12,9 +8,11 @@ import com.iugu.responses.SimulateChangePlanResponse;
 import com.iugu.responses.SubscriptionResponse;
 import com.iugu.responses.SubscriptionsResponse;
 
-public class SubscriptionService {
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-    private IuguConfiguration iugu;
+public class SubscriptionService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/subscriptions");
     private final String FIND_URL = IuguConfiguration.url("/subscriptions/%s");
     private final String CHANGE_URL = IuguConfiguration.url("/subscriptions/%s");
@@ -29,7 +27,7 @@ public class SubscriptionService {
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/subscriptions?%s");
 
     public SubscriptionService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public SubscriptionResponse create(Subscription subscription) throws IuguException {

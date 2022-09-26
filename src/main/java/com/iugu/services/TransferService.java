@@ -10,16 +10,14 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class TransferService {
-
-    private IuguConfiguration iugu;
+public class TransferService extends GenericService {
     private final String TRANSFER_URL = IuguConfiguration.url("/transfers");
     private final String FIND_URL = IuguConfiguration.url("/transfers/%s");
     private final String FIND_ALL_URL = IuguConfiguration.url("/transfers");
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/transfers?%s");
 
     public TransferService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public TransferResponse transfer(Transfer transfer) throws IuguException {

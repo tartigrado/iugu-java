@@ -1,30 +1,17 @@
 package com.iugu.responses;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ValidatePaymentRequestResponse implements Serializable {
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<String> errors) {
-        this.errors = errors;
-    }
-
-    private String message;
-    private List<String> errors;
+    protected String message;
+    protected List<String> errors;
 }

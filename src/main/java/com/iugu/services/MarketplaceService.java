@@ -10,14 +10,12 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class MarketplaceService {
-
-    private IuguConfiguration iugu;
+public class MarketplaceService extends GenericService {
     private final String CREATE_ACCOUNT_URL = IuguConfiguration.url("/marketplace/create_account");
     private final String FIND_ALL_URL = IuguConfiguration.url("/marketplace");
 
     public MarketplaceService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public AccountCreationResponse createAccount(MarketPlace marketPlace) throws IuguException {
@@ -38,15 +36,15 @@ public class MarketplaceService {
         throw new IuguException("Error creating account!", ResponseStatus, ResponseText);
     }
 
-    public MarketPlacesResponse findAll() throws IuguException{
+    public MarketPlacesResponse findAll() throws IuguException {
         Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
-        if(ResponseStatus == 200)
+        if (ResponseStatus == 200)
             return response.readEntity(MarketPlacesResponse.class);
 
-        if(response.hasEntity())
+        if (response.hasEntity())
             ResponseText = response.readEntity(String.class);
 
         response.close();

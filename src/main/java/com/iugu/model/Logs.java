@@ -2,36 +2,26 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Logs {
 
-	public Logs(String description, String notes) {
-		this.description = description;
-		this.notes = notes;
-	}
+    protected String description;
+    protected String notes;
+    @JsonProperty("_destroy")
+    protected Boolean destroy;
 
-	private String description;
-
-	private String notes;
-
-	@JsonProperty("_destroy")
-	private Boolean destroy;
-
-	public Boolean getDestroy() {
-		return destroy;
-	}
-
-	public void setDestroy(Boolean destroy) {
-		this.destroy = destroy;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getNotes() {
-		return notes;
-	}
+    public Logs(String description, String notes) {
+        this.description = description;
+        this.notes = notes;
+    }
 
 }

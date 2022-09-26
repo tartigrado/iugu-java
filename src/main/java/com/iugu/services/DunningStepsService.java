@@ -11,14 +11,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class DunningStepsService {
-
-    private IuguConfiguration iugu;
+public class DunningStepsService extends GenericService {
     private final String FIND_URL = IuguConfiguration.url("/dunning_steps");
     private final String UPDATE_URL = IuguConfiguration.url("/dunning_steps");
 
     public DunningStepsService(IuguConfiguration iugu) {
-        this.iugu = iugu;
+        super(iugu);
     }
 
     public List<StepsResponse> findAll() throws IuguException {

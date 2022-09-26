@@ -1,36 +1,49 @@
 package com.iugu;
 
-import java.security.cert.X509Certificate;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
+
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import java.security.cert.X509Certificate;
 
 public class IuguConfiguration {
 
-	private final static String URL = "https://api.iugu.com/v1";
-	private final String tokenId;
+    private final static String URL = "https://api.iugu.com/v1";
+    private final String tokenId;
 
-	public IuguConfiguration(String token) {
-		tokenId = token;
-	}
+    public IuguConfiguration(String token) {
+        tokenId = token;
+    }
 
-	public Client getNewClient() {
-            return ClientBuilder.newBuilder().sslContext(getContext()).build().register(new Authenticator(tokenId, ""));
-	}
+    public static String url(String endpoint) {
+        return URL + endpoint;
+    }
 
-	public Client getNewClientNotAuth() {
-            return ClientBuilder.newBuilder().sslContext(getContext()).build();
-	}
+    private ResteasyJackson2Provider getResteasyJacksonProvider() {
+        ResteasyJackson2Provider resteasyJacksonProvider = new ResteasyJackson2Provider();
+        resteasyJacksonProvider.setMapper(JsonMapper
+                .builder()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .build());
+        return resteasyJacksonProvider;
+    }
 
-	public static String url(String endpoint) {
-		return URL + endpoint;
-	}
+    public Client getNewClient() {
+        return getNewClientNotAuth().register(new Authenticator(tokenId));
+    }
 
-        public SSLContext getContext() {
-            try {
-                TrustManager[] noopTrustManager = new TrustManager[]{
+    public Client getNewClientNotAuth() {
+        return ClientBuilder.newBuilder().sslContext(getContext()).build();
+    }
+
+    public SSLContext getContext() {
+        try {
+            TrustManager[] noopTrustManager = new TrustManager[] {
                     new X509TrustManager() {
 
                         @Override
@@ -46,17 +59,17 @@ public class IuguConfiguration {
                         public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
                         }
                     }
-                };
+            };
 
-                SSLContext sc = SSLContext.getInstance("SSL");
-                sc.init(null, noopTrustManager, null);
-                
-                return sc;
-            } catch (Exception e) {
-                System.out.println(e.getCause());
-                return null;
-            }
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, noopTrustManager, null);
 
+            return sc;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        
+
+    }
+
 }

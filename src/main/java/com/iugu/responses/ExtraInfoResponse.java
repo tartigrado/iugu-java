@@ -2,61 +2,32 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtraInfoResponse {
 
-	@JsonProperty("brand")
-	private Object brand;
+    @JsonProperty("brand")
+    protected Object brand;
 
-	@JsonProperty("holder_name")
-	private Object holderName;
+    @JsonProperty("holder_name")
+    protected Object holderName;
 
-	@JsonProperty("display_number")
-	private Object displayNumber;
+    @JsonProperty("display_number")
+    protected Object displayNumber;
 
-	@JsonProperty("bin")
-	private Object bin;
+    @JsonProperty("bin")
+    protected Object bin;
 
-	@JsonProperty("month")
-	private Integer month;
+    @JsonProperty("month")
+    protected Integer month;
 
-	@JsonProperty("year")
-	private Integer year;
+    @JsonProperty("year")
+    protected Integer year;
 
-	public Object getBrand() {
-		return brand;
-	}
-
-	public Object getHolderName() {
-		return holderName;
-	}
-
-	public Object getDisplayNumber() {
-		return displayNumber;
-	}
-
-	public Object getBin() {
-		return bin;
-	}
-
-	public Integer getMonth() {
-		return month;
-	}
-
-	public Integer getYear() {
-		return year;
-	}
-
-	@Override
-	public String toString() {
-		return "ExtraInfo{" +
-				"brand=" + brand +
-				", holderName=" + holderName +
-				", displayNumber=" + displayNumber +
-				", bin=" + bin +
-				", month=" + month +
-				", year=" + year +
-				'}';
-	}
 }

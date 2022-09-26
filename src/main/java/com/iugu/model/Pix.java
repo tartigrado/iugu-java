@@ -2,40 +2,25 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(
         ignoreUnknown = true
 )
 public class Pix {
     @JsonProperty("qrcode")
-    private String qrCode;
+    protected String qrCode;
 
     @JsonProperty("qrcode_text")
-    private String qrCodeText;
+    protected String qrCodeText;
 
-    private String status;
+    protected String status;
 
-    public String getQrCode() {
-        return qrCode;
-    }
-
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
-    }
-
-    public String getQrCodeText() {
-        return qrCodeText;
-    }
-
-    public void setQrCodeText(String qrCodeText) {
-        this.qrCodeText = qrCodeText;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

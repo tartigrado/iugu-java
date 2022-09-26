@@ -3,61 +3,27 @@ package com.iugu.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.enums.PayableWith;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@lombok.Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentToken {
 
-	@JsonProperty("account_id")
-	private String accountId;
+    @JsonProperty("account_id")
+    protected String accountId;
 
-	@JsonProperty("method")
-	private PayableWith payableWith;
+    @JsonProperty("method")
+    protected PayableWith payableWith;
 
-	@JsonProperty("test")
-	private Boolean isTest;
+    @JsonProperty("test")
+    protected Boolean isTest;
 
-	@JsonProperty("data")
-	private Data data;
+    @JsonProperty("data")
+    protected Data data;
 
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public PayableWith getPayableWith() {
-		return payableWith;
-	}
-
-	public void setPayableWith(PayableWith payableWith) {
-		this.payableWith = payableWith;
-	}
-
-	public Boolean getTest() {
-		return isTest;
-	}
-
-	public void setTest(Boolean test) {
-		isTest = test;
-	}
-
-	public Data getData() {
-		return data;
-	}
-
-	public void setData(Data data) {
-		this.data = data;
-	}
-
-	@Override
-	public String toString() {
-		return "PaymentToken{" +
-				"accountId='" + accountId + '\'' +
-				", payableWith=" + payableWith +
-				", isTest=" + isTest +
-				", data=" + data +
-				'}';
-	}
 }

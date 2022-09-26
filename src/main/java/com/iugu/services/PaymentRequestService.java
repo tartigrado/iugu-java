@@ -13,15 +13,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class PaymentRequestService {
-
-    private IuguConfiguration iugu;
+public class PaymentRequestService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/payment_requests");
     private final String FIND_URL = IuguConfiguration.url("/payment_requests/%s");
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/payment_requests?%s");
     private final String VALIDATE_URL = IuguConfiguration.url("/payment_requests/validate");
 
-    public PaymentRequestService(IuguConfiguration iuguConfiguration) { this.iugu = iuguConfiguration; }
+    public PaymentRequestService(IuguConfiguration iuguConfiguration) {
+        super(iuguConfiguration);
+    }
 
     public PaymentRequestResponse create(PaymentRequest paymentRequest) throws IuguException {
         Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(paymentRequest, MediaType.APPLICATION_JSON));

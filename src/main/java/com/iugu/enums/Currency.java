@@ -2,35 +2,25 @@ package com.iugu.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import java.util.Arrays;
+
 public enum Currency {
 
     BRL("BRL");
 
-    private String value;
+    private final String value;
 
-    private Currency(String value) {
+    Currency(String value) {
         this.value = value;
+    }
+
+    public static Currency getCurrencyByValue(String value) {
+        return Arrays.stream(values()).filter(it -> it.getValue().equals(value)).findFirst().orElse(null);
     }
 
     @JsonValue
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public static Currency getCurrencyByValue(String value) {
-        Currency currency;
-        switch (value) {
-            case "BRL":
-                currency = Currency.BRL;
-                break;
-            default:
-                currency = null;
-        }
-        return currency;
     }
 
 }

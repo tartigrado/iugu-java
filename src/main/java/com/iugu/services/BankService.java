@@ -12,14 +12,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class BankService {
-
-    private IuguConfiguration iugu;
+public class BankService extends GenericService {
     private final String ADD_URL = IuguConfiguration.url("/bank_verification");
     private final String VERIFICATION_URL = IuguConfiguration.url("/bank_verification");
 
     public BankService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public BankVerificationResponse add(BankAddress bankAddress) throws IuguException {
@@ -45,7 +43,8 @@ public class BankService {
         String ResponseText = null;
 
         if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<BankAddressVerificationResponse>>(){});
+            return response.readEntity(new GenericType<List<BankAddressVerificationResponse>>() {
+            });
 
         // Error Happened
         if (response.hasEntity())

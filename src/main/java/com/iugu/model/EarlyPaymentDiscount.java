@@ -1,26 +1,19 @@
 package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EarlyPaymentDiscount {
 
-    private Integer days;
-    private String percent;
+    protected Integer days;
+    protected String percent;
 
-    public Integer getDays() {
-        return days;
-    }
-
-    public void setDays(Integer days) {
-        this.days = days;
-    }
-
-    public String getPercent() {
-        return percent;
-    }
-
-    public void setPercent(String percent) {
-        this.percent = percent;
-    }
 }

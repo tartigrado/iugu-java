@@ -2,29 +2,22 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketPlace {
 
-	private String name;
+    protected String name;
 
-	@JsonProperty("comission_percent")
-	private double commissionPercent;
+    @JsonProperty("comission_percent")
+    protected double commissionPercent;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getCommissionPercent() {
-		return commissionPercent;
-	}
-
-	public void setCommissionPercent(double commissionPercent) {
-		this.commissionPercent = commissionPercent;
-	}
 
 }

@@ -2,146 +2,39 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtractInvoiceResponse {
 
-    private String id;
+    protected String id;
     @JsonProperty("created_at")
-    private Date createdAt;
+    protected Date createdAt;
     @JsonProperty("due_date")
-    private Date dueDate;
+    protected Date dueDate;
     @JsonProperty("paid_at")
-    private Date paidAt;
+    protected Date paidAt;
     @JsonProperty("pending_value")
-    private String pendingValue;
+    protected String pendingValue;
     @JsonProperty("paid_value")
-    private String paidValue;
+    protected String paidValue;
     @JsonProperty("taxes_paid")
-    private String taxesPaid;
+    protected String taxesPaid;
     @JsonProperty("payment_method")
-    private String paymentMethod;
-    private String installments;
+    protected String paymentMethod;
+    protected String installments;
     @JsonProperty("customer_id")
-    private String customerId;
+    protected String customerId;
     @JsonProperty("customer_email")
-    private String customerEmail;
+    protected String customerEmail;
     @JsonProperty("customer_name")
-    private String customerName;
+    protected String customerName;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public Date getPaidAt() {
-        return paidAt;
-    }
-
-    public void setPaidAt(Date paidAt) {
-        this.paidAt = paidAt;
-    }
-
-    public String getPendingValue() {
-        return pendingValue;
-    }
-
-    public void setPendingValue(String pendingValue) {
-        this.pendingValue = pendingValue;
-    }
-
-    public String getPaidValue() {
-        return paidValue;
-    }
-
-    public void setPaidValue(String paidValue) {
-        this.paidValue = paidValue;
-    }
-
-    public String getTaxesPaid() {
-        return taxesPaid;
-    }
-
-    public void setTaxesPaid(String taxesPaid) {
-        this.taxesPaid = taxesPaid;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getInstallments() {
-        return installments;
-    }
-
-    public void setInstallments(String installments) {
-        this.installments = installments;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    @Override
-    public String toString() {
-        return "ExtractInvoiceResponse{" +
-                "id='" + id + '\'' +
-                ", createdAt=" + createdAt +
-                ", dueDate='" + dueDate + '\'' +
-                ", paidAt=" + paidAt +
-                ", pendingValue='" + pendingValue + '\'' +
-                ", paidValue='" + paidValue + '\'' +
-                ", taxesPaid='" + taxesPaid + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", installments='" + installments + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerName='" + customerName + '\'' +
-                '}';
-    }
 }

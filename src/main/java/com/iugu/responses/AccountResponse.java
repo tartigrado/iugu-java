@@ -3,488 +3,97 @@ package com.iugu.responses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.model.EarlyPaymentDiscount;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountResponse {
 
-    private String id;
-    private String name;
+    protected String id;
+    protected String name;
     @JsonProperty("created_at")
-    private Date createdAt;
+    protected Date createdAt;
     @JsonProperty("updated_at")
-    private Date updatedAt;
+    protected Date updatedAt;
     @JsonProperty("can_receive")
-    private Boolean canReceive;
+    protected Boolean canReceive;
     @JsonProperty("is_verified")
-    private Boolean isVerified;
+    protected Boolean isVerified;
     @JsonProperty("last_verification_request_status")
-    private String lastVerificationRequestStatus;
+    protected String lastVerificationRequestStatus;
     @JsonProperty("last_verification_request_data")
-    private AccountLastVerification accountLastVerification;
+    protected AccountLastVerification accountLastVerification;
     @JsonProperty("last_verification_request_feedback")
-    private String lastVerificationRequestFeedback;
+    protected String lastVerificationRequestFeedback;
     @JsonProperty("change_plan_type")
-    private Integer changePlanType;
+    protected Integer changePlanType;
     @JsonProperty("subscriptions_trial_period")
-    private Integer subscriptionsTrialPeriod;
+    protected Integer subscriptionsTrialPeriod;
     @JsonProperty("subscriptions_billing_days")
-    private Integer subscriptionsBillingDays;
+    protected Integer subscriptionsBillingDays;
     @JsonProperty("disable_emails")
-    private Boolean disableEmails;
+    protected Boolean disableEmails;
     @JsonProperty("last_withdraw")
-    private LastWithdrawResponse lastWithdraw;
+    protected LastWithdrawResponse lastWithdraw;
     @JsonProperty("total_subscriptions")
-    private Integer totalSubscriptions;
+    protected Integer totalSubscriptions;
     @JsonProperty("total_active_subscriptions")
-    private Integer totalActiveSubscriptions;
+    protected Integer totalActiveSubscriptions;
     @JsonProperty("reply_to")
-    private String replyTo;
+    protected String replyTo;
     @JsonProperty("webapp_on_test_mode")
-    private Boolean webappOnTestMode;
-    private Boolean marketplace;
+    protected Boolean webappOnTestMode;
+    protected Boolean marketplace;
     @JsonProperty("auto_withdraw")
-    private Boolean autoWithdraw;
-    private String balance;
+    protected Boolean autoWithdraw;
+    protected String balance;
     @JsonProperty("balance_available_for_withdraw")
-    private String balanceAvailableForWithdraw;
+    protected String balanceAvailableForWithdraw;
     @JsonProperty("balance_in_protest")
-    private String balanceInProtest;
+    protected String balanceInProtest;
     @JsonProperty("protected_balance")
-    private String protectedBalance;
+    protected String protectedBalance;
     @JsonProperty("payable_balance")
-    private String payableBalance;
+    protected String payableBalance;
     @JsonProperty("receivable_balance")
-    private String receivableBalance;
+    protected String receivableBalance;
     @JsonProperty("commission_balance")
-    private String commissionBalance;
+    protected String commissionBalance;
     @JsonProperty("volume_last_month")
-    private String volumeLastMonth;
+    protected String volumeLastMonth;
     @JsonProperty("volume_this_month")
-    private String volumeThisMonth;
+    protected String volumeThisMonth;
     @JsonProperty("taxes_paid_last_month")
-    private String taxesPaidLastMonth;
+    protected String taxesPaidLastMonth;
     @JsonProperty("taxes_paid_this_month")
-    private String taxesPaidThisMonth;
+    protected String taxesPaidThisMonth;
     @JsonProperty("custom_logo_url")
-    private String customLogoUrl;
+    protected String customLogoUrl;
     @JsonProperty("custom_logo_small_url")
-    private String customLogoSmallUrl;
-    private List<InfoResponse> informations;
-    private Boolean fines;
+    protected String customLogoSmallUrl;
+    protected List<InfoResponse> informations;
+    protected Boolean fines;
     @JsonProperty("per_day_interest")
-    private Boolean perDayInterest;
+    protected Boolean perDayInterest;
     @JsonProperty("late_payment_fine")
-    private Integer latePaymentFine;
-    private ConfigurationResponse configuration;
-    private CommissionsResponse commissions;
+    protected Integer latePaymentFine;
+    protected ConfigurationResponse configuration;
+    protected CommissionsResponse commissions;
     @JsonProperty("payment_email_notification")
-    private Boolean paymentEmailNotification;
+    protected Boolean paymentEmailNotification;
     @JsonProperty("payment_email_notification_receiver")
-    private String paymentEmailNotificationReceiver;
+    protected String paymentEmailNotificationReceiver;
     @JsonProperty("early_payment_discount")
-    private Boolean earlyPaymentDiscount;
+    protected Boolean earlyPaymentDiscount;
     @JsonProperty("early_payment_discounts")
-    private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
-    private List<SplitsResponse> splits;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Boolean getCanReceive() {
-        return canReceive;
-    }
-
-    public void setCanReceive(Boolean canReceive) {
-        this.canReceive = canReceive;
-    }
-
-    public Boolean getIsVerified() {
-        return isVerified;
-    }
-
-    public void setIsVerified(Boolean isVerified) {
-        this.isVerified = isVerified;
-    }
-
-    public String getLastVerificationRequestStatus() {
-        return lastVerificationRequestStatus;
-    }
-
-    public void setLastVerificationRequestStatus(String lastVerificationRequestStatus) {
-        this.lastVerificationRequestStatus = lastVerificationRequestStatus;
-    }
-
-    public AccountLastVerification getAccountLastVerification() {
-        return accountLastVerification;
-    }
-
-    public void setAccountLastVerification(AccountLastVerification accountLastVerification) {
-        this.accountLastVerification = accountLastVerification;
-    }
-
-    public String getLastVerificationRequestFeedback() {
-        return lastVerificationRequestFeedback;
-    }
-
-    public void setLastVerificationRequestFeedback(String lastVerificationRequestFeedback) {
-        this.lastVerificationRequestFeedback = lastVerificationRequestFeedback;
-    }
-
-    public Integer getChangePlanType() {
-        return changePlanType;
-    }
-
-    public void setChangePlanType(Integer changePlanType) {
-        this.changePlanType = changePlanType;
-    }
-
-    public Integer getSubscriptionsTrialPeriod() {
-        return subscriptionsTrialPeriod;
-    }
-
-    public void setSubscriptionsTrialPeriod(Integer subscriptionsTrialPeriod) {
-        this.subscriptionsTrialPeriod = subscriptionsTrialPeriod;
-    }
-
-    public Integer getSubscriptionsBillingDays() {
-        return subscriptionsBillingDays;
-    }
-
-    public void setSubscriptionsBillingDays(Integer subscriptionsBillingDays) {
-        this.subscriptionsBillingDays = subscriptionsBillingDays;
-    }
-
-    public Boolean getDisableEmails() {
-        return disableEmails;
-    }
-
-    public void setDisableEmails(Boolean disableEmails) {
-        this.disableEmails = disableEmails;
-    }
-
-    public LastWithdrawResponse getLastWithdraw() {
-        return lastWithdraw;
-    }
-
-    public void setLastWithdraw(LastWithdrawResponse lastWithdraw) {
-        this.lastWithdraw = lastWithdraw;
-    }
-
-    public Integer getTotalSubscriptions() {
-        return totalSubscriptions;
-    }
-
-    public void setTotalSubscriptions(Integer totalSubscriptions) {
-        this.totalSubscriptions = totalSubscriptions;
-    }
-
-    public Integer getTotalActiveSubscriptions() {
-        return totalActiveSubscriptions;
-    }
-
-    public void setTotalActiveSubscriptions(Integer totalActiveSubscriptions) {
-        this.totalActiveSubscriptions = totalActiveSubscriptions;
-    }
-
-    public String getReplyTo() {
-        return replyTo;
-    }
-
-    public void setReplyTo(String replyTo) {
-        this.replyTo = replyTo;
-    }
-
-    public Boolean getWebappOnTestMode() {
-        return webappOnTestMode;
-    }
-
-    public void setWebappOnTestMode(Boolean webappOnTestMode) {
-        this.webappOnTestMode = webappOnTestMode;
-    }
-
-    public Boolean getMarketplace() {
-        return marketplace;
-    }
-
-    public void setMarketplace(Boolean marketplace) {
-        this.marketplace = marketplace;
-    }
-
-    public Boolean getAutoWithdraw() {
-        return autoWithdraw;
-    }
-
-    public void setAutoWithdraw(Boolean autoWithdraw) {
-        this.autoWithdraw = autoWithdraw;
-    }
-
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
-    public String getBalanceAvailableForWithdraw() {
-        return balanceAvailableForWithdraw;
-    }
-
-    public void setBalanceAvailableForWithdraw(String balanceAvailableForWithdraw) {
-        this.balanceAvailableForWithdraw = balanceAvailableForWithdraw;
-    }
-
-    public String getBalanceInProtest() {
-        return balanceInProtest;
-    }
-
-    public void setBalanceInProtest(String balanceInProtest) {
-        this.balanceInProtest = balanceInProtest;
-    }
-
-    public String getProtectedBalance() {
-        return protectedBalance;
-    }
-
-    public void setProtectedBalance(String protectedBalance) {
-        this.protectedBalance = protectedBalance;
-    }
-
-    public String getPayableBalance() {
-        return payableBalance;
-    }
-
-    public void setPayableBalance(String payableBalance) {
-        this.payableBalance = payableBalance;
-    }
-
-    public String getReceivableBalance() {
-        return receivableBalance;
-    }
-
-    public void setReceivableBalance(String receivableBalance) {
-        this.receivableBalance = receivableBalance;
-    }
-
-    public String getCommissionBalance() {
-        return commissionBalance;
-    }
-
-    public void setCommissionBalance(String commissionBalance) {
-        this.commissionBalance = commissionBalance;
-    }
-
-    public String getVolumeLastMonth() {
-        return volumeLastMonth;
-    }
-
-    public void setVolumeLastMonth(String volumeLastMonth) {
-        this.volumeLastMonth = volumeLastMonth;
-    }
-
-    public String getVolumeThisMonth() {
-        return volumeThisMonth;
-    }
-
-    public void setVolumeThisMonth(String volumeThisMonth) {
-        this.volumeThisMonth = volumeThisMonth;
-    }
-
-    public String getTaxesPaidLastMonth() {
-        return taxesPaidLastMonth;
-    }
-
-    public void setTaxesPaidLastMonth(String taxesPaidLastMonth) {
-        this.taxesPaidLastMonth = taxesPaidLastMonth;
-    }
-
-    public String getTaxesPaidThisMonth() {
-        return taxesPaidThisMonth;
-    }
-
-    public void setTaxesPaidThisMonth(String taxesPaidThisMonth) {
-        this.taxesPaidThisMonth = taxesPaidThisMonth;
-    }
-
-    public String getCustomLogoUrl() {
-        return customLogoUrl;
-    }
-
-    public void setCustomLogoUrl(String customLogoUrl) {
-        this.customLogoUrl = customLogoUrl;
-    }
-
-    public String getCustomLogoSmallUrl() {
-        return customLogoSmallUrl;
-    }
-
-    public void setCustomLogoSmallUrl(String customLogoSmallUrl) {
-        this.customLogoSmallUrl = customLogoSmallUrl;
-    }
-
-    public List<InfoResponse> getInformations() {
-        return informations;
-    }
-
-    public void setInformations(List<InfoResponse> informations) {
-        this.informations = informations;
-    }
-
-    public Boolean getFines() {
-        return fines;
-    }
-
-    public void setFines(Boolean fines) {
-        this.fines = fines;
-    }
-
-    public Boolean getPerDayInterest() {
-        return perDayInterest;
-    }
-
-    public void setPerDayInterest(Boolean perDayInterest) {
-        this.perDayInterest = perDayInterest;
-    }
-
-    public Integer getLatePaymentFine() {
-        return latePaymentFine;
-    }
-
-    public void setLatePaymentFine(Integer latePaymentFine) {
-        this.latePaymentFine = latePaymentFine;
-    }
-
-    public ConfigurationResponse getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(ConfigurationResponse configuration) {
-        this.configuration = configuration;
-    }
-
-    public CommissionsResponse getCommissions() {
-        return commissions;
-    }
-
-    public void setCommissions(CommissionsResponse commissions) {
-        this.commissions = commissions;
-    }
-
-    public Boolean getPaymentEmailNotification() {
-        return paymentEmailNotification;
-    }
-
-    public void setPaymentEmailNotification(Boolean paymentEmailNotification) {
-        this.paymentEmailNotification = paymentEmailNotification;
-    }
-
-    public String getPaymentEmailNotificationReceiver() {
-        return paymentEmailNotificationReceiver;
-    }
-
-    public void setPaymentEmailNotificationReceiver(String paymentEmailNotificationReceiver) {
-        this.paymentEmailNotificationReceiver = paymentEmailNotificationReceiver;
-    }
-
-    public Boolean getEarlyPaymentDiscount() {
-        return earlyPaymentDiscount;
-    }
-
-    public void setEarlyPaymentDiscount(Boolean earlyPaymentDiscount) {
-        this.earlyPaymentDiscount = earlyPaymentDiscount;
-    }
-
-    public List<EarlyPaymentDiscount> getEarlyPaymentDiscounts() {
-        return earlyPaymentDiscounts;
-    }
-
-    public void setEarlyPaymentDiscounts(List<EarlyPaymentDiscount> earlyPaymentDiscounts) {
-        this.earlyPaymentDiscounts = earlyPaymentDiscounts;
-    }
-
-    public List<SplitsResponse> getSplits() {
-        return splits;
-    }
-
-    public void setSplits(List<SplitsResponse> splits) {
-        this.splits = splits;
-    }
-
-    @Override
-    public String toString() {
-        return "AccountResponse{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", canReceive=" + canReceive +
-                ", isVerified=" + isVerified +
-                ", lastVerificationRequestStatus='" + lastVerificationRequestStatus + '\'' +
-                ", accountLastVerification=" + accountLastVerification +
-                ", lastVerificationRequestFeedback='" + lastVerificationRequestFeedback + '\'' +
-                ", changePlanType=" + changePlanType +
-                ", subscriptionsTrialPeriod=" + subscriptionsTrialPeriod +
-                ", disableEmails=" + disableEmails +
-                ", lastWithdraw=" + lastWithdraw +
-                ", totalSubscriptions=" + totalSubscriptions +
-                ", totalActiveSubscriptions=" + totalActiveSubscriptions +
-                ", replyTo='" + replyTo + '\'' +
-                ", webappOnTestMode=" + webappOnTestMode +
-                ", marketplace=" + marketplace +
-                ", autoWithdraw=" + autoWithdraw +
-                ", balance='" + balance + '\'' +
-                ", balanceAvailableForWithdraw='" + balanceAvailableForWithdraw + '\'' +
-                ", balanceInProtest='" + balanceInProtest + '\'' +
-                ", protectedBalance='" + protectedBalance + '\'' +
-                ", payableBalance='" + payableBalance + '\'' +
-                ", receivableBalance='" + receivableBalance + '\'' +
-                ", commissionBalance='" + commissionBalance + '\'' +
-                ", volumeLastMonth='" + volumeLastMonth + '\'' +
-                ", volumeThisMonth='" + volumeThisMonth + '\'' +
-                ", taxesPaidLastMonth='" + taxesPaidLastMonth + '\'' +
-                ", taxesPaidThisMonth='" + taxesPaidThisMonth + '\'' +
-                ", customLogoUrl='" + customLogoUrl + '\'' +
-                ", customLogoSmallUrl='" + customLogoSmallUrl + '\'' +
-                ", informations=" + informations +
-                ", fines=" + fines +
-                ", perDayInterest=" + perDayInterest +
-                ", latePaymentFine=" + latePaymentFine +
-                ", configuration=" + configuration +
-                ", commissions=" + commissions +
-                ", splits=" + splits +
-                '}';
-    }
+    protected List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+    protected List<SplitsResponse> splits;
 
 }

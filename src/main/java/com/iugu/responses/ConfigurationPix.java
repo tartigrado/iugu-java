@@ -1,25 +1,16 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConfigurationPix {
 
-    private Boolean active;
+    protected Boolean active;
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ConfigurationCreditCard{" +
-                "active=" + active +
-                '}';
-    }
 }

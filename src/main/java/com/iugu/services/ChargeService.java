@@ -9,13 +9,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class ChargeService {
-
-    private IuguConfiguration iugu;
+public class ChargeService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/charge");
 
     public ChargeService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public ChargeResponse create(Charge charge) throws IuguException {

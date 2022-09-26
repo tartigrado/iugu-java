@@ -1,45 +1,19 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WebHookResponse {
 
-    private String id;
-    private String url;
-    private String authorization;
-    private String event;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getAuthorization() {
-        return authorization;
-    }
-
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
-    }
-
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
+    protected String id;
+    protected String url;
+    protected String authorization;
+    protected String event;
 
 }

@@ -2,37 +2,21 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestWithdraw {
 
-    private Float amount;
+    protected Float amount;
     @JsonProperty("custom_variables")
-    private List<CustomVariable> customVariables;
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
-    public List<CustomVariable> getCustomVariables() {
-        return customVariables;
-    }
-
-    public void setCustomVariables(List<CustomVariable> customVariables) {
-        this.customVariables = customVariables;
-    }
-
-    @Override
-    public String toString() {
-        return "RequestWithdraw{" +
-                "amount=" + amount +
-                ", customVariables=" + customVariables +
-                '}';
-    }
+    protected List<CustomVariable> customVariables;
 }

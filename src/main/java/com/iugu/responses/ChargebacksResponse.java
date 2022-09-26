@@ -1,29 +1,19 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChargebacksResponse {
 
-    private FacetsResponse facets;
-    private List<ChargebackResponse> items;
-
-    public FacetsResponse getFacets() {
-        return facets;
-    }
-
-    public void setFacets(FacetsResponse facets) {
-        this.facets = facets;
-    }
-
-    public List<ChargebackResponse> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ChargebackResponse> items) {
-        this.items = items;
-    }
+    protected FacetsResponse facets;
+    protected List<ChargebackResponse> items;
 
 }

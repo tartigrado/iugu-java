@@ -1,35 +1,17 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomVariableResponse {
 
-	private String name;
-	private String value;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	@Override
-	public String toString() {
-		return "CustomVariableResponse{" +
-				"name='" + name + '\'' +
-				", value='" + value + '\'' +
-				'}';
-	}
+    protected String name;
+    protected String value;
 
 }

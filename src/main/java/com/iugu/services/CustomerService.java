@@ -1,117 +1,115 @@
 package com.iugu.services;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Customer;
 import com.iugu.responses.CustomerResponse;
 import com.iugu.responses.CustomersResponse;
-import java.util.List;
 
-public class CustomerService {
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-	private IuguConfiguration iugu;
-	private final String FIND_ALL_URL = IuguConfiguration.url("/customers");
-        private final String CREATE_URL = IuguConfiguration.url("/customers");
-	private final String FIND_URL = IuguConfiguration.url("/customers/%s");
-	private final String FIND_PARAMS_URL = IuguConfiguration.url("/customers?%s");
-	private final String CHANGE_URL = IuguConfiguration.url("/customers/%s");
-	private final String REMOVE_URL = IuguConfiguration.url("/customers/%s");
+public class CustomerService extends GenericService {
 
-	public CustomerService(IuguConfiguration iuguConfiguration) {
-		this.iugu = iuguConfiguration;
-	}
+    private final String FIND_ALL_URL = IuguConfiguration.url("/customers");
+    private final String CREATE_URL = IuguConfiguration.url("/customers");
+    private final String FIND_URL = IuguConfiguration.url("/customers/%s");
+    private final String FIND_PARAMS_URL = IuguConfiguration.url("/customers?%s");
+    private final String CHANGE_URL = IuguConfiguration.url("/customers/%s");
+    private final String REMOVE_URL = IuguConfiguration.url("/customers/%s");
 
-	public CustomerResponse create(Customer customer) throws IuguException {
-		Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(customer, MediaType.APPLICATION_JSON));
+    public CustomerService(IuguConfiguration iuguConfiguration) {
+        super(iuguConfiguration);
+    }
 
-		int ResponseStatus = response.getStatus();
-		String ResponseText = null;
+    public CustomerResponse create(Customer customer) throws IuguException {
+        Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(customer, MediaType.APPLICATION_JSON));
 
-		if (ResponseStatus == 200)
-			return response.readEntity(CustomerResponse.class);
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
 
-		// Error Happened
-		if (response.hasEntity())
-			ResponseText = response.readEntity(String.class);
+        if (ResponseStatus == 200)
+            return response.readEntity(CustomerResponse.class);
 
-		response.close();
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
 
-		throw new IuguException("Error creating customer!", ResponseStatus, ResponseText);
-	}
+        response.close();
 
-	public CustomerResponse find(String id) throws IuguException {
-		Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
+        throw new IuguException("Error creating customer!", ResponseStatus, ResponseText);
+    }
 
-		int ResponseStatus = response.getStatus();
-		String ResponseText = null;
+    public CustomerResponse find(String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
 
-		if (ResponseStatus == 200)
-			return response.readEntity(CustomerResponse.class);
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
 
-		// Error Happened
-		if (response.hasEntity())
-			ResponseText = response.readEntity(String.class);
+        if (ResponseStatus == 200)
+            return response.readEntity(CustomerResponse.class);
 
-		response.close();
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
 
-		throw new IuguException("Error finding customer!", ResponseStatus, ResponseText);
-	}
+        response.close();
 
-	public CustomerResponse change(String id, Customer customer) throws IuguException {
-		Response response = this.iugu.getNewClient().target(String.format(CHANGE_URL, id)).request().put(Entity.entity(customer, MediaType.APPLICATION_JSON));
+        throw new IuguException("Error finding customer!", ResponseStatus, ResponseText);
+    }
 
-		int ResponseStatus = response.getStatus();
-		String ResponseText = null;
+    public CustomerResponse change(String id, Customer customer) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(CHANGE_URL, id)).request().put(Entity.entity(customer, MediaType.APPLICATION_JSON));
 
-		if (ResponseStatus == 200)
-			return response.readEntity(CustomerResponse.class);
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
 
-		// Error Happened
-		if (response.hasEntity())
-			ResponseText = response.readEntity(String.class);
+        if (ResponseStatus == 200)
+            return response.readEntity(CustomerResponse.class);
 
-		response.close();
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
 
-		throw new IuguException("Error changing customer!", ResponseStatus, ResponseText);
-	}
+        response.close();
 
-	public CustomerResponse remove(String id) throws IuguException {
-		Response response = this.iugu.getNewClient().target(String.format(REMOVE_URL, id)).request().delete();
+        throw new IuguException("Error changing customer!", ResponseStatus, ResponseText);
+    }
 
-		int ResponseStatus = response.getStatus();
-		String ResponseText = null;
+    public CustomerResponse remove(String id) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(REMOVE_URL, id)).request().delete();
 
-		if (ResponseStatus == 200)
-			return response.readEntity(CustomerResponse.class);
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
 
-		// Error Happened
-		if (response.hasEntity())
-			ResponseText = response.readEntity(String.class);
+        if (ResponseStatus == 200)
+            return response.readEntity(CustomerResponse.class);
 
-		response.close();
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
 
-		throw new IuguException("Error removing customer!", ResponseStatus, ResponseText);
-	}
+        response.close();
 
-	public CustomersResponse findByParams(String params) throws IuguException {
-		Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
-		int ResponseStatus = response.getStatus();
-		String ResponseText = null;
+        throw new IuguException("Error removing customer!", ResponseStatus, ResponseText);
+    }
 
-		if (ResponseStatus == 200)
-			return response.readEntity(CustomersResponse.class);
+    public CustomersResponse findByParams(String params) throws IuguException {
+        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
+        int ResponseStatus = response.getStatus();
+        String ResponseText = null;
 
-		// Error Happened
-		if (response.hasEntity())
-			ResponseText = response.readEntity(String.class);
+        if (ResponseStatus == 200)
+            return response.readEntity(CustomersResponse.class);
 
-		response.close();
+        // Error Happened
+        if (response.hasEntity())
+            ResponseText = response.readEntity(String.class);
 
-		throw new IuguException("Error finding customers!", ResponseStatus, ResponseText);
-	}
+        response.close();
+
+        throw new IuguException("Error finding customers!", ResponseStatus, ResponseText);
+    }
 
 }

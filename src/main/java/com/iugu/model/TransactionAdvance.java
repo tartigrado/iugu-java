@@ -1,20 +1,20 @@
 package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionAdvance {
 
-    private List<String> transactions;
-
-    public List<String> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<String> transactions) {
-        this.transactions = transactions;
-    }
+    protected List<String> transactions;
 
 }

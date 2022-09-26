@@ -5,22 +5,20 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentMethod;
 import com.iugu.responses.PaymentMethodResponse;
 
-import java.util.List;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 
-public class PaymentMethodService {
-
-    private IuguConfiguration iugu;
+public class PaymentMethodService extends GenericService {
     private final String DEFAULT_PAYMENT_URL = IuguConfiguration.url("/customers/%s/payment_methods");
     private final String FIND_URL = IuguConfiguration.url("/customers/%s/payment_methods/%s");
     private final String REMOVE_URL = IuguConfiguration.url("/customers/%s/payment_methods/%s");
 
     public PaymentMethodService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public String setDefault(String customerId, PaymentMethod paymentMethod) throws IuguException {

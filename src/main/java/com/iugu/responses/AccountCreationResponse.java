@@ -2,69 +2,25 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountCreationResponse {
 
     @JsonProperty("account_id")
-    private String accountId;
+    protected String accountId;
     @JsonProperty("name")
-    private String name;
+    protected String name;
     @JsonProperty("live_api_token")
-    private String liveApiToken;
+    protected String liveApiToken;
     @JsonProperty("test_api_token")
-    private String testApiToken;
+    protected String testApiToken;
     @JsonProperty("user_token")
-    private String userToken;
+    protected String userToken;
 
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLiveApiToken() {
-        return liveApiToken;
-    }
-
-    public void setLiveApiToken(String liveApiToken) {
-        this.liveApiToken = liveApiToken;
-    }
-
-    public String getTestApiToken() {
-        return testApiToken;
-    }
-
-    public void setTestApiToken(String testApiToken) {
-        this.testApiToken = testApiToken;
-    }
-
-    public String getUserToken() {
-        return userToken;
-    }
-
-    public void setUserToken(String userToken) {
-        this.userToken = userToken;
-    }
-
-    @Override
-    public String toString() {
-        return "AccountCreationResponse{" +
-                "accountId='" + accountId + '\'' +
-                ", name='" + name + '\'' +
-                ", liveApiToken='" + liveApiToken + '\'' +
-                ", testApiToken='" + testApiToken + '\'' +
-                ", userToken='" + userToken + '\'' +
-                '}';
-    }
 }

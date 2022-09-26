@@ -2,35 +2,42 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Charge {
 
     @JsonProperty("token")
-    private String token;
+    protected String token;
 
     @JsonProperty("invoice_id")
-    private String invoiceId;
+    protected String invoiceId;
 
     @JsonProperty("customer_id")
-    private String customerId;
+    protected String customerId;
 
     @JsonProperty("email")
-    private String email;
+    protected String email;
 
-    private List<Item> items = new ArrayList<>();
+    @Builder.Default
+    protected List<Item> items = new ArrayList<>();
 
     @JsonProperty("payer")
-    private Payer payer;
+    protected Payer payer;
 
     @JsonProperty("months")
-    private String months;
-
-    public Charge() {
-    }
+    protected String months;
 
     public Charge(String token, String invoiceId) {
         this.token = token;
@@ -58,73 +65,8 @@ public class Charge {
         this.months = months;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(String invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public List<Item> getItems() {
+        if (Objects.isNull(items)) setItems(new ArrayList<>());
         return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public Payer getPayer() {
-        return payer;
-    }
-
-    public void setPayer(Payer payer) {
-        this.payer = payer;
-    }
-
-    public String getMonths() {
-        return months;
-    }
-
-    public Charge setMonths(String months) {
-        this.months = months;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "Charge{" +
-                "token='" + token + '\'' +
-                ", invoiceId='" + invoiceId + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", email='" + email + '\'' +
-                ", items=" + items +
-                ", payer=" + payer +
-                ", months=" + months +
-                '}';
     }
 }

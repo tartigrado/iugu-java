@@ -14,9 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class EmailService {
-
-    private IuguConfiguration iugu;
+public class EmailService extends GenericService {
     private final String FIND_SUPPORTED_URL = IuguConfiguration.url("/emails/supported_emails");
     private final String FIND_DEFAULT_LAYOUT_URL = IuguConfiguration.url("/emails/default_layout/%s");
     private final String FIND_EMAILS_URL = IuguConfiguration.url("/emails");
@@ -26,11 +24,11 @@ public class EmailService {
     private final String SEND_TEST_URL = IuguConfiguration.url("/emails/test/%s");
 
     public EmailService(IuguConfiguration iuguConfiguration) {
-        this.iugu = iuguConfiguration;
+        super(iuguConfiguration);
     }
 
     public List<String> findSupportedEmails() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_SUPPORTED_URL).request().get();
+        Response response = getIugu().getNewClient().target(FIND_SUPPORTED_URL).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -49,7 +47,7 @@ public class EmailService {
     }
 
     public EmailDefaultLayoutResponse findDefaultLayout(String identifier) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
+        Response response = getIugu().getNewClient().target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -67,7 +65,7 @@ public class EmailService {
     }
 
     public List<EmailResponse> findEmails() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_EMAILS_URL).request().get();
+        Response response = getIugu().getNewClient().target(FIND_EMAILS_URL).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -86,7 +84,7 @@ public class EmailService {
     }
 
     public EmailResponse findEmail(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
+        Response response = getIugu().getNewClient().target(String.format(FIND_URL, id)).request().get();
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -104,7 +102,7 @@ public class EmailService {
     }
 
     public EmailResponse update(Email email) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
+        Response response = getIugu().getNewClient().target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -122,7 +120,7 @@ public class EmailService {
     }
 
     public EmailResponse create(Email email) throws IuguException {
-        Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
+        Response response = getIugu().getNewClient().target(CREATE_URL).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 
@@ -140,7 +138,7 @@ public class EmailService {
     }
 
     public SendEmailTestResponse sendTest(String identifier, SendEmailTest email) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
+        Response response = getIugu().getNewClient().target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
         int ResponseStatus = response.getStatus();
         String ResponseText = null;
 

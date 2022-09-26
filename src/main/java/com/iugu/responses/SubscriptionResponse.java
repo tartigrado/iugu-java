@@ -1,82 +1,70 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.beans.Transient;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true, allowSetters = true, value = {"featuresIugu"})
 public class SubscriptionResponse {
 
-    private String id;
-    private Boolean suspended;
+    @JsonProperty("credits_cycle")
+    protected Integer creditsCycle;
+    protected String id;
+    protected Boolean suspended;
     @JsonProperty("plan_identifier")
-    private String planIdentifier;
+    protected String planIdentifier;
     @JsonProperty("price_cents")
-    private Integer priceCents;
-    private String currency;
+    protected Integer priceCents;
+    protected String currency;
     //TODO Features
     @JsonProperty("expires_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date expiresAt;
+    protected Date expiresAt;
     @JsonProperty("customer_name")
-    private String customerName;
+    protected String customerName;
     @JsonProperty("customer_email")
-    private String customerEmail;
+    protected String customerEmail;
     @JsonProperty("cycled_at")
-    private Date cycledAt;
+    protected Date cycledAt;
     @JsonProperty("credits_min")
-    private Integer creditsMin;
+    protected Integer creditsMin;
     //TODO Credits Cycle
     @JsonProperty("customer_id")
-    private String customerId;
+    protected String customerId;
     @JsonProperty("plan_name")
-    private String planName;
+    protected String planName;
     @JsonProperty("customer_ref")
-    private String customerRef;
+    protected String customerRef;
     @JsonProperty("plan_ref")
-    private String planRef;
-    private Boolean active;
+    protected String planRef;
+    protected Boolean active;
     @JsonProperty("in_trial")
-    private Boolean inTrial;
-    private Integer credits;
+    protected Boolean inTrial;
+    protected Integer credits;
     @JsonProperty("credits_based")
-    private Boolean creditsBased;
+    protected Boolean creditsBased;
     @JsonProperty("recent_invoices")
-    private List<InvoiceResponse> recentInvoices;
-
+    protected List<InvoiceResponse> recentInvoices;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private JsonNode features;
-
+    protected JsonNode features;
     @JsonProperty("features_revgas")
-    private List<FeatureSubscriptionResponse> featuresRevgas;
-
-    private List<SubItemResponse> subitems;
-    private List<LogResponse> logs;
+    protected List<FeatureSubscriptionResponse> featuresRevgas;
+    protected List<SubItemResponse> subitems;
+    protected List<LogResponse> logs;
     @JsonProperty("custom_variables")
-    private List<CustomVariableResponse> customVariables;
-    @JsonProperty("credits_cycle")
-    public Integer creditsCycle;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public List<InvoiceResponse> getRecentInvoices() {
-        return recentInvoices;
-    }
-
-    public void setRecentInvoices(List<InvoiceResponse> recentInvoices) {
-        this.recentInvoices = recentInvoices;
-    }
+    protected List<CustomVariableResponse> customVariables;
 
     public JsonNode getFeatures() {
         return features;
@@ -101,201 +89,5 @@ public class SubscriptionResponse {
 
     public void setFeaturesRevgas(List<FeatureSubscriptionResponse> featuresRevgas) {
         this.featuresRevgas = featuresRevgas;
-    }
-
-    public Boolean getSuspended() {
-        return suspended;
-    }
-
-    public void setSuspended(Boolean suspended) {
-        this.suspended = suspended;
-    }
-
-    public String getPlanIdentifier() {
-        return planIdentifier;
-    }
-
-    public void setPlanIdentifier(String planIdentifier) {
-        this.planIdentifier = planIdentifier;
-    }
-
-    public Integer getPriceCents() {
-        return priceCents;
-    }
-
-    public void setPriceCents(Integer priceCents) {
-        this.priceCents = priceCents;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public Date getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(Date expiresAt) {
-        this.expiresAt = expiresAt;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
-    public Date getCycledAt() {
-        return cycledAt;
-    }
-
-    public void setCycledAt(Date cycledAt) {
-        this.cycledAt = cycledAt;
-    }
-
-    public Integer getCreditsMin() {
-        return creditsMin;
-    }
-
-    public void setCreditsMin(Integer creditsMin) {
-        this.creditsMin = creditsMin;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getPlanName() {
-        return planName;
-    }
-
-    public void setPlanName(String planName) {
-        this.planName = planName;
-    }
-
-    public String getCustomerRef() {
-        return customerRef;
-    }
-
-    public void setCustomerRef(String customerRef) {
-        this.customerRef = customerRef;
-    }
-
-    public String getPlanRef() {
-        return planRef;
-    }
-
-    public void setPlanRef(String planRef) {
-        this.planRef = planRef;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public Boolean getInTrial() {
-        return inTrial;
-    }
-
-    public void setInTrial(Boolean inTrial) {
-        this.inTrial = inTrial;
-    }
-
-    public Integer getCredits() {
-        return credits;
-    }
-
-    public void setCredits(Integer credits) {
-        this.credits = credits;
-    }
-
-    public Boolean getCreditsBased() {
-        return creditsBased;
-    }
-
-    public void setCreditsBased(Boolean creditsBased) {
-        this.creditsBased = creditsBased;
-    }
-
-    public List<SubItemResponse> getSubitems() {
-        return subitems;
-    }
-
-    public void setSubitems(List<SubItemResponse> subitems) {
-        this.subitems = subitems;
-    }
-
-    public List<LogResponse> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(List<LogResponse> logs) {
-        this.logs = logs;
-    }
-
-    public List<CustomVariableResponse> getCustomVariables() {
-        return customVariables;
-    }
-
-    public void setCustomVariables(List<CustomVariableResponse> customVariables) {
-        this.customVariables = customVariables;
-    }
-
-    public Integer getCreditsCycle() {
-        return creditsCycle;
-    }
-
-    public void setCreditsCycle(Integer creditsCycle) {
-        this.creditsCycle = creditsCycle;
-    }
-
-    @Override
-    public String toString() {
-        return "SubscriptionResponse{"
-                + "id='" + id + '\''
-                + ", suspended=" + suspended
-                + ", planIdentifier='" + planIdentifier + '\''
-                + ", priceCents=" + priceCents
-                + ", currency='" + currency + '\''
-                + ", expiresAt=" + expiresAt
-                + ", customerName='" + customerName + '\''
-                + ", customerEmail='" + customerEmail + '\''
-                + ", cycledAt=" + cycledAt
-                + ", creditsMin=" + creditsMin
-                + ", customerId='" + customerId + '\''
-                + ", planName='" + planName + '\''
-                + ", customerRef='" + customerRef + '\''
-                + ", planRef='" + planRef + '\''
-                + ", active=" + active
-                + ", inTrial=" + inTrial
-                + ", credits=" + credits
-                + ", creditsBased=" + creditsBased
-                + ", subitems=" + subitems
-                + ", logs=" + logs
-                + ", customVariables=" + customVariables
-                + ", recentInvoices=" + recentInvoices
-                + '}';
     }
 }

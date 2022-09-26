@@ -2,59 +2,25 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@lombok.Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
 
-    public Data() {
-    }
-
-    public Data(String number, String verificationValue, String firstName, String lastName, String month, String year) {
-        this.number = number;
-        this.verificationValue = verificationValue;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.month = month;
-        this.year = year;
-    }
-
-    String number;
-
+    protected String number;
     @JsonProperty("verification_value")
-    String verificationValue;
-
+    protected String verificationValue;
     @JsonProperty("first_name")
-    String firstName;
-
+    protected String firstName;
     @JsonProperty("last_name")
-    String lastName;
-
-    String month;
-
-    String year;
-
-    public String getNumber() {
-        return number;
-    }
-
-    public String getVerificationValue() {
-        return verificationValue;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public String getYear() {
-        return year;
-    }
+    protected String lastName;
+    protected String month;
+    protected String year;
 
 }

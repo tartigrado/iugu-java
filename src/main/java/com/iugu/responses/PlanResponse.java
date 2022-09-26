@@ -2,89 +2,26 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlanResponse {
 
-    private String id;
-    private String name;
-    private String identifier;
-    private String interval;
+    protected String id;
+    protected String name;
+    protected String identifier;
+    protected String interval;
     @JsonProperty("interval_type")
-    private String intervalType;
-    private List<PriceResponse> prices;
-    private List<FeatureResponse> features;
+    protected String intervalType;
+    protected List<PriceResponse> prices;
+    protected List<FeatureResponse> features;
     @JsonProperty("payable_with")
-    private Object payableWith;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-
-    public String getInterval() {
-        return interval;
-    }
-
-    public void setInterval(String interval) {
-        this.interval = interval;
-    }
-
-    public String getIntervalType() {
-        return intervalType;
-    }
-
-    public void setIntervalType(String intervalType) {
-        this.intervalType = intervalType;
-    }
-
-    public List<PriceResponse> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(List<PriceResponse> prices) {
-        this.prices = prices;
-    }
-
-    public List<FeatureResponse> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<FeatureResponse> features) {
-        this.features = features;
-    }
-
-    public Object getPayableWith() {
-        return payableWith;
-    }
-
-    public void setPayableWith(Object payableWith) {
-        this.payableWith = payableWith;
-    }
-
-    @Override
-    public String toString() {
-        return "PlanResponse{" + "id=" + id + ", name=" + name + ", identifier=" + identifier + ", interval=" + interval + ", intervalType=" + intervalType + ", prices=" + prices + ", features=" + features + ", payableWith=" + payableWith + '}';
-    }
+    protected Object payableWith;
 }

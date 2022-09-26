@@ -2,37 +2,26 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomVariable {
 
-	private String name;
-	private String value;
-	@JsonProperty("_destroy")
-	private Boolean _destroy;
+    protected String name;
+    protected String value;
+    @JsonProperty("_destroy")
+    protected Boolean destroy;
+    public CustomVariable(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
 
-	public CustomVariable() {
-	}
-
-	public CustomVariable(String name, String value) {
-		this.name = name;
-		this.value = value;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public Boolean getDestroy() {
-		return _destroy;
-	}
-
-	public void setDestroy(Boolean _destroy) {
-		this._destroy = _destroy;
-	}
 
 }

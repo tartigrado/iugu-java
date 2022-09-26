@@ -1,97 +1,53 @@
 package com.iugu.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.iugu.enums.Currency;
 import com.iugu.enums.IntervalType;
 import com.iugu.enums.PayableWith;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Plan {
 
-    private String name;
+    protected String name;
 
-    private String identifier;
+    protected String identifier;
 
-    private String interval;
+    protected String interval;
 
     @JsonProperty("interval_type")
-    private IntervalType intervalType;
+    protected IntervalType intervalType;
 
-    private Currency currency;
+    protected Currency currency;
 
     @JsonProperty("value_cents")
-    private int valueCents;
+    protected int valueCents;
 
     @JsonProperty("payable_with")
-    private List<PayableWith> payableWith;
+    protected List<PayableWith> payableWith;
 
-    private List<Price> prices;
+    protected List<Price> prices;
 
-    private List<Feature> features;
-
-    public Plan() {
-    }
+    protected List<Feature> features;
 
     public Plan(String name, String identifier, String interval, IntervalType intervalType, Currency currency,
-            int valueCents) {
+                int valueCents) {
         this.name = name;
         this.identifier = identifier;
         this.interval = interval;
         this.intervalType = intervalType;
         this.currency = currency;
         this.valueCents = valueCents;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public String getInterval() {
-        return interval;
-    }
-
-    public IntervalType getIntervalType() {
-        return intervalType;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public int getValueCents() {
-        return valueCents;
-    }
-
-    public List<PayableWith> getPayableWith() {
-        return payableWith;
-    }
-
-    public void setPayableWith(List<PayableWith> payableWith) {
-        this.payableWith = payableWith;
-    }
-
-    public List<Price> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(List<Price> prices) {
-        this.prices = prices;
-    }
-
-    public List<Feature> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<Feature> features) {
-        this.features = features;
     }
 
 }

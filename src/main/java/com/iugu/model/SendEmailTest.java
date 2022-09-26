@@ -1,29 +1,17 @@
 package com.iugu.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class SendEmailTest {
 
-    String to;
+    protected String to;
 
-    public SendEmailTest() {
-    }
-
-    public SendEmailTest(String to) {
-        this.to = to;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    @Override
-    public String toString() {
-        return "SendEmailTest{" +
-                "to='" + to + '\'' +
-                '}';
-    }
 
 }

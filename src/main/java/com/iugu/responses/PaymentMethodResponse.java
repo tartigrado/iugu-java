@@ -2,48 +2,23 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentMethodResponse {
 
     @JsonProperty("id")
-    private String id;
+    protected String id;
     @JsonProperty("description")
-    private String description;
+    protected String description;
     @JsonProperty("item_type")
-    private String itemType;
+    protected String itemType;
     @JsonProperty("data")
-    private ExtraInfoResponse data;
+    protected ExtraInfoResponse data;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
-    }
-
-    public ExtraInfoResponse getData() {
-        return data;
-    }
-
-    public void setData(ExtraInfoResponse data) {
-        this.data = data;
-    }
 }
