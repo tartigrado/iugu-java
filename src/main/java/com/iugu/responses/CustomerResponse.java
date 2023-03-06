@@ -38,5 +38,7 @@ public class CustomerResponse {
     protected String phone_prefix;
     protected String phone;
     protected String cc_emails;
+    @JsonProperty("payment_methods")
+    protected List<PaymentMethodResponse> paymentMethods;
 
 }
