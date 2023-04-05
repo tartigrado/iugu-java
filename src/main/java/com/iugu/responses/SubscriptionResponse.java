@@ -65,6 +65,10 @@ public class SubscriptionResponse {
     protected List<LogResponse> logs;
     @JsonProperty("custom_variables")
     protected List<CustomVariableResponse> customVariables;
+    @JsonProperty("created_at")
+    protected String createdAt;
+    @JsonProperty("updated_at")
+    protected String updatedAt;
 
     public JsonNode getFeatures() {
         return features;
