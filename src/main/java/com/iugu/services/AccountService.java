@@ -37,11 +37,11 @@ public class AccountService extends GenericService {
     public TransactionsResponse findTransactions(String year, String month, String day, Integer limit, Integer start) throws IuguException {
         WebTarget target = getTarget(FIND_TRANSACTIONS_URL);
 
-        if (!StringUtils.isNullOrEmpty(year)) target.queryParam("year", year);
-        if (!StringUtils.isNullOrEmpty(month)) target.queryParam("month", month);
-        if (!StringUtils.isNullOrEmpty(day)) target.queryParam("day", day);
-        if (!Objects.isNull(limit)) target.queryParam("limit", limit);
-        if (!Objects.isNull(start)) target.queryParam("start", start);
+        if (!StringUtils.isNullOrEmpty(year)) target = target.queryParam("year", year);
+        if (!StringUtils.isNullOrEmpty(month)) target = target.queryParam("month", month);
+        if (!StringUtils.isNullOrEmpty(day)) target = target.queryParam("day", day);
+        if (!Objects.isNull(limit)) target = target.queryParam("limit", limit);
+        if (!Objects.isNull(start)) target = target.queryParam("start", start);
 
         return readResponse(target.request().get(), TransactionsResponse.class, "Error finding transactions!");
     }
@@ -49,10 +49,10 @@ public class AccountService extends GenericService {
     public List<ExtractInvoiceResponse> findInvoices(String year, String month, String status, Integer limit) throws IuguException {
         WebTarget target = getTarget(FIND_INVOICES_URL);
 
-        if (!StringUtils.isNullOrEmpty(year)) target.queryParam("year", year);
-        if (!StringUtils.isNullOrEmpty(month)) target.queryParam("month", month);
-        if (!StringUtils.isNullOrEmpty(status)) target.queryParam("day", status);
-        if (!Objects.isNull(limit)) target.queryParam("limit", limit);
+        if (!StringUtils.isNullOrEmpty(year)) target = target.queryParam("year", year);
+        if (!StringUtils.isNullOrEmpty(month)) target = target.queryParam("month", month);
+        if (!StringUtils.isNullOrEmpty(status)) target = target.queryParam("day", status);
+        if (!Objects.isNull(limit)) target = target.queryParam("limit", limit);
 
         return readResponse(target.request().get(), new GenericType<List<ExtractInvoiceResponse>>() {
         }, "Error finding invoices!");
