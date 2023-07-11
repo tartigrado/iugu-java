@@ -2,6 +2,7 @@ package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
+import com.iugu.model.DuplicateInvoice;
 import com.iugu.model.Invoice;
 import com.iugu.responses.InvoiceResponse;
 import com.iugu.responses.InvoicesResponse;
@@ -43,7 +44,7 @@ public class InvoiceService extends GenericService {
         return readResponse(response, InvoiceResponse.class, "Error finding invoice with id: " + id);
     }
 
-    public InvoiceResponse duplicate(Invoice invoice) throws IuguException {
+    public InvoiceResponse duplicate(DuplicateInvoice invoice) throws IuguException {
         Response response = getTarget(String.format(DUPLICATE_URL, invoice.getId())).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
         return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + invoice.getId());
     }

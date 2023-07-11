@@ -38,7 +38,7 @@ public class IuguConfiguration {
     }
 
     public Client getNewClientNotAuth() {
-        return ClientBuilder.newBuilder().sslContext(getContext()).build();
+        return ClientBuilder.newBuilder().register(getResteasyJacksonProvider()).sslContext(getContext()).build();
     }
 
     public SSLContext getContext() {
