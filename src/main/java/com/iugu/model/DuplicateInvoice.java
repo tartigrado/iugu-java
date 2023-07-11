@@ -31,9 +31,9 @@ public class DuplicateInvoice {
     @JsonIgnore
     private String id;
 
-    @JsonProperty("date")
+    @JsonProperty("due_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    private Date dueDate;
 
     @JsonProperty("items")
     private List<Item> items;
