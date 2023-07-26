@@ -54,7 +54,7 @@
     <distributionManagement>
         <repository>
             <id>tartigrado-central</id>
-            <url>https://revgas.jfrog.io/artifactory/default-maven-virtual</url>
+            <url>https://tartigrado-221658248770.d.codeartifact.us-east-1.amazonaws.com/maven/tartigrado-libs/</url>
         </repository>
     </distributionManagement>
 
