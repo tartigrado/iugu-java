@@ -3,6 +3,7 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.*;
+import com.iugu.model.account.EarlyPaymentConfig;
 import com.iugu.responses.*;
 import com.iugu.utils.StringUtils;
 
@@ -65,6 +66,12 @@ public class AccountService extends GenericService {
 
     public AccountConfigurationResponse configuration(Account account) throws IuguException {
         Response response = getTarget(ACCOUNT_CONFIGURATION_URL).request().post(Entity.entity(account, MediaType.APPLICATION_JSON));
+        return readResponse(response, AccountConfigurationResponse.class, "Error configuring account!");
+    }
+
+
+    public AccountConfigurationResponse configuration(EarlyPaymentConfig earlyPaymentConfig) throws IuguException {
+        Response response = getTarget(ACCOUNT_CONFIGURATION_URL).request().post(Entity.entity(earlyPaymentConfig, MediaType.APPLICATION_JSON));
         return readResponse(response, AccountConfigurationResponse.class, "Error configuring account!");
     }
 

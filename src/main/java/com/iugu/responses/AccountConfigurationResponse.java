@@ -2,6 +2,14 @@ package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.iugu.model.Commissions;
+import com.iugu.model.account.AccountConfigurationInfo;
+import com.iugu.model.account.BankAccount;
+import com.iugu.model.account.ContactData;
+import com.iugu.model.EarlyPaymentDiscount;
+import com.iugu.model.Splits;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,52 +21,66 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AccountConfigurationResponse {
-
     protected String id;
     protected String name;
-    @JsonProperty("created_at")
     protected Date createdAt;
-    @JsonProperty("updated_at")
     protected Date updatedAt;
-    @JsonProperty("can_receive")
+    @JsonProperty("can_receive?")
     protected Boolean canReceive;
-    @JsonProperty("is_verified")
+    @JsonProperty("is_verified?")
     protected Boolean isVerified;
-    @JsonProperty("last_verification_request_status")
     protected String lastVerificationRequestStatus;
-    @JsonProperty("change_plan_type")
+    protected String lastVerificationRequestData;
+    protected String lastVerificationRequestFeedback;
     protected Integer changePlanType;
-    @JsonProperty("subscriptions_trial_period")
     protected Integer subscriptionsTrialPeriod;
-    @JsonProperty("disable_emails")
+    protected Integer subscriptionsBillingDays;
     protected Boolean disableEmails;
-    @JsonProperty("total_subscriptions")
-    protected Integer totalSubscriptions;
-    @JsonProperty("webapp_on_test_mode")
+    protected LastWithdrawResponse lastWithdraw;
+    protected String replyTo;
     protected Boolean webappOnTestMode;
     protected Boolean marketplace;
-    @JsonProperty("default_return_url")
     protected String defaultReturnUrl;
-    @JsonProperty("auto_withdraw")
+    protected Boolean creditCardVerified;
+    protected Boolean fines;
+    protected Boolean latePaymentFine;
+    protected Boolean perDayInterest;
+    protected Boolean oldAdvancement;
+    protected Boolean earlyPaymentDiscount;
+    protected String earlyPaymentDiscountDays;
+    protected String earlyPaymentDiscountPercent;
     protected Boolean autoWithdraw;
+    protected Boolean disabledWithdraw;
+    protected Boolean paymentEmailNotification;
+    protected String paymentEmailNotificationReceiver;
+    protected Boolean autoAdvance;
+    protected String autoAdvanceType;
+    protected Integer autoAdvanceOption;
     protected String balance;
-    @JsonProperty("protected_balance")
+    protected String balanceInProtest;
+    protected String balanceAvailableForWithdraw;
     protected String protectedBalance;
-    @JsonProperty("payable_balance")
     protected String payableBalance;
-    @JsonProperty("receivable_balance")
     protected String receivableBalance;
-    @JsonProperty("commission_balance")
     protected String commissionBalance;
-    @JsonProperty("volume_last_month")
     protected String volumeLastMonth;
-    @JsonProperty("volume_this_month")
     protected String volumeThisMonth;
-    @JsonProperty("taxes_paid_last_month")
+    protected Integer totalSubscriptions;
+    protected Integer totalActiveSubscriptions;
     protected String taxesPaidLastMonth;
-    @JsonProperty("taxes_paid_this_month")
     protected String taxesPaidThisMonth;
-    protected List<InfoResponse> informations;
-    protected ConfigurationResponse configuration;
+    @JsonProperty("has_bank_address?")
+    protected Boolean hasBankAddress;
+    protected String permissions;
+    protected String customLogoUrl;
+    protected String customLogoSmallUrl;
+    protected List<EarlyPaymentDiscount> earlyPaymentDiscounts;
+    protected Commissions commissions;
+    protected List<Splits> splits;
+    protected ContactData contactData;
+    protected String informations;
+    protected AccountConfigurationInfo configuration;
+    protected List<BankAccount> bankAccounts;
 }

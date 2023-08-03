@@ -26,6 +26,12 @@ public class DuplicateInvoice {
         private String id;
         @JsonProperty("_destroy")
         private Boolean destroy;
+        @JsonProperty("description")
+        private String description;
+        @JsonProperty("quantity")
+        private Integer quantity;
+        @JsonProperty("price_cents")
+        private Integer priceCents;
     }
 
     @JsonIgnore

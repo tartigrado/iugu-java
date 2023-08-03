@@ -4,7 +4,7 @@
 
     <groupId>com.tartigrado</groupId>
     <artifactId>iugu-java</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.4</version>
     <packaging>jar</packaging>
 
     <name>iugu-java</name>
@@ -54,7 +54,8 @@
     <distributionManagement>
         <repository>
             <id>tartigrado-central</id>
-            <url>https://revgas.jfrog.io/artifactory/default-maven-virtual</url>
+            <name>Tartigrado Repository</name>
+            <url>https://tartigrado-221658248770.d.codeartifact.us-east-1.amazonaws.com/maven/tartigrado-libs/</url>
         </repository>
     </distributionManagement>
 

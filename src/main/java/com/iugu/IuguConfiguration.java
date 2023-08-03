@@ -1,6 +1,7 @@
 package com.iugu;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
 
@@ -38,12 +39,12 @@ public class IuguConfiguration {
     }
 
     public Client getNewClientNotAuth() {
-        return ClientBuilder.newBuilder().register(getResteasyJacksonProvider()).sslContext(getContext()).build();
+        return ClientBuilder.newBuilder().sslContext(getContext()).build();
     }
 
     public SSLContext getContext() {
         try {
-            TrustManager[] noopTrustManager = new TrustManager[] {
+            TrustManager[] noopTrustManager = new TrustManager[]{
                     new X509TrustManager() {
 
                         @Override
