@@ -109,8 +109,6 @@ public class InvoiceResponse {
     protected Boolean ignoreDueEmail;
     @JsonProperty("fines_on_occurrence_day")
     protected String finesOnOccurrenceDay;
-    @JsonProperty("fines_on_occurrence_day_cents")
-    protected Integer finesOnOcurrenceDayCents;
     @JsonProperty("per_day_interest_value")
     protected Integer perDayInterestValue;
     @JsonProperty("early_payment_discounts")
