@@ -13,9 +13,20 @@ import lombok.NoArgsConstructor;
 public class BankSlipResponse {
 
     @JsonProperty("digitable_line")
-    protected String digitableLine;
+    private String digitableLine;
     @JsonProperty("barcode_data")
-    protected String barcodeData;
-    protected String barcode;
+    private String barcodeData;
+    @JsonProperty("barcode")
+    private String barcode;
+    @JsonProperty("bank_slip_bank")
+    private int bankSlipBank;
+    @JsonProperty("bank_slip_status")
+    private String bankSlipStatus;
+    @JsonProperty("bank_slip_error_code")
+    private String bankSlipErrorCode;
+    @JsonProperty("bank_slip_error_message")
+    private String bankSlipErrorMessage;
+    @JsonProperty("recipient_cpf_cnpj")
+    private String recipientCpfCnpj;
 
 }

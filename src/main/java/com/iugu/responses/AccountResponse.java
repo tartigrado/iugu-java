@@ -3,6 +3,8 @@ package com.iugu.responses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.model.EarlyPaymentDiscount;
+import com.iugu.model.account.BankAccount;
+import com.iugu.model.account.ContactData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -95,5 +97,30 @@ public class AccountResponse {
     @JsonProperty("early_payment_discounts")
     protected List<EarlyPaymentDiscount> earlyPaymentDiscounts;
     protected List<SplitsResponse> splits;
+    @JsonProperty("default_return_url")
+    protected String defaultReturnUrl;
+    @JsonProperty("credit_card_verified")
+    protected Boolean creditCardVerified;
+    @JsonProperty("old_advancement")
+    protected Boolean oldAdvancement;
+    @JsonProperty("early_payment_discount_days")
+    protected String earlyPaymentDiscountDays;
+    @JsonProperty("early_payment_discount_percent")
+    protected String earlyPaymentDiscountPercent;
+    @JsonProperty("bank_accounts")
+    protected List<BankAccount> bankAccounts;
+    @JsonProperty("disabled_withdraw")
+    protected Boolean disabledWithdraw;
+    @JsonProperty("auto_advance")
+    protected Boolean autoAdvance;
+    @JsonProperty("auto_advance_type")
+    protected String autoAdvanceType;
+    @JsonProperty("auto_advance_option")
+    protected Integer autoAdvanceOption;
+    @JsonProperty("has_bank_address?")
+    protected Boolean hasBankAddress;
+    protected String permissions;
+    @JsonProperty("contact_data")
+    protected ContactData contactData;
 
 }
