@@ -17,7 +17,7 @@ public class SimulateChangePlanResponse {
     private Long discount;
     private Long cycles;
     @JsonProperty("expires_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "America/Sao_Paulo")
     private Date expiresAt;
     @JsonProperty("new_plan")
     private String newPlan;

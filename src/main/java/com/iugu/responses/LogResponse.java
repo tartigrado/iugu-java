@@ -15,6 +15,8 @@ public class LogResponse {
     protected String id;
     protected String description;
     protected String notes;
+    @JsonProperty("subscription_changes")
+    protected String subscriptionChanges;
     @JsonProperty("created_at")
     protected String createdAt;
 }

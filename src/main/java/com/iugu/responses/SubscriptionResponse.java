@@ -30,7 +30,7 @@ public class SubscriptionResponse {
     protected String currency;
     //TODO Features
     @JsonProperty("expires_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "America/Sao_Paulo")
     protected Date expiresAt;
     @JsonProperty("customer_name")
     protected String customerName;

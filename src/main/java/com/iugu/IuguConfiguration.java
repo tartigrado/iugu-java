@@ -1,8 +1,11 @@
 package com.iugu;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.iugu.components.ClientWrapper;
+import com.iugu.components.IuguResteasyJackson2Provider;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
 
 import javax.net.ssl.SSLContext;
@@ -25,21 +28,22 @@ public class IuguConfiguration {
         return URL + endpoint;
     }
 
-    private ResteasyJackson2Provider getResteasyJacksonProvider() {
-        ResteasyJackson2Provider resteasyJacksonProvider = new ResteasyJackson2Provider();
+    private IuguResteasyJackson2Provider getResteasyJacksonProvider() {
+        IuguResteasyJackson2Provider resteasyJacksonProvider = new IuguResteasyJackson2Provider();
         resteasyJacksonProvider.setMapper(JsonMapper
                 .builder()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .serializationInclusion(JsonInclude.Include.NON_EMPTY)
                 .build());
         return resteasyJacksonProvider;
     }
 
-    public Client getNewClient() {
-        return getNewClientNotAuth().register(new Authenticator(tokenId));
+    public ClientWrapper getNewClient() {
+        return new ClientWrapper(getNewClientNotAuth().register(new Authenticator(tokenId)));
     }
 
-    public Client getNewClientNotAuth() {
-        return ClientBuilder.newBuilder().sslContext(getContext()).build();
+    public ClientWrapper getNewClientNotAuth() {
+        return new ClientWrapper(ResteasyClientBuilder.newBuilder().sslContext(getContext()).register(getResteasyJacksonProvider(), 100).build());
     }
 
     public SSLContext getContext() {

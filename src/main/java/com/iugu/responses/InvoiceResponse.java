@@ -238,6 +238,6 @@ public class InvoiceResponse {
     @JsonProperty("occurrence_date")
     protected String occurrenceDate;
     @JsonProperty("split_rules")
-    protected String splitRules;
+    protected Object splitRules;
 
 }

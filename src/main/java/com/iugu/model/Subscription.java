@@ -22,26 +22,26 @@ public class Subscription {
     @JsonProperty("plan_identifier")
     protected String planIdentifier;
     @JsonProperty("expires_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "America/Sao_Paulo")
     protected Date expiresAt;
     @JsonProperty("only_on_charge_sucess")
     protected String onlyOnChargeSucess;
     @JsonProperty("payable_with")
     protected List<PayableWith> payableWith;
     @JsonProperty("credits_based")
-    protected boolean creditsBased;
+    protected Boolean creditsBased;
     @JsonProperty("price_cents")
-    protected int priceCents;
+    protected Integer priceCents;
     @JsonProperty("credits_cycle")
-    protected int creditsCycle;
+    protected Integer creditsCycle;
     @JsonProperty("credits_min")
-    protected int creditsMin;
+    protected Integer creditsMin;
     @JsonProperty("custom_variables")
     protected List<CustomVariable> customVariables;
     @JsonProperty("subitems")
     protected List<SubItem> subItems;
     @JsonProperty("skip_charge")
-    protected boolean skipCharge;
+    protected Boolean skipCharge;
     @JsonProperty("customer_id")
     private String customerId;
 
