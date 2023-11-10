@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.TransactionAdvance;
 import com.iugu.responses.FinancialTransactionRequestIResponse;
@@ -19,35 +20,39 @@ public class FinancialTransactionRequestService extends GenericService {
     }
 
     public FinancialTransactionRequestIResponse findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
-        if (ResponseStatus == 200) {
-            return response.readEntity(FinancialTransactionRequestIResponse.class);
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(FIND_ALL_URL).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
+            if (ResponseStatus == 200) {
+                return response.readEntity(FinancialTransactionRequestIResponse.class);
+            }
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+            response.close();
+            throw new IuguException("Error finding financial transactions", ResponseStatus, ResponseText);
         }
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-        response.close();
-        throw new IuguException("Error finding financial transactions", ResponseStatus, ResponseText);
     }
 
     public TransactionAdvanceResponse advance(TransactionAdvance transactionAdvance) throws IuguException {
-        Response response = this.iugu.getNewClient().target(ADVANCE_URL).request().post(Entity.entity(transactionAdvance, MediaType.APPLICATION_JSON));
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(ADVANCE_URL).request().post(Entity.entity(transactionAdvance, MediaType.APPLICATION_JSON));
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(TransactionAdvanceResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(TransactionAdvanceResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error on transaction advance!", ResponseStatus, ResponseText);
+            throw new IuguException("Error on transaction advance!", ResponseStatus, ResponseText);
+        }
     }
 
 }

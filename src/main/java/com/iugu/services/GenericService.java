@@ -3,7 +3,6 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import com.iugu.exceptions.IuguException;
 
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -43,7 +42,4 @@ public abstract class GenericService {
         return iugu;
     }
 
-    public WebTarget getTarget(String url) {
-        return getIugu().getNewClient().target(url);
-    }
 }

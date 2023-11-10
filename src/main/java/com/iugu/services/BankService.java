@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.BankAddress;
 import com.iugu.responses.BankAddressVerificationResponse;
@@ -21,37 +22,41 @@ public class BankService extends GenericService {
     }
 
     public BankVerificationResponse add(BankAddress bankAddress) throws IuguException {
-        Response response = this.iugu.getNewClient().target(ADD_URL).request().post(Entity.entity(bankAddress, MediaType.APPLICATION_JSON));
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(ADD_URL).request().post(Entity.entity(bankAddress, MediaType.APPLICATION_JSON));
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(BankVerificationResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(BankVerificationResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error add bank address!", ResponseStatus, ResponseText);
+            throw new IuguException("Error add bank address!", ResponseStatus, ResponseText);
+        }
     }
 
     public List<BankAddressVerificationResponse> verification() throws IuguException {
-        Response response = this.iugu.getNewClient().target(VERIFICATION_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(VERIFICATION_URL).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<BankAddressVerificationResponse>>() {
-            });
+            if (ResponseStatus == 200)
+                return response.readEntity(new GenericType<List<BankAddressVerificationResponse>>() {
+                });
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error verifying insertion of bank address!", ResponseStatus, ResponseText);
+            throw new IuguException("Error verifying insertion of bank address!", ResponseStatus, ResponseText);
+        }
     }
 }

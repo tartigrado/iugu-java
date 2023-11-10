@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Transfer;
 import com.iugu.responses.TransferResponse;
@@ -21,55 +22,61 @@ public class TransferService extends GenericService {
     }
 
     public TransferResponse transfer(Transfer transfer) throws IuguException {
-        Response response = this.iugu.getNewClient().target(TRANSFER_URL).request().post(Entity.entity(transfer, MediaType.APPLICATION_JSON));
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(TRANSFER_URL).request().post(Entity.entity(transfer, MediaType.APPLICATION_JSON));
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(TransferResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(TransferResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error transferring value!", ResponseStatus, ResponseText);
+            throw new IuguException("Error transferring value!", ResponseStatus, ResponseText);
+        }
     }
 
     public TransferResponse find(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_URL, id)).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(TransferResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(TransferResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error finding transfer with id: " + id, ResponseStatus, ResponseText);
+            throw new IuguException("Error finding transfer with id: " + id, ResponseStatus, ResponseText);
+        }
     }
 
     public TransfersResponse findAll(String params) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(TransfersResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(TransfersResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error finding transfers!", ResponseStatus, ResponseText);
+            throw new IuguException("Error finding transfers!", ResponseStatus, ResponseText);
+        }
     }
 
 }

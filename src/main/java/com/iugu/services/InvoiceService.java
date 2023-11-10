@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.DuplicateInvoice;
 import com.iugu.model.Invoice;
@@ -14,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class InvoiceService extends GenericService {
 
@@ -35,18 +35,26 @@ public class InvoiceService extends GenericService {
     }
 
     public InvoiceResponse create(Invoice invoice) throws IuguException {
-        Response response = getTarget(CREATE_URL).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
-        return readResponse(response, InvoiceResponse.class, "Error creating invoice!");
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(CREATE_URL).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error creating invoice!");
+
+        }
     }
 
     public InvoiceResponse find(String id) throws IuguException {
-        Response response = getTarget(String.format(FIND_URL, id)).request().get();
-        return readResponse(response, InvoiceResponse.class, "Error finding invoice with id: " + id);
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_URL, id)).request().get();
+            return readResponse(response, InvoiceResponse.class, "Error finding invoice with id: " + id);
+
+        }
     }
 
     public InvoiceResponse duplicate(DuplicateInvoice invoice) throws IuguException {
-        Response response = getTarget(String.format(DUPLICATE_URL, invoice.getId())).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
-        return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + invoice.getId());
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(DUPLICATE_URL, invoice.getId())).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + invoice.getId());
+        }
     }
 
     public InvoiceResponse duplicate(String id, Date date, boolean ignoreCanceledEmail, boolean currentFinesOption) throws IuguException {
@@ -57,32 +65,42 @@ public class InvoiceService extends GenericService {
         form.param("ignore_canceled_email", ConvertionUtils.booleanToString(ignoreCanceledEmail));
         form.param("current_fines_option", ConvertionUtils.booleanToString(currentFinesOption));
 
-        Response response = this.iugu.getNewClient().target(String.format(DUPLICATE_URL, id)).request().post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-        return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + id);
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(DUPLICATE_URL, id)).request().post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+            return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + id);
+        }
     }
 
+
     public InvoiceResponse cancel(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(CANCEL_URL, id)).request().put(null);
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(CANCEL_URL, id)).request().put(null);
 
-        return readResponse(response, InvoiceResponse.class, "Error canceling invoice with id: " + id);
-
+            return readResponse(response, InvoiceResponse.class, "Error canceling invoice with id: " + id);
+        }
     }
 
     public InvoiceResponse update(Invoice invoice) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(UPDATE_URL, invoice.getId())).request().put(Entity.entity(invoice, MediaType.APPLICATION_JSON));
-        return readResponse(response, InvoiceResponse.class, "Error updating invoice with id: " + invoice.getId());
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(UPDATE_URL, invoice.getId())).request().put(Entity.entity(invoice, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error updating invoice with id: " + invoice.getId());
+        }
     }
 
     public InvoiceResponse refund(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(REFUND_URL, id)).request().post(null);
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(REFUND_URL, id)).request().post(null);
 
-        return readResponse(response, InvoiceResponse.class, "Error refunding invoice with id: " + id);
+            return readResponse(response, InvoiceResponse.class, "Error refunding invoice with id: " + id);
+        }
     }
 
     //
     public InvoicesResponse findByParams(String params) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_PARAMS_URL, params)).request().get();
-        return readResponse(response, InvoicesResponse.class, "Error finding invoices requests!");
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
+            return readResponse(response, InvoicesResponse.class, "Error finding invoices requests!");
+        }
     }
 
     public InvoicesResponse findByOrderId(String orderId) throws IuguException {
@@ -90,8 +108,10 @@ public class InvoiceService extends GenericService {
     }
 
     public InvoiceResponse sendEmail(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(SEND_EMAIL_URL, id)).request().post(Entity.entity(null, MediaType.APPLICATION_JSON));
-        return readResponse(response, InvoiceResponse.class, "Error send Email invoices request!");
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(SEND_EMAIL_URL, id)).request().post(Entity.entity(null, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error send Email invoices request!");
+        }
     }
 
 }

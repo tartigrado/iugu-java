@@ -6,13 +6,10 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.iugu.components.ClientWrapper;
 import com.iugu.components.IuguResteasyJackson2Provider;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import java.security.cert.X509Certificate;
 
 public class IuguConfiguration {

@@ -18,6 +18,7 @@ public class CustomVariable {
     protected String value;
     @JsonProperty("_destroy")
     protected Boolean destroy;
+
     public CustomVariable(String name, String value) {
         this.name = name;
         this.value = value;

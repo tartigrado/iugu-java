@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentMethod;
 import com.iugu.responses.PaymentMethodResponse;
@@ -22,76 +23,84 @@ public class PaymentMethodService extends GenericService {
     }
 
     public String setDefault(String customerId, PaymentMethod paymentMethod) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().post(Entity.entity(paymentMethod, MediaType.APPLICATION_JSON));
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().post(Entity.entity(paymentMethod, MediaType.APPLICATION_JSON));
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(String.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error set default payment!", ResponseStatus, ResponseText);
+            throw new IuguException("Error set default payment!", ResponseStatus, ResponseText);
+        }
     }
 
     public PaymentMethodResponse find(String customerId, String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, customerId, id)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_URL, customerId, id)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(PaymentMethodResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(PaymentMethodResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error finding payment with id: " + id, ResponseStatus, ResponseText);
+            throw new IuguException("Error finding payment with id: " + id, ResponseStatus, ResponseText);
+        }
     }
 
     public PaymentMethodResponse remove(String customerId, String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(REMOVE_URL, customerId, id)).request().delete();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(REMOVE_URL, customerId, id)).request().delete();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(PaymentMethodResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(PaymentMethodResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error removing payment with id: " + id, ResponseStatus, ResponseText);
+            throw new IuguException("Error removing payment with id: " + id, ResponseStatus, ResponseText);
+        }
     }
 
     public List<PaymentMethodResponse> findAll(String customerId) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<PaymentMethodResponse>>() {
-            });
+            if (ResponseStatus == 200)
+                return response.readEntity(new GenericType<List<PaymentMethodResponse>>() {
+                });
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error finding payments methods of customer with id: " + customerId, ResponseStatus, ResponseText);
+            throw new IuguException("Error finding payments methods of customer with id: " + customerId, ResponseStatus, ResponseText);
+        }
     }
 
 }

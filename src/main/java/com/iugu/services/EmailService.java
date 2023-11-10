@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Email;
 import com.iugu.model.SendEmailTest;
@@ -28,131 +29,152 @@ public class EmailService extends GenericService {
     }
 
     public List<String> findSupportedEmails() throws IuguException {
-        Response response = getIugu().getNewClient().target(FIND_SUPPORTED_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<String>>() {
-            });
+            Response response = client.target(FIND_SUPPORTED_URL).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(new GenericType<List<String>>() {
+                });
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding supported emails!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error finding supported emails!", ResponseStatus, ResponseText);
     }
 
     public EmailDefaultLayoutResponse findDefaultLayout(String identifier) throws IuguException {
-        Response response = getIugu().getNewClient().target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(EmailDefaultLayoutResponse.class);
+            Response response = client.target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(EmailDefaultLayoutResponse.class);
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding default layout!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error finding default layout!", ResponseStatus, ResponseText);
     }
 
     public List<EmailResponse> findEmails() throws IuguException {
-        Response response = getIugu().getNewClient().target(FIND_EMAILS_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<EmailResponse>>() {
-            });
+            Response response = client.target(FIND_EMAILS_URL).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(new GenericType<List<EmailResponse>>() {
+                });
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding emails!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error finding emails!", ResponseStatus, ResponseText);
     }
 
     public EmailResponse findEmail(String id) throws IuguException {
-        Response response = getIugu().getNewClient().target(String.format(FIND_URL, id)).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(EmailResponse.class);
+            Response response = client.target(String.format(FIND_URL, id)).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(EmailResponse.class);
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding email!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error finding email!", ResponseStatus, ResponseText);
     }
 
     public EmailResponse update(Email email) throws IuguException {
-        Response response = getIugu().getNewClient().target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(EmailResponse.class);
+            Response response = client.target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(EmailResponse.class);
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error updating email!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error updating email!", ResponseStatus, ResponseText);
     }
 
     public EmailResponse create(Email email) throws IuguException {
-        Response response = getIugu().getNewClient().target(CREATE_URL).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(EmailResponse.class);
+            Response response = client.target(CREATE_URL).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(EmailResponse.class);
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error creating email!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error creating email!", ResponseStatus, ResponseText);
     }
 
     public SendEmailTestResponse sendTest(String identifier, SendEmailTest email) throws IuguException {
-        Response response = getIugu().getNewClient().target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
 
-        if (ResponseStatus == 200)
-            return response.readEntity(SendEmailTestResponse.class);
+            Response response = client.target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(SendEmailTestResponse.class);
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error creating email!", ResponseStatus, ResponseText);
         }
-
-        response.close();
-
-        throw new IuguException("Error creating email!", ResponseStatus, ResponseText);
     }
 
 }

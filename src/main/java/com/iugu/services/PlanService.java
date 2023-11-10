@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Plan;
 import com.iugu.responses.PlanResponse;
@@ -23,122 +24,133 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse create(Plan plan) throws IuguException {
-        Response response = this.iugu.getNewClient().target(CREATE_URL).request().post(Entity.entity(plan, MediaType.APPLICATION_JSON));
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(CREATE_URL).request().post(Entity.entity(plan, MediaType.APPLICATION_JSON));
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlanResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlanResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error creating plan!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error creating plan!", ResponseStatus, ResponseText);
     }
 
     public PlanResponse find(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_URL, id)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_URL, id)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlanResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlanResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding plan!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error finding plan!", ResponseStatus, ResponseText);
     }
 
     public PlanResponse findByIdentifier(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_BY_IDENTIFIER_URL, id)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_BY_IDENTIFIER_URL, id)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlanResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlanResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding plan by identifier!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error finding plan by identifier!", ResponseStatus, ResponseText);
     }
 
     public PlanResponse change(String id, Plan plan) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(CHANGE_URL, id)).request().put(Entity.entity(plan, MediaType.APPLICATION_JSON));
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(CHANGE_URL, id)).request().put(Entity.entity(plan, MediaType.APPLICATION_JSON));
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlanResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlanResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error changing plan!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error changing plan!", ResponseStatus, ResponseText);
-
     }
 
     public PlanResponse remove(String id) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(REMOVE_URL, id)).request().delete();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(REMOVE_URL, id)).request().delete();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlanResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlanResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error removing plan!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error removing plan!", ResponseStatus, ResponseText);
     }
 
     public PlansResponse findAll() throws IuguException {
-        Response response = this.iugu.getNewClient().target(FIND_ALL_URL).request().get();
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(FIND_ALL_URL).request().get();
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200) {
-            return response.readEntity(PlansResponse.class);
+            if (ResponseStatus == 200) {
+                return response.readEntity(PlansResponse.class);
+            }
+
+            // Error Happened
+            if (response.hasEntity()) {
+                ResponseText = response.readEntity(String.class);
+            }
+
+            response.close();
+
+            throw new IuguException("Error finding plans!", ResponseStatus, ResponseText);
         }
-
-        // Error Happened
-        if (response.hasEntity()) {
-            ResponseText = response.readEntity(String.class);
-        }
-
-        response.close();
-
-        throw new IuguException("Error finding plans!", ResponseStatus, ResponseText);
     }
 }

@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.responses.WebHookLogResponse;
 
@@ -17,40 +18,44 @@ public class WebHookLogService extends GenericService {
     }
 
     public List<WebHookLogResponse> findAll(String invoiceId) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(FIND_ALL_URL, invoiceId)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(FIND_ALL_URL, invoiceId)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(new GenericType<List<WebHookLogResponse>>() {
-            });
+            if (ResponseStatus == 200)
+                return response.readEntity(new GenericType<List<WebHookLogResponse>>() {
+                });
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error finding web_hook logs ", ResponseStatus, ResponseText);
+            throw new IuguException("Error finding web_hook logs ", ResponseStatus, ResponseText);
+        }
     }
 
     public WebHookLogResponse create(String logId) throws IuguException {
-        Response response = this.iugu.getNewClient().target(String.format(CREATE_URL, logId)).request().get();
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(String.format(CREATE_URL, logId)).request().get();
 
-        int ResponseStatus = response.getStatus();
-        String ResponseText = null;
+            int ResponseStatus = response.getStatus();
+            String ResponseText = null;
 
-        if (ResponseStatus == 200)
-            return response.readEntity(WebHookLogResponse.class);
+            if (ResponseStatus == 200)
+                return response.readEntity(WebHookLogResponse.class);
 
-        // Error Happened
-        if (response.hasEntity())
-            ResponseText = response.readEntity(String.class);
+            // Error Happened
+            if (response.hasEntity())
+                ResponseText = response.readEntity(String.class);
 
-        response.close();
+            response.close();
 
-        throw new IuguException("Error creating web_hook logs ", ResponseStatus, ResponseText);
+            throw new IuguException("Error creating web_hook logs ", ResponseStatus, ResponseText);
+        }
     }
 
 }
