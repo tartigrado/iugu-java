@@ -42,6 +42,13 @@ public class InvoiceService extends GenericService {
         }
     }
 
+    public InvoiceResponse create(Invoice invoice) throws IuguException {
+        try (ClientWrapper client = getIugu().getNewClient()) {
+            Response response = client.target(CREATE_URL).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error creating invoice!");
+        }
+    }
+
     public InvoiceResponse find(String id) throws IuguException {
         try (ClientWrapper client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
