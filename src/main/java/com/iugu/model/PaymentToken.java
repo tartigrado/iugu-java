@@ -18,10 +18,11 @@ public class PaymentToken {
     protected String accountId;
 
     @JsonProperty("method")
-    protected PayableWith payableWith;
+    @Builder.Default
+    protected PayableWith payableWith = PayableWith.CREDIT_CARD;
 
     @JsonProperty("test")
-    protected Boolean isTest;
+    protected Boolean test;
 
     @JsonProperty("data")
     protected Data data;

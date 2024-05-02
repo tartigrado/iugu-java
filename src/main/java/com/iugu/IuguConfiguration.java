@@ -17,6 +17,10 @@ public class IuguConfiguration {
     private final static String URL = "https://api.iugu.com/v1";
     private final String tokenId;
 
+    public IuguConfiguration() {
+        this(null);
+    }
+
     public IuguConfiguration(String token) {
         tokenId = token;
     }
@@ -68,7 +72,6 @@ public class IuguConfiguration {
 
             return sc;
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
 

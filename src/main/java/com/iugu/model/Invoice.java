@@ -18,10 +18,6 @@ import java.util.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoice {
 
-    public static final String STATUS_PENDING = "pending";
-    public static final String STATUS_DRAFT = "draft";
-
-    protected static final long serialVersionUID = 1719931730355279382L;
     protected String id;
     protected String email;
     @JsonProperty("cc_emails")

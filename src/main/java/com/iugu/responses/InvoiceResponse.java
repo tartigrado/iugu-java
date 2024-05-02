@@ -69,7 +69,7 @@ public class InvoiceResponse {
     @JsonProperty("customer_name")
     protected String customerName;
     @JsonProperty("user_id")
-    protected Long userId;
+    protected String userId;
     @JsonProperty("total")
     protected String total;
     @JsonProperty("total_paid")

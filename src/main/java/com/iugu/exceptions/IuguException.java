@@ -1,7 +1,9 @@
 package com.iugu.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class IuguException extends Exception {
-    private static final long serialVersionUID = 8701207870125630038L;
 
     private final String exception;
     private final int statusCode;
@@ -12,18 +14,5 @@ public class IuguException extends Exception {
         this.exception = exception;
         this.statusCode = statusCode;
         this.message = message;
-    }
-
-    public String getException() {
-        return exception;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
     }
 }

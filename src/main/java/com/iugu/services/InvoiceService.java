@@ -5,6 +5,7 @@ import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.DuplicateInvoice;
 import com.iugu.model.Invoice;
+import com.iugu.model.invoice.InvoiceCreate;
 import com.iugu.responses.InvoiceResponse;
 import com.iugu.responses.InvoicesResponse;
 import com.iugu.utils.ConvertionUtils;
@@ -34,11 +35,10 @@ public class InvoiceService extends GenericService {
         super(iuguConfiguration);
     }
 
-    public InvoiceResponse create(Invoice invoice) throws IuguException {
+    public InvoiceResponse create(InvoiceCreate invoice) throws IuguException {
         try (ClientWrapper client = getIugu().getNewClient()) {
             Response response = client.target(CREATE_URL).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
             return readResponse(response, InvoiceResponse.class, "Error creating invoice!");
-
         }
     }
 

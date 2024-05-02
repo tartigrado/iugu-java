@@ -24,6 +24,9 @@ public class Charge {
     @JsonProperty("invoice_id")
     protected String invoiceId;
 
+    @JsonProperty("customer_payment_method_id")
+    protected String customerPaymentMethodId;
+
     @JsonProperty("customer_id")
     protected String customerId;
 
