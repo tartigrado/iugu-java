@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class InitialBalanceResponse {
 
     protected String amount;
+    @JsonProperty("amount_cents")
+    protected String amountCents;
     @JsonProperty("entry_date")
     protected String entryDate;
 
