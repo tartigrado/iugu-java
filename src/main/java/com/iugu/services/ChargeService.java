@@ -5,6 +5,7 @@ import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Charge;
 import com.iugu.responses.ChargeResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

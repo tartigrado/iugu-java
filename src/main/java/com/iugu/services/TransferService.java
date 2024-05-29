@@ -6,39 +6,24 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.Transfer;
 import com.iugu.responses.TransferResponse;
 import com.iugu.responses.TransfersResponse;
+import com.iugu.services.generic.GenericRsaService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response;
 
-public class TransferService extends GenericService {
-    private final String TRANSFER_URL = IuguConfiguration.url("/transfers");
+public class TransferService extends GenericRsaService {
+    private final static String TRANSFER_URL = "/transfers";
     private final String FIND_URL = IuguConfiguration.url("/transfers/%s");
     private final String FIND_ALL_URL = IuguConfiguration.url("/transfers");
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/transfers?%s");
 
     public TransferService(IuguConfiguration iuguConfiguration) {
-        super(iuguConfiguration);
+        super(iuguConfiguration, new ValidateSignatureService(iuguConfiguration));
     }
 
     public TransferResponse transfer(Transfer transfer) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
-            Response response = client.target(TRANSFER_URL).request().post(Entity.entity(transfer, MediaType.APPLICATION_JSON));
-
-            int ResponseStatus = response.getStatus();
-            String ResponseText = null;
-
-            if (ResponseStatus == 200)
-                return response.readEntity(TransferResponse.class);
-
-            // Error Happened
-            if (response.hasEntity())
-                ResponseText = response.readEntity(String.class);
-
-            response.close();
-
-            throw new IuguException("Error transferring value!", ResponseStatus, ResponseText);
-        }
+        transfer = getIugu().withToken(transfer);
+        return requestWithSignature(HttpMethod.POST, TRANSFER_URL, transfer, TransferResponse.class);
     }
 
     public TransferResponse find(String id) throws IuguException {

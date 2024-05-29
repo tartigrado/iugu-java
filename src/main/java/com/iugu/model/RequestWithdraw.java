@@ -2,6 +2,7 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.interfaces.WithApiToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RequestWithdraw {
-
+public class RequestWithdraw implements WithApiToken {
     protected Float amount;
     @JsonProperty("custom_variables")
     protected List<CustomVariable> customVariables;
+    @JsonProperty("api_token")
+    protected String apiToken;
 }

@@ -8,6 +8,7 @@ import com.iugu.model.SendEmailTest;
 import com.iugu.responses.EmailDefaultLayoutResponse;
 import com.iugu.responses.EmailResponse;
 import com.iugu.responses.SendEmailTestResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;

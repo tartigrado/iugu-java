@@ -17,7 +17,7 @@ import java.util.Map;
 
 @AllArgsConstructor
 @Getter
-public class ClientWrapper implements Closeable, Client {
+public final class ClientWrapper implements Closeable, Client {
 
     private final Client client;
 

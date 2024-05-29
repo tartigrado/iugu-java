@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.MarketPlace;
 import com.iugu.responses.AccountCreationResponse;
 import com.iugu.responses.MarketPlacesResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

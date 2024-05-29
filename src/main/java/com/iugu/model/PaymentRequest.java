@@ -3,6 +3,7 @@ package com.iugu.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.interfaces.WithApiToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PaymentRequest {
+public class PaymentRequest implements WithApiToken {
 
     public static final String STATUS_PENDING = "pending";
     public static final String STATUS_PROCESSING = "processing";
@@ -23,6 +24,8 @@ public class PaymentRequest {
     public static final String STATUS_DONE = "done";
 
     protected String id;
+    @JsonProperty("api_token")
+    protected String apiToken;
     @JsonProperty("account_id")
     protected String accountId;
     protected String barcode;

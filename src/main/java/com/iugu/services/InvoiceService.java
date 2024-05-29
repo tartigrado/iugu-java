@@ -8,6 +8,7 @@ import com.iugu.model.Invoice;
 import com.iugu.model.invoice.InvoiceCreate;
 import com.iugu.responses.InvoiceResponse;
 import com.iugu.responses.InvoicesResponse;
+import com.iugu.services.generic.GenericService;
 import com.iugu.utils.ConvertionUtils;
 
 import javax.ws.rs.client.Entity;

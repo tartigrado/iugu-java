@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.Customer;
 import com.iugu.responses.CustomerResponse;
 import com.iugu.responses.CustomersResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

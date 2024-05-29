@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.TransactionAdvance;
 import com.iugu.responses.FinancialTransactionRequestIResponse;
 import com.iugu.responses.TransactionAdvanceResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

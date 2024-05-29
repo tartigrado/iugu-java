@@ -176,7 +176,7 @@ public class InvoiceResponse {
     @JsonProperty("subscription_id")
     protected String subscriptionId;
     @JsonProperty("credit_card_transaction")
-    protected String creditCardTransaction;
+    protected Object creditCardTransaction;
     @JsonProperty("account_id")
     protected String accountId;
     @JsonProperty("bank_account_branch")

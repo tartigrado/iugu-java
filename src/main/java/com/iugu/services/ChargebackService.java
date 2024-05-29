@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.Contest;
 import com.iugu.responses.ChargebackResponse;
 import com.iugu.responses.ChargebacksResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.BankAddress;
 import com.iugu.responses.BankAddressVerificationResponse;
 import com.iugu.responses.BankVerificationResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;

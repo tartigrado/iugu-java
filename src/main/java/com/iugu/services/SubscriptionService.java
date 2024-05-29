@@ -8,6 +8,7 @@ import com.iugu.model.Subscription;
 import com.iugu.responses.SimulateChangePlanResponse;
 import com.iugu.responses.SubscriptionResponse;
 import com.iugu.responses.SubscriptionsResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

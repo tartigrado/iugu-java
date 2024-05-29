@@ -6,8 +6,10 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.*;
 import com.iugu.model.account.EarlyPaymentConfig;
 import com.iugu.responses.*;
+import com.iugu.services.generic.GenericRsaService;
 import com.iugu.utils.StringUtils;
 
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -16,19 +18,19 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Objects;
 
-public class AccountService extends GenericService {
+public class AccountService extends GenericRsaService {
 
     private final String FIND_URL = IuguConfiguration.url("/accounts/%s");
     private final String FIND_TRANSACTIONS_URL = IuguConfiguration.url("/accounts/financial");
     private final String FIND_INVOICES_URL = IuguConfiguration.url("/accounts/invoices");
     private final String REQUEST_VERIFICATION_URL = IuguConfiguration.url("/accounts/%s/request_verification");
     private final String ACCOUNT_CONFIGURATION_URL = IuguConfiguration.url("/accounts/configuration");
-    private final String REQUEST_WITHDRAW_URL = IuguConfiguration.url("/accounts/%s/request_withdraw");
+    private final static String REQUEST_WITHDRAW_URL = "/accounts/%s/request_withdraw";
     private final String CHANGE_URL = IuguConfiguration.url("/accounts/%s");
     private final String PAYMENT_CONFIGURATION_URL = IuguConfiguration.url("/payments/pix");
 
     public AccountService(IuguConfiguration iugu) {
-        super(iugu);
+        super(iugu, new ValidateSignatureService(iugu));
     }
 
     public AccountResponse find(String id) throws IuguException {
@@ -88,11 +90,10 @@ public class AccountService extends GenericService {
         }
     }
 
-    public RequestWithdrawResponse requestWithdraw(RequestWithdraw requestWithdraw, String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
-            Response response = client.target(String.format(REQUEST_WITHDRAW_URL, id)).request().post(Entity.entity(requestWithdraw, MediaType.APPLICATION_JSON));
-            return readResponse(response, RequestWithdrawResponse.class, "Error on request withdraw!");
-        }
+    public RequestWithdrawResponse requestWithdraw(RequestWithdraw requestWithdraw, String accountId) throws IuguException {
+        requestWithdraw = getIugu().withToken(requestWithdraw);
+        String urlWithId = String.format(REQUEST_WITHDRAW_URL, accountId);
+        return requestWithSignature(HttpMethod.POST, urlWithId, requestWithdraw, RequestWithdrawResponse.class);
     }
 
     public AccountResponse change(AccountUpdate account) throws IuguException {

@@ -4,6 +4,7 @@ import com.iugu.IuguConfiguration;
 import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.responses.WebHookLogResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;

@@ -5,6 +5,7 @@ import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentToken;
 import com.iugu.responses.PaymentTokenResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

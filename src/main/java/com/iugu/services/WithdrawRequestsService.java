@@ -6,6 +6,7 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.responses.WithdrawConciliationsResponse;
 import com.iugu.responses.WithdrawRequestResponse;
 import com.iugu.responses.WithdrawRequestsResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.core.Response;
 

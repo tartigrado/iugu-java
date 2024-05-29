@@ -5,6 +5,7 @@ import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentMethod;
 import com.iugu.responses.PaymentMethodResponse;
+import com.iugu.services.generic.GenericService;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
