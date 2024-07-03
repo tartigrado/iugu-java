@@ -14,32 +14,35 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerResponse {
+public final class CustomerResponse {
 
-    protected String id;
-    protected String email;
-    protected String name;
-    protected String notes;
+    private String id;
+    private String email;
+    private String name;
+    private String notes;
     @JsonProperty("created_at")
-    protected Date createdAt;
+    private Date createdAt;
     @JsonProperty("updated_at")
-    protected Date updatedAt;
+    private Date updatedAt;
     @JsonProperty("custom_variables")
-    protected List<CustomVariableResponse> customVariables;
+    private List<CustomVariableResponse> customVariables;
     @JsonProperty("cpf_cnpj")
-    protected String cpfCnpj;
+    private String cpfCnpj;
     @JsonProperty("zip_code")
-    protected String zipCode;
-    protected String number;
-    protected String street;
-    protected String district;
-    protected String complement;
-    protected String city;
-    protected String state;
-    protected String phone_prefix;
-    protected String phone;
-    protected String cc_emails;
+    private String zipCode;
+    private String number;
+    private String street;
+    private String district;
+    private String complement;
+    private String city;
+    private String state;
+    private String phone_prefix;
+    private String phone;
+    private String cc_emails;
     @JsonProperty("payment_methods")
-    protected List<PaymentMethodResponse> paymentMethods;
-
+    private List<PaymentMethodResponse> paymentMethods;
+    @JsonProperty("default_payment_method_id")
+    private String defaultPaymentMethodId;
+    @JsonProperty("proxy_payments_from_customer_id")
+    private Object proxyPaymentsFromCustomerId;
 }
