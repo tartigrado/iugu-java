@@ -11,23 +11,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtraInfoResponse {
-
     @JsonProperty("brand")
     protected Object brand;
-
     @JsonProperty("holder_name")
     protected Object holderName;
-
     @JsonProperty("display_number")
     protected Object displayNumber;
-
+    @JsonProperty("last_digits")
+    protected Object lastDigits;
+    @JsonProperty("first_digits")
+    protected Object firstDigits;
+    @JsonProperty("masked_number")
+    protected Object maskedNumber;
     @JsonProperty("bin")
     protected Object bin;
-
     @JsonProperty("month")
     protected Integer month;
-
     @JsonProperty("year")
     protected Integer year;
-
 }
