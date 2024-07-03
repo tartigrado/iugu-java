@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class PaymentMethod {
 
     protected String description;
-    protected Data data;
+    protected CardData cardData;
     @JsonProperty("item_type")
     protected ItemType itemType;
     protected String token;
@@ -28,9 +28,9 @@ public class PaymentMethod {
         this.isDefault = isDefault;
     }
 
-    public PaymentMethod(String description, Data data, Boolean isDefault) {
+    public PaymentMethod(String description, CardData cardData, Boolean isDefault) {
         this.description = description;
-        this.data = data;
+        this.cardData = cardData;
         this.isDefault = isDefault;
     }
 

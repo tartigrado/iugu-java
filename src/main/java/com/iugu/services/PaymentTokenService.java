@@ -1,42 +1,28 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
 import com.iugu.exceptions.IuguException;
-import com.iugu.model.PaymentToken;
-import com.iugu.responses.PaymentTokenResponse;
+import com.iugu.model.payment_token.CreatePaymentToken;
+import com.iugu.responses.payment_token.PaymentTokenResponse;
 import com.iugu.services.generic.GenericService;
+import com.iugu.utils.UriUtils;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+public final class PaymentTokenService extends GenericService {
 
-public class PaymentTokenService extends GenericService {
+    private final static String CREATE_URL = IuguConfiguration.url("/payment_token");
 
-    private final String CREATE_URL = IuguConfiguration.url("/payment_token");
-
-    public PaymentTokenService(IuguConfiguration iuguConfiguration) {
+    public PaymentTokenService(
+            IuguConfiguration iuguConfiguration
+    ) {
         super(iuguConfiguration);
     }
 
-    public PaymentTokenResponse create(PaymentToken paymentToken) throws IuguException {
-        try (ClientWrapper client = this.iugu.getNewClientNotAuth()) {
-            Response response = client.target(CREATE_URL).request().post(Entity.entity(paymentToken, MediaType.APPLICATION_JSON));
+    public PaymentTokenResponse create(CreatePaymentToken createPaymentToken) throws IuguException {
+        return token(createPaymentToken);
+    }
 
-            int ResponseStatus = response.getStatus();
-            String ResponseText = null;
-
-            if (ResponseStatus == 200)
-                return response.readEntity(PaymentTokenResponse.class);
-
-            // Error Happened
-            if (response.hasEntity())
-                ResponseText = response.readEntity(String.class);
-
-            response.close();
-
-            throw new IuguException("Error creating token!", ResponseStatus, ResponseText);
-        }
+    public PaymentTokenResponse token(CreatePaymentToken createPaymentToken) throws IuguException {
+        return postNotAuth(UriUtils.createURI(CREATE_URL), createPaymentToken, PaymentTokenResponse.class);
     }
 
 }

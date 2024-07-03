@@ -24,14 +24,14 @@ catch (IuguException e) {
 		IuguConfiguration iuguConfiguration = new IuguConfiguration("CLIENTTOKEN");
 
 		//token cartão
-		PaymentToken paymentToken = new PaymentToken();
-		paymentToken.setAccountId("xxxxx");
-		paymentToken.setPayableWith(PayableWith.CREDIT_CARD);
+		PaymentToken createPaymentToken = new PaymentToken();
+		createPaymentToken.setAccountId("xxxxx");
+		createPaymentToken.setPayableWith(PayableWith.CREDIT_CARD);
 
-		paymentToken.setTest(Boolean.TRUE);
-		paymentToken.setData(new Data("4111111111111111","123","Joao","Mateus","12","2019"));
+		createPaymentToken.setTest(Boolean.TRUE);
+		createPaymentToken.setData(new Data("4111111111111111","123","Joao","Mateus","12","2019"));
 
-		PaymentTokenResponse paymentTokenResponse = new PaymentTokenService(iuguConfiguration).create(paymentToken);/
+		PaymentTokenResponse paymentTokenResponse = new PaymentTokenService(iuguConfiguration).create(createPaymentToken);/
 	} catch (IuguException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

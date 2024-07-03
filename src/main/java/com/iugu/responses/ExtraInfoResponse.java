@@ -25,6 +25,20 @@ public class ExtraInfoResponse {
     protected Object maskedNumber;
     @JsonProperty("bin")
     protected Object bin;
+    @JsonProperty("fingerprint")
+    protected Object fingerprint;
+    @JsonProperty("billing_address")
+    protected Object billingAddress;
+    @JsonProperty("issuer")
+    protected String issuer;
+    @JsonProperty("issuer_code")
+    protected String issuerCode;
+    @JsonProperty("card_type")
+    protected String cardType;
+    @JsonProperty("foreign_card")
+    protected String foreignCard;
+    @JsonProperty("remote_ip")
+    protected Object remoteIp;
     @JsonProperty("month")
     protected Integer month;
     @JsonProperty("year")

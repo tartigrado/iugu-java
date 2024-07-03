@@ -1,7 +1,8 @@
-package com.iugu.responses;
+package com.iugu.responses.payment_token;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.responses.ExtraInfoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PaymentMethodResponse {
+public class PaymentTokenResponse {
 
     @JsonProperty("id")
     protected String id;
-    @JsonProperty("description")
-    protected String description;
-    @JsonProperty("item_type")
-    protected String itemType;
-    @JsonProperty("data")
-    protected ExtraInfoResponse data;
 
+    @JsonProperty("method")
+    protected String method;
+
+    @JsonProperty("test")
+    protected Boolean isTest;
+
+    @JsonProperty("extra_info")
+    protected ExtraInfoResponse extraInfo;
 }

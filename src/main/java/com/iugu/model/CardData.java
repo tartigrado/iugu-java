@@ -4,23 +4,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@lombok.Data
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Data {
-
-    protected String number;
+public final class CardData {
+    private String number;
     @JsonProperty("verification_value")
-    protected String verificationValue;
+    private String verificationValue;
     @JsonProperty("first_name")
-    protected String firstName;
+    private String firstName;
     @JsonProperty("last_name")
-    protected String lastName;
-    protected String month;
-    protected String year;
-
+    private String lastName;
+    private String month;
+    private String year;
 }
