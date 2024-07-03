@@ -78,7 +78,7 @@ public abstract class GenericService {
 
     protected <T> T delete(URI uri, Class<T> clz) throws IuguException {
         try (ClientWrapper client = getIugu().getNewClient()) {
-            Response res = client.target(uri).request().get();
+            Response res = client.target(uri).request().delete();
             return readResponse(res, clz, "Delete error");
         }
     }
