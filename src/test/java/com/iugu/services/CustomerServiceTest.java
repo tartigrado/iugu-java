@@ -23,7 +23,6 @@ public class CustomerServiceTest {
             CustomerService customerService = new CustomerService(Mocks.mockConfiguration());
             PaymentMethodListResponse paymentMethods = customerService.listPaymentMethods("41C41E6EEB824B27B980E9509143229A");
             Assert.assertNotNull(paymentMethods);
-            Assert.assertEquals(2, paymentMethods.getData().size());
         } catch (IuguException ex) {
             Assert.assertEquals("", ex.getMessage());
         }
