@@ -37,6 +37,8 @@ public class Customer implements Serializable {
     protected Integer phone;
     @JsonProperty("phone_prefix")
     protected Integer phonePrefix;
+    @JsonProperty("default_payment_method_id")
+    protected String defaultPaymentMethodId;
 
     public Customer(String email, String name) {
         this.email = email;
