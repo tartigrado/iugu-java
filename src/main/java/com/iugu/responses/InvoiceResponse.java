@@ -87,7 +87,7 @@ public class InvoiceResponse {
     protected Boolean refundable;
     protected String installments;
     @JsonProperty("transaction_number")
-    protected Integer transactionNumber;
+    protected String transactionNumber;
     @JsonProperty("created_at_iso")
     protected Date createdAtIso;
     @JsonProperty("updated_at_iso")

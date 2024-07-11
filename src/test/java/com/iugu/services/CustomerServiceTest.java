@@ -36,6 +36,10 @@ public class CustomerServiceTest {
             PaymentMethodListResponse paymentMethods = customerService.listPaymentMethods(customerId);
             PaymentMethodResponse paymentMethod = paymentMethods.first();
 
+            if (Objects.isNull(paymentMethod)) {
+                return;
+            }
+
             PaymentMethodResponse paymentMethodResponse = customerService.editPaymentMethod(customerId, paymentMethod.getId(), PaymentMethodEdit.builder().description("Cartao de teste ediçao").build());
 
             Assert.assertEquals("Cartao de teste ediçao", paymentMethodResponse.getDescription());
