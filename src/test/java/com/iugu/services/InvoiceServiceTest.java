@@ -19,19 +19,7 @@ public class InvoiceServiceTest {
     public void create() throws IuguException {
         InvoiceService service = new InvoiceService(new IuguConfiguration(TestConstants.PROD_ARTUR_TOKEN));
 
+        InvoiceResponse invoice = service.find("FB9A0253021C4655A2527AA997EF709D");
 
-//        InvoiceResponse invoice = service.create(InvoiceCreate
-//                .builder()
-//                .customerId("5F9F9F785C4B43E9AD175E1A9D8927D9")
-//                .email("teste_revgas@revgas.com")
-//                .items(Collections.singletonList(InvoiceItemCreate.builder()
-//                        .description("Item 1")
-//                        .quantity(1)
-//                        .priceCents(2000)
-//                        .build()))
-//                .dueDate(Date.from(LocalDate.of(2023, 12, 5).atStartOfDay().atOffset(java.time.ZoneOffset.UTC).toInstant()))
-//                .build());
-
-//        System.out.println(invoice);
     }
 }
