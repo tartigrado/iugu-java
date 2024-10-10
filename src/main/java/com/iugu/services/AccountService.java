@@ -24,7 +24,7 @@ public class AccountService extends GenericRsaService {
     private final String FIND_TRANSACTIONS_URL = IuguConfiguration.url("/accounts/financial");
     private final String FIND_INVOICES_URL = IuguConfiguration.url("/accounts/invoices");
     private final String REQUEST_VERIFICATION_URL = IuguConfiguration.url("/accounts/%s/request_verification");
-    private final String ACCOUNT_CONFIGURATION_URL = IuguConfiguration.url("/accounts/configuration");
+    private final static String ACCOUNT_CONFIGURATION_URL = "/accounts/configuration";
     private final static String REQUEST_WITHDRAW_URL = "/accounts/%s/request_withdraw";
     private final String CHANGE_URL = IuguConfiguration.url("/accounts/%s");
     private final String PAYMENT_CONFIGURATION_URL = IuguConfiguration.url("/payments/pix");
@@ -76,18 +76,14 @@ public class AccountService extends GenericRsaService {
     }
 
     public AccountConfigurationResponse configuration(Account account) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
-            Response response = client.target(ACCOUNT_CONFIGURATION_URL).request().post(Entity.entity(account, MediaType.APPLICATION_JSON));
-            return readResponse(response, AccountConfigurationResponse.class, "Error configuring account!");
-        }
+        account = getIugu().withToken(account);
+        return requestWithSignature(HttpMethod.POST, ACCOUNT_CONFIGURATION_URL, account, AccountConfigurationResponse.class);
     }
 
 
     public AccountConfigurationResponse configuration(EarlyPaymentConfig earlyPaymentConfig) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
-            Response response = client.target(ACCOUNT_CONFIGURATION_URL).request().post(Entity.entity(earlyPaymentConfig, MediaType.APPLICATION_JSON));
-            return readResponse(response, AccountConfigurationResponse.class, "Error configuring account!");
-        }
+        earlyPaymentConfig = getIugu().withToken(earlyPaymentConfig);
+        return requestWithSignature(HttpMethod.POST, ACCOUNT_CONFIGURATION_URL, earlyPaymentConfig, AccountConfigurationResponse.class);
     }
 
     public RequestWithdrawResponse requestWithdraw(RequestWithdraw requestWithdraw, String accountId) throws IuguException {

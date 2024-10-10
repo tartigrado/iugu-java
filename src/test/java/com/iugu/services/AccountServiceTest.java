@@ -19,7 +19,8 @@ public class AccountServiceTest {
     public void testRequestWithdraw() throws Exception {
         AccountService accountService = new AccountService(Mocks.mockConfiguration());
         try {
-            accountService.requestWithdraw(RequestWithdraw.builder().amount(0F).build(), TestConstants.ACCOUNT_ID);
+            RequestWithdrawResponse response = accountService.requestWithdraw(RequestWithdraw.builder().amount(0F).build(), TestConstants.ACCOUNT_ID);
+            Assert.assertNotNull(response);
         } catch (IuguException ex) {
             Assert.assertTrue(
                     Objects.equals("{\"errors\":{\"amount\":[\"deve ser maior que ou igual a 5\"]}}", ex.getMessage()) ||

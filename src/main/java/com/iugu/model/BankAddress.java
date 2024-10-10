@@ -2,6 +2,7 @@ package com.iugu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.interfaces.WithApiToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.io.File;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BankAddress {
+public class BankAddress implements WithApiToken {
 
     protected String agency;
     protected String account;
@@ -24,5 +25,9 @@ public class BankAddress {
     @JsonProperty("automatic_validation")
     protected Boolean automaticValidation;
     protected File document;
+    @JsonProperty("RAW_BODY")
+    private String rawBody;
+    @JsonProperty("api_token")
+    protected String apiToken;
 
 }
