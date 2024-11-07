@@ -56,6 +56,8 @@ public class Invoice {
     protected Payer payer;
     @JsonProperty("early_payment_discount")
     protected Boolean earlyPaymentDiscount;
+    @JsonProperty("early_payment_discounts")
+    protected List<EarlyPaymentDiscount> earlyPaymentDiscounts;
     @JsonProperty("early_payment_discount_days")
     protected Integer earlyPaymentDiscountDays;
     @JsonProperty("early_payment_discount_percent")
