@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentMethod;
 import com.iugu.responses.customer.PaymentMethodResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 
@@ -24,7 +24,7 @@ public class PaymentMethodService extends GenericService {
     }
 
     public String setDefault(String customerId, PaymentMethod paymentMethod) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().post(Entity.entity(paymentMethod, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -44,7 +44,7 @@ public class PaymentMethodService extends GenericService {
     }
 
     public PaymentMethodResponse find(String customerId, String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, customerId, id)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -64,7 +64,7 @@ public class PaymentMethodService extends GenericService {
     }
 
     public PaymentMethodResponse remove(String customerId, String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(REMOVE_URL, customerId, id)).request().delete();
 
             int ResponseStatus = response.getStatus();
@@ -84,7 +84,7 @@ public class PaymentMethodService extends GenericService {
     }
 
     public List<PaymentMethodResponse> findAll(String customerId) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(DEFAULT_PAYMENT_URL, customerId)).request().get();
 
             int ResponseStatus = response.getStatus();

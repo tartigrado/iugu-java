@@ -1,7 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.*;
 import com.iugu.model.account.EarlyPaymentConfig;
@@ -9,12 +9,12 @@ import com.iugu.responses.*;
 import com.iugu.services.generic.GenericRsaService;
 import com.iugu.utils.StringUtils;
 
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,14 +34,14 @@ public class AccountService extends GenericRsaService {
     }
 
     public AccountResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
             return readResponse(response, AccountResponse.class, "Error finding account with id: " + id);
         }
     }
 
     public TransactionsResponse findTransactions(String year, String month, String day, Integer limit, Integer start) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             WebTarget target = client.target(FIND_TRANSACTIONS_URL);
 
             if (!StringUtils.isNullOrEmpty(year)) target = target.queryParam("year", year);
@@ -55,7 +55,7 @@ public class AccountService extends GenericRsaService {
     }
 
     public List<ExtractInvoiceResponse> findInvoices(String year, String month, String status, Integer limit) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             WebTarget target = client.target(FIND_INVOICES_URL);
 
             if (!StringUtils.isNullOrEmpty(year)) target = target.queryParam("year", year);
@@ -69,7 +69,7 @@ public class AccountService extends GenericRsaService {
     }
 
     public AccountVerificationResponse requestVerification(RequestVerification requestVerification) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(REQUEST_VERIFICATION_URL, requestVerification.getAccountId())).request().post(Entity.entity(requestVerification, MediaType.APPLICATION_JSON));
             return readResponse(response, AccountVerificationResponse.class, "Error on request verification!");
         }
@@ -93,14 +93,14 @@ public class AccountService extends GenericRsaService {
     }
 
     public AccountResponse change(AccountUpdate account) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CHANGE_URL, account.getId())).request().put(Entity.entity(account, MediaType.APPLICATION_JSON));
             return readResponse(response, AccountResponse.class, "Error changing account with id: " + account.getId());
         }
     }
 
     public Object paymentConfiguration(PaymentConfiguration paymentConfiguration) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(PAYMENT_CONFIGURATION_URL).request().put(Entity.entity(paymentConfiguration, MediaType.APPLICATION_JSON));
             return readResponse(response, String.class, "Error configuring payment!");
         }

@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.BankAddress;
 import com.iugu.responses.BankAddressVerificationResponse;
 import com.iugu.responses.BankVerificationResponse;
 import com.iugu.services.generic.GenericRsaService;
 
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public class BankService extends GenericRsaService {
@@ -27,7 +27,7 @@ public class BankService extends GenericRsaService {
     }
 
     public List<BankAddressVerificationResponse> verification() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(VERIFICATION_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

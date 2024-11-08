@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.TransactionAdvance;
 import com.iugu.responses.FinancialTransactionRequestIResponse;
 import com.iugu.responses.TransactionAdvanceResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class FinancialTransactionRequestService extends GenericService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/financial_transaction_requests");
@@ -21,7 +21,7 @@ public class FinancialTransactionRequestService extends GenericService {
     }
 
     public FinancialTransactionRequestIResponse findAll() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(FIND_ALL_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -38,7 +38,7 @@ public class FinancialTransactionRequestService extends GenericService {
     }
 
     public TransactionAdvanceResponse advance(TransactionAdvance transactionAdvance) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(ADVANCE_URL).request().post(Entity.entity(transactionAdvance, MediaType.APPLICATION_JSON));
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

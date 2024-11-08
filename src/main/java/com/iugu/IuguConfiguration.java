@@ -1,19 +1,15 @@
 package com.iugu;
 
-import com.iugu.components.ClientWrapper;
+import com.iugu.components.HttpClient;
 import com.iugu.components.IuguResteasyJackson2Provider;
 import com.iugu.components.Jackson;
 import com.iugu.interfaces.PrivateKeyProvider;
 import com.iugu.interfaces.WithApiToken;
 import com.iugu.model.generic.SignedBody;
+import jakarta.ws.rs.client.Client;
 import lombok.SneakyThrows;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.security.PrivateKey;
-import java.security.cert.X509Certificate;
 import java.util.Optional;
 
 public class IuguConfiguration {
@@ -63,48 +59,12 @@ public class IuguConfiguration {
                 .sign(Optional.ofNullable(this.tokenId).orElseThrow(() -> new IllegalArgumentException("token id is null")), key);
     }
 
-    private IuguResteasyJackson2Provider getResteasyJacksonProvider() {
-        IuguResteasyJackson2Provider resteasyJacksonProvider = new IuguResteasyJackson2Provider();
-        resteasyJacksonProvider.setMapper(Jackson.getInstance());
-        return resteasyJacksonProvider;
+    public Client getNewClient() {
+        return HttpClient.getInstance(new Authenticator(tokenId));
     }
 
-    public ClientWrapper getNewClient() {
-        return new ClientWrapper(getNewClientNotAuth().register(new Authenticator(tokenId)));
-    }
-
-    public ClientWrapper getNewClientNotAuth() {
-        return new ClientWrapper(ResteasyClientBuilder.newBuilder().sslContext(getContext()).register(getResteasyJacksonProvider(), 100).build());
-    }
-
-    public SSLContext getContext() {
-        try {
-            TrustManager[] noopTrustManager = new TrustManager[]{
-                    new X509TrustManager() {
-
-                        @Override
-                        public X509Certificate[] getAcceptedIssuers() {
-                            return null;
-                        }
-
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-                    }
-            };
-
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, noopTrustManager, null);
-
-            return sc;
-        } catch (Exception e) {
-            return null;
-        }
-
+    public Client getNewClientNotAuth() {
+        return HttpClient.getInstance();
     }
 
 }

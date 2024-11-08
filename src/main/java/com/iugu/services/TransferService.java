@@ -1,15 +1,15 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Transfer;
 import com.iugu.responses.TransferResponse;
 import com.iugu.responses.TransfersResponse;
 import com.iugu.services.generic.GenericRsaService;
 
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.core.Response;
 
 public class TransferService extends GenericRsaService {
     private final static String TRANSFER_URL = "/transfers";
@@ -27,7 +27,7 @@ public class TransferService extends GenericRsaService {
     }
 
     public TransferResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -46,7 +46,7 @@ public class TransferService extends GenericRsaService {
     }
 
     public TransfersResponse findAll(String params) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

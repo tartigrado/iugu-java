@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.DunningSteps;
 import com.iugu.responses.StepsResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public class DunningStepsService extends GenericService {
@@ -22,7 +22,7 @@ public class DunningStepsService extends GenericService {
     }
 
     public List<StepsResponse> findAll() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(FIND_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -43,7 +43,7 @@ public class DunningStepsService extends GenericService {
     }
 
     public List<StepsResponse> update(DunningSteps dunningSteps) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(UPDATE_URL).request().put(Entity.entity(dunningSteps, MediaType.APPLICATION_JSON_TYPE));
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

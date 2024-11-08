@@ -1,7 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Credit;
 import com.iugu.model.Subscription;
@@ -10,9 +10,9 @@ import com.iugu.responses.SubscriptionResponse;
 import com.iugu.responses.SubscriptionsResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class SubscriptionService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/subscriptions");
@@ -33,7 +33,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse create(Subscription subscription) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(CREATE_URL).request().post(Entity.entity(subscription, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -55,7 +55,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -77,7 +77,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse change(String id, Subscription subscription) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CHANGE_URL, id)).request().put(Entity.entity(subscription, MediaType.APPLICATION_JSON));
             int status = response.getStatus();
             String text = null;
@@ -98,7 +98,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse remove(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(REMOVE_URL, id)).request().delete();
 
             int ResponseStatus = response.getStatus();
@@ -120,7 +120,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse suspend(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(SUSPEND_URL, id)).request().post(null);
 
             int ResponseStatus = response.getStatus();
@@ -142,7 +142,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse activate(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(ACTIVATE_URL, id)).request().post(null);
 
             int ResponseStatus = response.getStatus();
@@ -164,7 +164,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse changePlan(String id, String planIdentifier) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CHANGE_SUBSCRIPTION_PLAN_URL, id, planIdentifier)).request().post(null);
 
             int ResponseStatus = response.getStatus();
@@ -186,7 +186,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SimulateChangePlanResponse simulateChangePlan(String id, String planIdentifier) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(SIMULATE_CHANGE_SUBSCRIPTION_PLAN_URL, id, planIdentifier)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -208,7 +208,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse addCredits(String id, Credit credit) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(ADD_CREDITS_URL, id)).request().put(Entity.entity(credit, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -230,7 +230,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionResponse removeCredits(String id, Credit credit) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(REMOVE_CREDITS_URL, id)).request().put(Entity.entity(credit, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -252,7 +252,7 @@ public class SubscriptionService extends GenericService {
     }
 
     public SubscriptionsResponse findByParams(String params) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

@@ -1,7 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentRequest;
 import com.iugu.model.ValidatePaymentRequest;
@@ -9,11 +9,11 @@ import com.iugu.responses.PaymentRequestResponse;
 import com.iugu.responses.ValidatePaymentRequestResponse;
 import com.iugu.services.generic.GenericRsaService;
 
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public class PaymentRequestService extends GenericRsaService {
@@ -32,7 +32,7 @@ public class PaymentRequestService extends GenericRsaService {
     }
 
     public PaymentRequestResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -54,7 +54,7 @@ public class PaymentRequestService extends GenericRsaService {
     }
 
     public List<PaymentRequestResponse> findByParams(String params) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -76,7 +76,7 @@ public class PaymentRequestService extends GenericRsaService {
     }
 
     public ValidatePaymentRequestResponse validate(ValidatePaymentRequest validatePaymentRequest) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(VALIDATE_URL).request().post(Entity.entity(validatePaymentRequest, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();

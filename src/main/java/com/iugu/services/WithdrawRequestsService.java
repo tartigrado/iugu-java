@@ -1,14 +1,14 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.responses.WithdrawConciliationsResponse;
 import com.iugu.responses.WithdrawRequestResponse;
 import com.iugu.responses.WithdrawRequestsResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 public class WithdrawRequestsService extends GenericService {
 
@@ -21,7 +21,7 @@ public class WithdrawRequestsService extends GenericService {
     }
 
     public WithdrawRequestResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -40,7 +40,7 @@ public class WithdrawRequestsService extends GenericService {
     }
 
     public WithdrawRequestsResponse findAll() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(FIND_ALL_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -59,7 +59,7 @@ public class WithdrawRequestsService extends GenericService {
     }
 
     public WithdrawConciliationsResponse findAllWithdrawConciliations(String params) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(WITHDRAW_CONCILIATIONS_URL, params)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

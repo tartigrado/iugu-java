@@ -1,13 +1,13 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.responses.WebHookLogResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public class WebHookLogService extends GenericService {
@@ -19,7 +19,7 @@ public class WebHookLogService extends GenericService {
     }
 
     public List<WebHookLogResponse> findAll(String invoiceId) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_ALL_URL, invoiceId)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -40,7 +40,7 @@ public class WebHookLogService extends GenericService {
     }
 
     public WebHookLogResponse create(String logId) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CREATE_URL, logId)).request().get();
 
             int ResponseStatus = response.getStatus();

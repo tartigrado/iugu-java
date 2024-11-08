@@ -1,7 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Email;
 import com.iugu.model.SendEmailTest;
@@ -10,10 +10,10 @@ import com.iugu.responses.EmailResponse;
 import com.iugu.responses.SendEmailTestResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 public class EmailService extends GenericService {
@@ -30,7 +30,7 @@ public class EmailService extends GenericService {
     }
 
     public List<String> findSupportedEmails() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(FIND_SUPPORTED_URL).request().get();
             int ResponseStatus = response.getStatus();
@@ -52,7 +52,7 @@ public class EmailService extends GenericService {
     }
 
     public EmailDefaultLayoutResponse findDefaultLayout(String identifier) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
             int ResponseStatus = response.getStatus();
@@ -73,7 +73,7 @@ public class EmailService extends GenericService {
     }
 
     public List<EmailResponse> findEmails() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(FIND_EMAILS_URL).request().get();
             int ResponseStatus = response.getStatus();
@@ -95,7 +95,7 @@ public class EmailService extends GenericService {
     }
 
     public EmailResponse findEmail(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(String.format(FIND_URL, id)).request().get();
             int ResponseStatus = response.getStatus();
@@ -116,7 +116,7 @@ public class EmailService extends GenericService {
     }
 
     public EmailResponse update(Email email) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(String.format(UPDATE_URL, email.getId())).request().put(Entity.entity(email, MediaType.APPLICATION_JSON));
             int ResponseStatus = response.getStatus();
@@ -137,7 +137,7 @@ public class EmailService extends GenericService {
     }
 
     public EmailResponse create(Email email) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(CREATE_URL).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
             int ResponseStatus = response.getStatus();
@@ -158,7 +158,7 @@ public class EmailService extends GenericService {
     }
 
     public SendEmailTestResponse sendTest(String identifier, SendEmailTest email) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(String.format(SEND_TEST_URL, identifier)).request().post(Entity.entity(email, MediaType.APPLICATION_JSON));
             int ResponseStatus = response.getStatus();

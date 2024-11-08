@@ -1,7 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.enums.PayableWith;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Customer;
@@ -17,8 +17,8 @@ import com.iugu.responses.payment_token.PaymentTokenResponse;
 import com.iugu.services.generic.GenericService;
 import com.iugu.utils.UriUtils;
 
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
@@ -57,7 +57,7 @@ public final class CustomerService extends GenericService {
     }
 
     public CustomersResponse findByParams(String params) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_PARAMS_URL, params)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

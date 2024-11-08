@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Contest;
 import com.iugu.responses.ChargebackResponse;
 import com.iugu.responses.ChargebacksResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class ChargebackService extends GenericService {
 
@@ -24,7 +24,7 @@ public class ChargebackService extends GenericService {
     }
 
     public ChargebacksResponse findAll() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(FIND_ALL_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -43,7 +43,7 @@ public class ChargebackService extends GenericService {
     }
 
     public ChargebackResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -60,7 +60,7 @@ public class ChargebackService extends GenericService {
     }
 
     public ChargebackResponse accept(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(ACCEPT_URL, id)).request().put(null);
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
@@ -77,7 +77,7 @@ public class ChargebackService extends GenericService {
     }
 
     public ChargebackResponse contest(String id, Contest contest) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CONTEST_URL, id)).request().put(Entity.entity(contest, MediaType.APPLICATION_JSON_TYPE));
             int ResponseStatus = response.getStatus();
             String ResponseText = null;

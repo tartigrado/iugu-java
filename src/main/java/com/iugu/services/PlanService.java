@@ -1,16 +1,16 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import com.iugu.components.ClientWrapper;
+import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Plan;
 import com.iugu.responses.PlanResponse;
 import com.iugu.responses.PlansResponse;
 import com.iugu.services.generic.GenericService;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class PlanService extends GenericService {
     private final String CREATE_URL = IuguConfiguration.url("/plans");
@@ -25,7 +25,7 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse create(Plan plan) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(CREATE_URL).request().post(Entity.entity(plan, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -47,7 +47,7 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse find(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_URL, id)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -69,7 +69,7 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse findByIdentifier(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(FIND_BY_IDENTIFIER_URL, id)).request().get();
 
             int ResponseStatus = response.getStatus();
@@ -91,7 +91,7 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse change(String id, Plan plan) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(CHANGE_URL, id)).request().put(Entity.entity(plan, MediaType.APPLICATION_JSON));
 
             int ResponseStatus = response.getStatus();
@@ -113,7 +113,7 @@ public class PlanService extends GenericService {
     }
 
     public PlanResponse remove(String id) throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(String.format(REMOVE_URL, id)).request().delete();
 
             int ResponseStatus = response.getStatus();
@@ -135,7 +135,7 @@ public class PlanService extends GenericService {
     }
 
     public PlansResponse findAll() throws IuguException {
-        try (ClientWrapper client = getIugu().getNewClient()) {
+        try (Client client = getIugu().getNewClient()) {
             Response response = client.target(FIND_ALL_URL).request().get();
             int ResponseStatus = response.getStatus();
             String ResponseText = null;
