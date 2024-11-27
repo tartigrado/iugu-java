@@ -4,9 +4,9 @@ import com.iugu.IuguConfiguration;
 import com.iugu.TestConstants;
 import com.iugu.model.Charge;
 import com.iugu.responses.ChargeResponse;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ChargeServiceTest {
 

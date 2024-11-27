@@ -8,8 +8,8 @@ import com.iugu.model.customer.AddCreditCard;
 import com.iugu.model.customer.PaymentMethodEdit;
 import com.iugu.responses.customer.PaymentMethodListResponse;
 import com.iugu.responses.customer.PaymentMethodResponse;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.Year;
 import java.util.List;
@@ -20,11 +20,11 @@ public class CustomerServiceTest {
     @Test
     public void testListPaymentMethods() {
         try {
-            CustomerService customerService = new CustomerService(Mocks.mockConfiguration());
+            CustomerService customerService = new CustomerService(Mocks.mockProdConfiguration());
             PaymentMethodListResponse paymentMethods = customerService.listPaymentMethods("41C41E6EEB824B27B980E9509143229A");
-            Assert.assertNotNull(paymentMethods);
+            Assertions.assertNotNull(paymentMethods);
         } catch (IuguException ex) {
-            Assert.assertEquals("", ex.getMessage());
+            Assertions.assertEquals("", ex.getMessage());
         }
     }
 
@@ -32,7 +32,7 @@ public class CustomerServiceTest {
     public void testEditPaymentMethod() {
         try {
             String customerId = "41C41E6EEB824B27B980E9509143229A";
-            CustomerService customerService = new CustomerService(Mocks.mockConfiguration());
+            CustomerService customerService = new CustomerService(Mocks.mockProdConfiguration());
             PaymentMethodListResponse paymentMethods = customerService.listPaymentMethods(customerId);
             PaymentMethodResponse paymentMethod = paymentMethods.first();
 
@@ -42,9 +42,9 @@ public class CustomerServiceTest {
 
             PaymentMethodResponse paymentMethodResponse = customerService.editPaymentMethod(customerId, paymentMethod.getId(), PaymentMethodEdit.builder().description("Cartao de teste ediçao").build());
 
-            Assert.assertEquals("Cartao de teste ediçao", paymentMethodResponse.getDescription());
+            Assertions.assertEquals("Cartao de teste ediçao", paymentMethodResponse.getDescription());
         } catch (IuguException ex) {
-            Assert.assertEquals("", ex.getMessage());
+            Assertions.assertEquals("", ex.getMessage());
         }
     }
 }

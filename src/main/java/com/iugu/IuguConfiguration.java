@@ -1,12 +1,14 @@
 package com.iugu;
 
-import com.iugu.components.HttpClient;
-import com.iugu.components.IuguResteasyJackson2Provider;
+import com.iugu.components.ClientWrapper;
+import com.iugu.components.HttpClientManager;
 import com.iugu.components.Jackson;
+import com.iugu.filters.AuthenticatorFilter;
 import com.iugu.interfaces.PrivateKeyProvider;
 import com.iugu.interfaces.WithApiToken;
 import com.iugu.model.generic.SignedBody;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientRequestFilter;
 import lombok.SneakyThrows;
 
 import java.security.PrivateKey;
@@ -59,12 +61,16 @@ public class IuguConfiguration {
                 .sign(Optional.ofNullable(this.tokenId).orElseThrow(() -> new IllegalArgumentException("token id is null")), key);
     }
 
+    public ClientRequestFilter authenticator() {
+        return new AuthenticatorFilter(tokenId);
+    }
+
     public Client getNewClient() {
-        return HttpClient.getInstance(new Authenticator(tokenId));
+        return new ClientWrapper(HttpClientManager.client(), authenticator());
     }
 
     public Client getNewClientNotAuth() {
-        return HttpClient.getInstance();
+        return new ClientWrapper(HttpClientManager.client(), null);
     }
 
 }

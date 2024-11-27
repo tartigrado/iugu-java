@@ -3,11 +3,11 @@ package com.iugu.services;
 import com.iugu.IuguConfiguration;
 import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
-import com.iugu.model.DuplicateInvoice;
+import com.iugu.model.invoice.DuplicateInvoice;
 import com.iugu.model.Invoice;
 import com.iugu.model.invoice.InvoiceCreate;
-import com.iugu.responses.InvoiceResponse;
-import com.iugu.responses.InvoicesResponse;
+import com.iugu.model.invoice.response.InvoiceResponse;
+import com.iugu.model.invoice.response.InvoicesResponse;
 import com.iugu.services.generic.GenericService;
 import com.iugu.utils.ConvertionUtils;
 
@@ -58,10 +58,10 @@ public class InvoiceService extends GenericService {
         }
     }
 
-    public InvoiceResponse duplicate(DuplicateInvoice invoice) throws IuguException {
+    public InvoiceResponse duplicate(String id, DuplicateInvoice invoice) throws IuguException {
         try (Client client = getIugu().getNewClient()) {
-            Response response = client.target(String.format(DUPLICATE_URL, invoice.getId())).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
-            return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + invoice.getId());
+            Response response = client.target(String.format(DUPLICATE_URL, id)).request().post(Entity.entity(invoice, MediaType.APPLICATION_JSON));
+            return readResponse(response, InvoiceResponse.class, "Error duplicating invoice with id: " + id);
         }
     }
 

@@ -1,9 +1,9 @@
-package com.iugu.model;
+package com.iugu.model.invoice;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.enums.PayableWith;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,10 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class DuplicateInvoice {
+public final class ReissueInvoice {
 
-    @JsonIgnore
-    private String id;
     @JsonProperty("due_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dueDate;
@@ -34,6 +32,8 @@ public class DuplicateInvoice {
     private Boolean currentFinesOption;
     @JsonProperty("keep_early_payment_discount")
     private Boolean keepEarlyPaymentDiscount;
+    @JsonProperty("payable_with")
+    private List<PayableWith> payableWith;
 
     @Data
     @AllArgsConstructor

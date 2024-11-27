@@ -4,8 +4,8 @@ import com.iugu.Mocks;
 import com.iugu.TestConstants;
 import com.iugu.model.signature.ValidateSignatureResponse;
 import lombok.*;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ValidateSignatureServiceTest {
 
@@ -21,14 +21,14 @@ public class ValidateSignatureServiceTest {
 
     @Test
     public void testValidateSignature() throws Exception {
-        ValidateSignatureService validate = new ValidateSignatureService(Mocks.mockConfiguration());
+        ValidateSignatureService validate = new ValidateSignatureService(Mocks.mockProdConfiguration());
 
         ValidateSignatureResponse validateSignature = validate.validateSignature(TestSign
                 .builder()
-                .token(TestConstants.IUGU_TOKEN_RSA)
+                .token(TestConstants.IUGU_RSA_TOKEN_PROD)
                 .message("Teste")
                 .build());
 
-        Assert.assertEquals("Signature check successful", validateSignature.getMessage());
+        Assertions.assertEquals("Signature check successful", validateSignature.getMessage());
     }
 }

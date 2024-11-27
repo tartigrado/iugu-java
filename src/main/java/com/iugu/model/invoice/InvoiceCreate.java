@@ -2,6 +2,7 @@ package com.iugu.model.invoice;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.IuguConstants;
 import com.iugu.enums.PayableWith;
 import com.iugu.model.Commissions;
 import com.iugu.model.Payer;
@@ -11,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InvoiceCreate {
+public final class InvoiceCreate {
     private String email;
     @JsonProperty("cc_emails")
     private String ccEmails;
@@ -31,7 +33,7 @@ public class InvoiceCreate {
     private String expiresIn;
     @JsonProperty("bank_slip_extra_due")
     private String bankSlipExtraDue;
-    private List<InvoiceItemCreate> items;
+    private List<InvoiceItem> items;
     @JsonProperty("return_url")
     private String returnUrl;
     @JsonProperty("expired_url")
@@ -63,12 +65,14 @@ public class InvoiceCreate {
     private List<PayableWith> payableWith;
     private Integer credits;
     @JsonProperty("custom_variables")
-    private List<CustomVariableCreate> customVariables;
+    private List<CustomVariable> customVariables;
     @JsonProperty("early_payment_discount")
     private Boolean earlyPaymentDiscount;
     @JsonProperty("early_payment_discounts")
-    private List<EarlyPaymentDiscountCreate> earlyPaymentDiscounts;
+    private List<EarlyPaymentDiscount> earlyPaymentDiscounts;
     private Payer payer;
+    @JsonProperty("splits")
+    private List<Splits> splits;
     @JsonProperty("order_id")
     private String orderId;
     private Commissions commissions;
@@ -76,9 +80,56 @@ public class InvoiceCreate {
     private String externalReference;
     @JsonProperty("max_installments_value")
     private Integer maxInstallmentsValue;
-    @JsonProperty("splits")
-    private List<Splits> splits;
+    @JsonProperty("soft_descriptor_light")
+    private String softDescriptorLight;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX", timezone = IuguConstants.TIME_ZONE)
+    @JsonProperty("pix_qr_code_expires_at")
+    private Date pixQrCodeExpiresAt;
+    @JsonProperty("pix_remittance_info")
+    private String pixRemittanceInfo;
+    @JsonProperty("pix_additional_info")
+    private List<PixAdditionalInfo> pixAdditionalInfo;
     @JsonProperty("RAW_BODY")
     private String rawBody;
     private String password;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static final class InvoiceItem {
+        private String description;
+        private Integer quantity;
+        @JsonProperty("price_cents")
+        private Integer priceCents;
+    }
+
+
+    @Builder
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class EarlyPaymentDiscount {
+        private Integer days;
+        private BigDecimal percent;
+        private Integer valueCents;
+    }
+
+    @Builder
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class PixAdditionalInfo {
+        private String name;
+        private String value;
+    }
+
+    @Builder
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class CustomVariable {
+        private String name;
+        private String value;
+    }
 }

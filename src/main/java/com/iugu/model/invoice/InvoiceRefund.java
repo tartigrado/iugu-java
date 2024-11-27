@@ -1,16 +1,16 @@
 package com.iugu.model.invoice;
 
-import com.iugu.interfaces.invoice.CustomVariable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomVariableCreate implements CustomVariable {
-    protected String name;
-    protected String value;
+public final class InvoiceRefund {
+    @JsonProperty("partial_value_refund_cents")
+    private Integer partialValueRefundCents;
 }

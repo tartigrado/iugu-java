@@ -1,26 +1,26 @@
-package com.iugu;
-
-import jakarta.xml.bind.DatatypeConverter;
-import lombok.Getter;
-import org.apache.http.HttpHeaders;
+package com.iugu.filters;
 
 import jakarta.ws.rs.client.ClientRequestContext;
 import jakarta.ws.rs.client.ClientRequestFilter;
 import jakarta.ws.rs.core.MultivaluedMap;
+import lombok.Getter;
+import org.apache.http.HttpHeaders;
+
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @Getter
-public class Authenticator implements ClientRequestFilter {
+public final class AuthenticatorFilter implements ClientRequestFilter {
 
     private final String user;
     private final String password;
     private final String token;
 
-    public Authenticator(String iuguToken) {
+    public AuthenticatorFilter(String iuguToken) {
         this(iuguToken, "");
     }
 
-    public Authenticator(String user, String password) {
+    public AuthenticatorFilter(String user, String password) {
         this.user = user;
         this.password = password;
         this.token = getBasicAuthentication();
@@ -33,6 +33,6 @@ public class Authenticator implements ClientRequestFilter {
 
     private String getBasicAuthentication() {
         String token = getUser() + ":" + getPassword();
-        return "Basic " + DatatypeConverter.printBase64Binary(token.getBytes(StandardCharsets.UTF_8));
+        return "Basic " + Base64.getUrlEncoder().encodeToString(token.getBytes(StandardCharsets.UTF_8));
     }
 }

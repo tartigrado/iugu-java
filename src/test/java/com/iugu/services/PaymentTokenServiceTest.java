@@ -7,8 +7,8 @@ import com.iugu.exceptions.IuguException;
 import com.iugu.model.CardData;
 import com.iugu.model.payment_token.CreatePaymentToken;
 import com.iugu.responses.payment_token.PaymentTokenResponse;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.Year;
 import java.util.Objects;
@@ -36,11 +36,11 @@ public class PaymentTokenServiceTest {
                             .build())
                     .build());
 
-            Assert.assertNotNull(tokenResponse.getId());
-            Assert.assertNotNull(tokenResponse.getExtraInfo());
-            Assert.assertEquals("VISA", tokenResponse.getExtraInfo().getBrand());
-            Assert.assertEquals("ARTUR O CARVALHO", tokenResponse.getExtraInfo().getHolderName());
-            Assert.assertEquals("XXXX-XXXX-XXXX-1111", tokenResponse.getExtraInfo().getDisplayNumber());
+            Assertions.assertNotNull(tokenResponse.getId());
+            Assertions.assertNotNull(tokenResponse.getExtraInfo());
+            Assertions.assertEquals("VISA", tokenResponse.getExtraInfo().getBrand());
+            Assertions.assertEquals("ARTUR O CARVALHO", tokenResponse.getExtraInfo().getHolderName());
+            Assertions.assertEquals("XXXX-XXXX-XXXX-1111", tokenResponse.getExtraInfo().getDisplayNumber());
 
         } catch (IuguException e) {
             throw new RuntimeException(e);

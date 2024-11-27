@@ -1,4 +1,4 @@
-package com.iugu.responses;
+package com.iugu.model.invoice.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InvoicesResponse {
+public final class InvoicesResponse {
 
-    protected String totalItems;
-    protected List<InvoiceResponse> items;
+    private Integer totalItems;
+    private List<InvoiceResponse> items;
+    private InvoiceFacets facets;
 
 }
