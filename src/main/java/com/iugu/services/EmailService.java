@@ -5,8 +5,8 @@ import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Email;
 import com.iugu.model.SendEmailTest;
-import com.iugu.responses.EmailDefaultLayoutResponse;
-import com.iugu.responses.EmailResponse;
+import com.iugu.model.email.response.DefaultEmailResponse;
+import com.iugu.model.email.response.EmailResponse;
 import com.iugu.responses.SendEmailTestResponse;
 import com.iugu.services.generic.GenericService;
 
@@ -51,7 +51,7 @@ public class EmailService extends GenericService {
         }
     }
 
-    public EmailDefaultLayoutResponse findDefaultLayout(String identifier) throws IuguException {
+    public DefaultEmailResponse findDefaultLayout(String identifier) throws IuguException {
         try (Client client = getIugu().getNewClient()) {
 
             Response response = client.target(String.format(FIND_DEFAULT_LAYOUT_URL, identifier)).request().get();
@@ -59,7 +59,7 @@ public class EmailService extends GenericService {
             String ResponseText = null;
 
             if (ResponseStatus == 200)
-                return response.readEntity(EmailDefaultLayoutResponse.class);
+                return response.readEntity(DefaultEmailResponse.class);
 
             // Error Happened
             if (response.hasEntity()) {

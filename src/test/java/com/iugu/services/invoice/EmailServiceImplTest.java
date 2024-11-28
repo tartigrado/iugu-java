@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class InvoiceServiceImplTest {
+public class EmailServiceImplTest {
 
     InvoiceService service = new InvoiceServiceImpl(Mocks.mockConfiguration());
 
