@@ -4,7 +4,7 @@
 
     <groupId>com.tartigrado</groupId>
     <artifactId>iugu-java</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <packaging>jar</packaging>
 
     <name>iugu-java</name>
@@ -114,15 +114,10 @@
     </dependencies>
 
     <distributionManagement>
-<!--        <repository>-->
-<!--            <id>tartigrado-central</id>-->
-<!--            <name>Tartigrado Repository</name>-->
-<!--            <url>https://tartigrado-221658248770.d.codeartifact.us-east-1.amazonaws.com/maven/tartigrado-libs/</url>-->
-<!--        </repository>-->
         <repository>
-            <id>faturar-faturar-libs</id>
-            <name>faturar-faturar-libs</name>
-            <url>https://faturar-982534387068.d.codeartifact.us-east-1.amazonaws.com/maven/faturar-libs/</url>
+            <id>faturar-faturar</id>
+            <name>Faturar Repository</name>
+            <url>https://faturar-982534387068.d.codeartifact.us-east-1.amazonaws.com/maven/faturar/</url>
         </repository>
     </distributionManagement>
 
