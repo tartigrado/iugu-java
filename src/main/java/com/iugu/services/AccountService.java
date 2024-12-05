@@ -1,6 +1,9 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.model.withdraw.RequestWithdraw;
+import com.iugu.model.withdraw.response.WithdrawResponse;
+import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.*;
@@ -30,7 +33,7 @@ public class AccountService extends GenericRsaService {
     private final String PAYMENT_CONFIGURATION_URL = IuguConfiguration.url("/payments/pix");
 
     public AccountService(IuguConfiguration iugu) {
-        super(iugu, new ValidateSignatureService(iugu));
+        super(iugu, new ValidateSignatureServiceImpl(iugu));
     }
 
     public AccountResponse find(String id) throws IuguException {
@@ -86,10 +89,10 @@ public class AccountService extends GenericRsaService {
         return requestWithSignature(HttpMethod.POST, ACCOUNT_CONFIGURATION_URL, earlyPaymentConfig, AccountConfigurationResponse.class);
     }
 
-    public RequestWithdrawResponse requestWithdraw(RequestWithdraw requestWithdraw, String accountId) throws IuguException {
+    public WithdrawResponse requestWithdraw(RequestWithdraw requestWithdraw, String accountId) throws IuguException {
         requestWithdraw = getIugu().withToken(requestWithdraw);
         String urlWithId = String.format(REQUEST_WITHDRAW_URL, accountId);
-        return requestWithSignature(HttpMethod.POST, urlWithId, requestWithdraw, RequestWithdrawResponse.class);
+        return requestWithSignature(HttpMethod.POST, urlWithId, requestWithdraw, WithdrawResponse.class);
     }
 
     public AccountResponse change(AccountUpdate account) throws IuguException {

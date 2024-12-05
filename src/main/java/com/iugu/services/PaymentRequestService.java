@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.PaymentRequest;
@@ -23,7 +24,7 @@ public class PaymentRequestService extends GenericRsaService {
     private final String VALIDATE_URL = IuguConfiguration.url("/payment_requests/validate");
 
     public PaymentRequestService(IuguConfiguration iuguConfiguration) {
-        super(iuguConfiguration, new ValidateSignatureService(iuguConfiguration));
+        super(iuguConfiguration, new ValidateSignatureServiceImpl(iuguConfiguration));
     }
 
     public PaymentRequestResponse create(PaymentRequest paymentRequest) throws IuguException {

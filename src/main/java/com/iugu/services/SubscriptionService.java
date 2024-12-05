@@ -5,9 +5,9 @@ import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Credit;
 import com.iugu.model.Subscription;
-import com.iugu.responses.SimulateChangePlanResponse;
-import com.iugu.responses.SubscriptionResponse;
-import com.iugu.responses.SubscriptionsResponse;
+import com.iugu.model.subscription.response.SimulateChangePlanResponse;
+import com.iugu.model.subscription.response.SubscriptionResponse;
+import com.iugu.model.subscription.response.SubscriptionsResponse;
 import com.iugu.services.generic.GenericService;
 
 import jakarta.ws.rs.client.Entity;

@@ -16,7 +16,7 @@ public final class InvoiceFacets {
     @NoArgsConstructor
     private static final class Late {
         @JsonProperty("_type")
-        private String Type;
+        private String type;
         private Integer count;
     }
 
@@ -27,7 +27,7 @@ public final class InvoiceFacets {
     private static final class Status {
 
         @JsonProperty("_type")
-        private String Type;
+        private String type;
         private Integer missing;
         private Integer other;
         private List<Term> terms;

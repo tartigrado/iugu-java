@@ -1,14 +1,14 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.Transfer;
 import com.iugu.responses.TransferResponse;
 import com.iugu.responses.TransfersResponse;
 import com.iugu.services.generic.GenericRsaService;
-
+import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.core.Response;
 
 public class TransferService extends GenericRsaService {
@@ -18,7 +18,7 @@ public class TransferService extends GenericRsaService {
     private final String FIND_PARAMS_URL = IuguConfiguration.url("/transfers?%s");
 
     public TransferService(IuguConfiguration iuguConfiguration) {
-        super(iuguConfiguration, new ValidateSignatureService(iuguConfiguration));
+        super(iuguConfiguration, new ValidateSignatureServiceImpl(iuguConfiguration));
     }
 
     public TransferResponse transfer(Transfer transfer) throws IuguException {

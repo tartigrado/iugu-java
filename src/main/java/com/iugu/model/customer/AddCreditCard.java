@@ -1,7 +1,7 @@
 package com.iugu.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.iugu.model.CardData;
+import com.iugu.model.card.CardData;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

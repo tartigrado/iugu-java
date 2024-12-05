@@ -1,16 +1,17 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
-import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.BankAddress;
 import com.iugu.responses.BankAddressVerificationResponse;
 import com.iugu.responses.BankVerificationResponse;
 import com.iugu.services.generic.GenericRsaService;
-
+import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.HttpMethod;
+import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
+
 import java.util.List;
 
 public class BankService extends GenericRsaService {
@@ -18,7 +19,7 @@ public class BankService extends GenericRsaService {
     private final String VERIFICATION_URL = IuguConfiguration.url("/bank_verification");
 
     public BankService(IuguConfiguration iugu) {
-        super(iugu, new ValidateSignatureService(iugu));
+        super(iugu, new ValidateSignatureServiceImpl(iugu));
     }
 
     public BankVerificationResponse add(BankAddress bankAddress) throws IuguException {

@@ -1,18 +1,15 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.MarketPlace;
 import com.iugu.responses.AccountCreationResponse;
 import com.iugu.responses.MarketPlacesResponse;
-import com.iugu.responses.RequestWithdrawResponse;
 import com.iugu.services.generic.GenericRsaService;
-import com.iugu.services.generic.GenericService;
 
 import jakarta.ws.rs.HttpMethod;
-import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 public class MarketplaceService extends GenericRsaService {
@@ -20,7 +17,7 @@ public class MarketplaceService extends GenericRsaService {
     private final String FIND_ALL_URL = IuguConfiguration.url("/marketplace");
 
     public MarketplaceService(IuguConfiguration iugu) {
-        super(iugu, new ValidateSignatureService(iugu));
+        super(iugu, new ValidateSignatureServiceImpl(iugu));
     }
 
     public AccountCreationResponse createAccount(MarketPlace marketPlace) throws IuguException {

@@ -2,9 +2,9 @@ package com.iugu.model.invoice.response;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.model.EarlyPaymentDiscount;
-import com.iugu.responses.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,128 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public final class InvoiceResponse {
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class PixResponse {
+        @JsonProperty("qrcode")
+        private String qrcode;
+        @JsonProperty("qrcode_text")
+        private String qrcodeText;
+        private String status;
+        @JsonProperty("payer_cpf_cnpj")
+        private String payerCpfCnpj;
+        @JsonProperty("payer_name")
+        private String payerName;
+        @JsonProperty("end_to_end_id")
+        private String endToEndId;
+        @JsonProperty("end_to_end_refund_id")
+        private String endToEndRefundId;
+        @JsonProperty("account_number_last_digits")
+        private String accountNumberLastDigits;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class ItemResponse {
+        private String id;
+        private String description;
+        private Integer quantity;
+        @JsonProperty("price_cents")
+        private Integer priceCents;
+        @JsonProperty("created_at")
+        private String createdAt;
+        @JsonProperty("updated_at")
+        private Date updatedAt;
+        private String price;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class VariableResponse {
+        private String id;
+        private String variable;
+        private String value;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class CustomVariableResponse {
+
+        private String name;
+        private String value;
+
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public final static class LogResponse {
+        private String id;
+        private String description;
+        private String notes;
+        @JsonProperty("subscription_changes")
+        private String subscriptionChanges;
+        @JsonProperty("created_at")
+        private String createdAt;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public final static class FinancialReturnDatesResponse {
+        @JsonIgnore
+        private Long id;
+        private String installment;
+        @JsonProperty("return_date")
+        private String returnDate;
+        private String status;
+        private String amount;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static final class BankSlipResponse {
+        @JsonProperty("digitable_line")
+        private String digitableLine;
+        @JsonProperty("barcode_data")
+        private String barcodeData;
+        @JsonProperty("barcode")
+        private String barcode;
+        @JsonProperty("bank_slip_bank")
+        private int bankSlipBank;
+        @JsonProperty("bank_slip_url")
+        private String bankSlipUrl;
+        @JsonProperty("bank_slip_pdf_url")
+        private String bankSlipPdfUrl;
+        @JsonProperty("bank_slip_status")
+        private String bankSlipStatus;
+        @JsonProperty("bank_slip_error_code")
+        private String bankSlipErrorCode;
+        @JsonProperty("bank_slip_error_message")
+        private String bankSlipErrorMessage;
+        @JsonProperty("recipient_cpf_cnpj")
+        private String recipientCpfCnpj;
+        @JsonAnySetter
+        private Map<String, Object> any;
+    }
 
     private String id;
     @JsonProperty("due_date")
