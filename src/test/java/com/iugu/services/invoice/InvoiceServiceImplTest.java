@@ -120,11 +120,11 @@ public class InvoiceServiceImplTest {
                 .dueDate(calendar.getTime())
                 .build()));
 
-        Assertions.assertTrue(ex.getMessage().contains("payer.cpf_cnpj [não pode ficar em branco]"));
-        Assertions.assertTrue(ex.getMessage().contains("total [deve ser maior que 1]"));
-        Assertions.assertTrue(ex.getMessage().contains("payer.name [não pode ficar em branco]"));
-        Assertions.assertTrue(ex.getMessage().contains("email [não pode ficar em branco, é inválido]"));
-        Assertions.assertTrue(ex.getMessage().contains("Geral [Faturas pendentes necessitam de pelo menos um item]"));
+        Assertions.assertTrue(ex.getMessage().contains("payer.cpf_cnpj [não pode ficar em branco]"), ex.getMessage());
+        Assertions.assertTrue(ex.getMessage().contains("total [deve ser maior que 1]"), ex.getMessage());
+        Assertions.assertTrue(ex.getMessage().contains("payer.name [não pode ficar em branco]"), ex.getMessage());
+        Assertions.assertTrue(ex.getMessage().contains("email [não pode ficar em branco, é inválido]"), ex.getMessage());
+        Assertions.assertTrue(ex.getMessage().contains("Geral [Faturas pendentes necessitam de pelo menos um item]"), ex.getMessage());
     }
 
     @Test
