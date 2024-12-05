@@ -11,8 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public final class PlanFilter {
+    @QueryParam("start")
     private Integer start;
+    @QueryParam("limit")
     private Integer limit;
+    @QueryParam("query")
     private String query;
     @QueryParam("updated_at_since")
     private String updatedAtSince;

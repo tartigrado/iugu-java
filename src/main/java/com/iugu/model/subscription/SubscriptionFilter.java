@@ -11,12 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public final class SubscriptionFilter {
+    @QueryParam("limit")
     private Integer limit;
+    @QueryParam("start")
     private Integer start;
     @QueryParam("created_at_from")
     private String createdAtFrom;
     @QueryParam("created_at_to")
     private String createdAtTo;
+    @QueryParam("query")
     private String query;
     @QueryParam("updated_since")
     private String updatedSince;

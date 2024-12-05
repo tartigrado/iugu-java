@@ -1,7 +1,7 @@
 package com.iugu.model.withdraw;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.ws.rs.QueryParam;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,10 +21,11 @@ public final class WithdrawFilter {
     public static final String STATUS_PARTIALLY_REFUNDED = "partially_refunded";
     public static final String STATUS_REPROCESSING = "reprocessing";
 
-    @JsonProperty("custom_variables_name")
+    @QueryParam("custom_variables_name")
     private String customVariablesName;
-    @JsonProperty("custom_variables_value")
+    @QueryParam("custom_variables_value")
     private String customVariablesValue;
+    @QueryParam("status")
     private String status;
 
 }
