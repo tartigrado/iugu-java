@@ -13,6 +13,7 @@ public final class Jackson {
     public static final class Holder {
         private static final ObjectMapper INSTANCE = JsonMapper
                 .builder()
+                .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .serializationInclusion(JsonInclude.Include.NON_EMPTY)
                 .build();
