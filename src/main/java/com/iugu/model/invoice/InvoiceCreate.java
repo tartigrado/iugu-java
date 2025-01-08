@@ -22,6 +22,7 @@ import java.util.List;
 @Builder
 public final class InvoiceCreate {
     private String email;
+    private String status;
     @JsonProperty("cc_emails")
     private String ccEmails;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "America/Sao_Paulo")
@@ -112,6 +113,7 @@ public final class InvoiceCreate {
     public static final class EarlyPaymentDiscount {
         private Integer days;
         private BigDecimal percent;
+        @JsonProperty("value_cents")
         private Integer valueCents;
     }
 
