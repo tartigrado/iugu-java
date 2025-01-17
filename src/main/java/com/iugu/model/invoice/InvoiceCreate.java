@@ -6,7 +6,7 @@ import com.iugu.IuguConstants;
 import com.iugu.enums.PayableWith;
 import com.iugu.model.Commissions;
 import com.iugu.model.Payer;
-import com.iugu.model.Splits;
+import com.iugu.model.splits.Splits;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

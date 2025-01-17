@@ -1,4 +1,4 @@
-package com.iugu.responses;
+package com.iugu.model.account.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AccountCreationResponse {
+public final class AccountCreateResponse {
 
     @JsonProperty("account_id")
-    protected String accountId;
+    private String accountId;
     @JsonProperty("name")
-    protected String name;
+    private String name;
     @JsonProperty("live_api_token")
-    protected String liveApiToken;
+    private String liveApiToken;
     @JsonProperty("test_api_token")
-    protected String testApiToken;
+    private String testApiToken;
     @JsonProperty("user_token")
-    protected String userToken;
+    private String userToken;
 
 }

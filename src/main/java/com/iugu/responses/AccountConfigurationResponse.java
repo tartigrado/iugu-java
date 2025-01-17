@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.iugu.model.Commissions;
 import com.iugu.model.EarlyPaymentDiscount;
-import com.iugu.model.Splits;
-import com.iugu.model.account.AccountConfigurationInfo;
+import com.iugu.model.splits.Splits;
+import com.iugu.model.account.AccountConfiguration;
 import com.iugu.model.account.BankAccount;
 import com.iugu.model.account.ContactData;
 import lombok.AllArgsConstructor;
@@ -81,6 +81,6 @@ public class AccountConfigurationResponse {
     protected List<Splits> splits;
     protected ContactData contactData;
     protected String informations;
-    protected AccountConfigurationInfo configuration;
+    protected AccountConfiguration configuration;
     protected List<BankAccount> bankAccounts;
 }

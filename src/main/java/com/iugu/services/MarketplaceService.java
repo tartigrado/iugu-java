@@ -5,7 +5,7 @@ import com.iugu.services.signature.ValidateSignatureServiceImpl;
 import jakarta.ws.rs.client.Client;
 import com.iugu.exceptions.IuguException;
 import com.iugu.model.MarketPlace;
-import com.iugu.responses.AccountCreationResponse;
+import com.iugu.model.account.response.AccountCreateResponse;
 import com.iugu.responses.MarketPlacesResponse;
 import com.iugu.services.generic.GenericRsaService;
 
@@ -20,9 +20,9 @@ public class MarketplaceService extends GenericRsaService {
         super(iugu, new ValidateSignatureServiceImpl(iugu));
     }
 
-    public AccountCreationResponse createAccount(MarketPlace marketPlace) throws IuguException {
+    public AccountCreateResponse createAccount(MarketPlace marketPlace) throws IuguException {
         marketPlace = getIugu().withToken(marketPlace);
-        return requestWithSignature(HttpMethod.POST, CREATE_ACCOUNT_URL, marketPlace, AccountCreationResponse.class);
+        return requestWithSignature(HttpMethod.POST, CREATE_ACCOUNT_URL, marketPlace, AccountCreateResponse.class);
     }
 
     public MarketPlacesResponse findAll() throws IuguException {

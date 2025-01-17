@@ -1,6 +1,5 @@
-package com.iugu.model;
+package com.iugu.model.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.interfaces.WithApiToken;
 import com.iugu.model.splits.Splits;
@@ -15,12 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MarketPlace implements WithApiToken {
-
-    protected String name;
-    protected List<Splits> splits;
+public final class AccountCreate implements WithApiToken {
+    private String name;
+    private List<Splits> splits;
     @JsonProperty("api_token")
-    protected String apiToken;
-
+    private String apiToken;
 }

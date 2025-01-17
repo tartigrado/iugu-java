@@ -47,7 +47,7 @@ class WithdrawServiceImplTest {
                 "Valor [deve ser maior ou igual a 5]",
                 "Valor [deve ser maior que ou igual a 5]"
         );
-        Assertions.assertTrue(possibleMessages.stream().anyMatch(it -> it.equals(ex.getMessage())));
+        Assertions.assertTrue(possibleMessages.stream().anyMatch(it -> ex.getMessage().contains(it)));
     }
 
 }

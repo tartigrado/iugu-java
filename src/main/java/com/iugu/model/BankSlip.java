@@ -12,12 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BankSlip {
+public final class BankSlip {
 
-    protected Boolean active;
-    protected Integer extraDue;
-    protected Integer reprintExtraDue;
+    private Boolean active;
+    private Integer extraDue;
+    private Integer reprintExtraDue;
 
 }

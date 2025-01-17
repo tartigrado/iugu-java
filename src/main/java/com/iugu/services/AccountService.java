@@ -1,6 +1,7 @@
 package com.iugu.services;
 
 import com.iugu.IuguConfiguration;
+import com.iugu.model.account.response.AccountResponse;
 import com.iugu.model.withdraw.RequestWithdraw;
 import com.iugu.model.withdraw.response.WithdrawResponse;
 import com.iugu.services.signature.ValidateSignatureServiceImpl;

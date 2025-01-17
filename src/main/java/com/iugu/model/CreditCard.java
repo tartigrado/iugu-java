@@ -12,16 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CreditCard {
+public final class CreditCard {
 
-    protected Boolean active;
-    protected String softDescriptor;
-    protected Boolean installments;
-    protected Integer maxInstallments;
-    protected String maxInstallmentsWithoutInterest;
-    protected Boolean twoStepTransaction;
-    protected Boolean installmentsPassInterest;
-
+    private Boolean active;
+    private String softDescriptor;
+    private Boolean installments;
+    private Integer maxInstallments;
+    private String maxInstallmentsWithoutInterest;
+    private Boolean twoStepTransaction;
+    private Boolean installmentsPassInterest;
 }

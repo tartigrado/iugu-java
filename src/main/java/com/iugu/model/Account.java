@@ -3,6 +3,7 @@ package com.iugu.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iugu.interfaces.WithApiToken;
+import com.iugu.model.splits.Splits;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

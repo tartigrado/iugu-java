@@ -1,6 +1,5 @@
 package com.iugu.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +14,12 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class EarlyPaymentDiscount {
+public final class EarlyPaymentDiscount {
 
-    protected Integer days;
+    private Integer days;
     @JsonProperty("value_cents")
-    protected Integer valueCents;
-    protected BigDecimal percent;
+    private Integer valueCents;
+    private BigDecimal percent;
 
     public void setPercent(BigDecimal percent) {
         this.percent = Optional.ofNullable(percent).map(it -> it.setScale(2, RoundingMode.HALF_EVEN)).orElse(percent);
