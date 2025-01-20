@@ -24,7 +24,7 @@ public final class IuguLanguageFilter implements ClientRequestFilter {
 
     @Override
     public void filter(ClientRequestContext clientRequestContext) throws IOException {
-        clientRequestContext.setUri(UriUtils.createURI(clientRequestContext.getUri().toString(), Map.of("language", IuguConstants.LOCALE)));
+        clientRequestContext.setUri(UriUtils.createURI(clientRequestContext.getUri().toString(), Map.of("language", IuguConstants.LOCALE, "hl", IuguConstants.LOCALE)));
     }
 
 }

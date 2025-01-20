@@ -21,6 +21,7 @@ public final class PlanUpdate {
     @NoArgsConstructor
     public static final class Feature {
         private String id;
+        private String identifier;
         private String name;
         private Integer value;
         @JsonProperty("_destroy")

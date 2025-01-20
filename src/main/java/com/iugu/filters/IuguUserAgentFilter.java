@@ -22,7 +22,7 @@ public final class IuguUserAgentFilter implements ClientRequestFilter {
 
 
     private final static String USER_AGENT_NAME = System.getProperty("iugu.user-agent", "Tartigrado Iugu Java SDK");
-    private final static String USER_AGENT_VERSION = System.getProperty("iugu.user-agent-version", "4.1.2");
+    private final static String USER_AGENT_VERSION = System.getProperty("iugu.user-agent-version", "4.1.3");
 
     @Override
     public void filter(ClientRequestContext clientRequestContext) throws IOException {
