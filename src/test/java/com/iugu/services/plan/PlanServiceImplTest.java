@@ -98,6 +98,8 @@ class PlanServiceImplTest {
         Assertions.assertNull(updateResponse.getAny());
         Assertions.assertEquals("Teste 2 edit", updateResponse.getName());
         Assertions.assertEquals("Feature 1 edit", updateResponse.getFeatureByIdentifier("feature1").getName());
+
+        Assertions.assertFalse(updateResponse.payableWiths().isEmpty());
         updateResponse.getFeatures().forEach(it -> Assertions.assertNull(it.getAny()));
         updateResponse.getPrices().forEach(it -> Assertions.assertNull(it.getAny()));
 

@@ -3,14 +3,13 @@ package com.iugu.model.plan.response;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.enums.PayableWith;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 @Builder
@@ -89,5 +88,24 @@ public final class PlanResponse {
     @JsonIgnore
     public Feature getFeatureByIdentifier(String identifier) {
         return features.stream().filter(f -> Objects.equals(identifier, f.getIdentifier())).findFirst().orElse(null);
+    }
+
+    @JsonIgnore
+    public List<PayableWith> payableWiths() {
+        if (Objects.isNull(getPayableWith())) {
+            return Collections.emptyList();
+        }
+        if (getPayableWith() instanceof String) {
+            return List.of(PayableWith.getPayableWithByValue((String) getPayableWith()));
+        } else if (getPayableWith() instanceof Collection<?>) {
+            List<PayableWith> payableWiths = new ArrayList<>();
+            for (Object o : (Collection<?>) getPayableWith()) {
+                if (o instanceof String) {
+                    payableWiths.add(PayableWith.getPayableWithByValue((String) o));
+                }
+            }
+            return payableWiths;
+        }
+        return Collections.emptyList();
     }
 }
