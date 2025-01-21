@@ -2,6 +2,7 @@ package com.iugu.services.invoice;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.components.HttpClientManager;
+import com.iugu.components.RetryComponent;
 import com.iugu.exceptions.IuguExceptionHandler;
 import com.iugu.model.Invoice;
 import com.iugu.model.invoice.*;
@@ -94,7 +95,7 @@ public final class InvoiceServiceImpl implements InvoiceService {
     @Override
     public InvoicesResponse listInvoices(InvoiceFilter filter) {
         try {
-            return proxy.listInvoices(filter);
+            return RetryComponent.getInstance().retry(() -> proxy.listInvoices(filter));
         } catch (WebApplicationException ex) {
             throw IuguExceptionHandler.getException(ex);
         }

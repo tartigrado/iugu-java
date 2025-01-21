@@ -21,6 +21,10 @@ public final class WithdrawFilter {
     public static final String STATUS_PARTIALLY_REFUNDED = "partially_refunded";
     public static final String STATUS_REPROCESSING = "reprocessing";
 
+    @QueryParam("start")
+    private Integer start;
+    @QueryParam("limit")
+    private Integer limit;
     @QueryParam("custom_variables_name")
     private String customVariablesName;
     @QueryParam("custom_variables_value")

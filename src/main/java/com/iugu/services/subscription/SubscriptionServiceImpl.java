@@ -2,6 +2,7 @@ package com.iugu.services.subscription;
 
 import com.iugu.IuguConfiguration;
 import com.iugu.components.HttpClientManager;
+import com.iugu.components.RetryComponent;
 import com.iugu.exceptions.IuguExceptionHandler;
 import com.iugu.model.subscription.*;
 import com.iugu.model.subscription.response.SimulateChangePlanResponse;
@@ -28,7 +29,7 @@ public final class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public SubscriptionResponse createSubscription(SubscriptionCreate subscription) {
         try {
-            return proxy.createSubscription(subscription);
+            return RetryComponent.getInstance().retry(() -> proxy.createSubscription(subscription));
         } catch (WebApplicationException e) {
             throw IuguExceptionHandler.getException(e);
         }
